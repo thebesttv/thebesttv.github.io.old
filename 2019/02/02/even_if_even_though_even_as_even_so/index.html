@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next pisces use-motion" lang="zh-cn">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    save_scroll: false,
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta name="description" content="这几个词连起来都可以当成歌来唱了…… even aseven：at the very time even as: exactly at the same time  Even as she said this, she knew it was not quite true.Even as I warned her, she slipped.  even soso 相当于代词，指代上文所提及的情况。">
+<meta name="keywords" content="ACM,OI,Geek">
+<meta property="og:type" content="article">
+<meta property="og:title" content="even if, even though, even as, even so">
+<meta property="og:url" content="https://thebesttv.github.io/2019/02/02/even_if_even_though_even_as_even_so/index.html">
+<meta property="og:site_name" content="thebesttv&#39;s blog">
+<meta property="og:description" content="这几个词连起来都可以当成歌来唱了…… even aseven：at the very time even as: exactly at the same time  Even as she said this, she knew it was not quite true.Even as I warned her, she slipped.  even soso 相当于代词，指代上文所提及的情况。">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:image" content="https://thebesttv.github.io/_image/2019-02-02/15-12-53.jpg">
+<meta property="og:updated_time" content="2019-08-04T13:03:55.691Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="even if, even though, even as, even so">
+<meta name="twitter:description" content="这几个词连起来都可以当成歌来唱了…… even aseven：at the very time even as: exactly at the same time  Even as she said this, she knew it was not quite true.Even as I warned her, she slipped.  even soso 相当于代词，指代上文所提及的情况。">
+<meta name="twitter:image" content="https://thebesttv.github.io/_image/2019-02-02/15-12-53.jpg">
+  <link rel="alternate" href="/atom.xml" title="thebesttv's blog" type="application/atom+xml">
+  <link rel="canonical" href="https://thebesttv.github.io/2019/02/02/even_if_even_though_even_as_even_so/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>even if, even though, even as, even so | thebesttv's blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-cn">
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">thebesttv's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Think twice, then code once.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://thebesttv.github.io/2019/02/02/even_if_even_though_even_as_even_so/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="thebesttv">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="thebesttv's blog">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">even if, even though, even as, even so
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-02 00:00:00" itemprop="dateCreated datePublished" datetime="2019-02-02T00:00:00+08:00">2019-02-02</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-08-04 21:03:55" itemprop="dateModified" datetime="2019-08-04T21:03:55+08:00">2019-08-04</time>
+              </span>
+            
+          
+
+          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Comments: </span>
+    
+  
+    <a href="/2019/02/02/even_if_even_though_even_as_even_so/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/02/02/even_if_even_though_even_as_even_so/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>这几个词连起来都可以当成歌来唱了……</p>
+<h1 id="even-as"><a href="#even-as" class="headerlink" title="even as"></a>even as</h1><p>even：at the very time<br><img src="/_image/2019-02-02/15-12-53.jpg" alt="Image"></p>
+<p>even as: exactly at the same time</p>
+<blockquote>
+<p>Even as she said this, she knew it was not quite true.<br>Even as I warned her, she slipped.</p>
+</blockquote>
+<h1 id="even-so"><a href="#even-so" class="headerlink" title="even so"></a>even so</h1><p>so 相当于代词，指代上文所提及的情况。even so 具有副词性质，不用作连词。</p>
+<blockquote>
+<p>The bus was only half full. Even so, a young man asked Nina if the seat next to her was taken.<br>There’re many spelling mistakes; even so, it’s quite a good essay.<br>It was cold, but even so we enjoyed the garden party.</p>
+</blockquote>
+<h1 id="重头戏：even-if-even-though"><a href="#重头戏：even-if-even-though" class="headerlink" title="重头戏：even if, even though"></a>重头戏：even if, even though</h1><p>even if &amp; even though 的本质，就是 if 和 though 被 even(ad.) 修饰（暂时这两个even的意思还不明白）。而 if 和 though 在此都为连词，那么这两个词组也就具有了连词的性质。<br>两个词的区别类似于“虽”的两个意思——虽然（表事实的让步）、即使（表假设的让步）</p>
+<h2 id="even-though——强调事实的让步：虽然"><a href="#even-though——强调事实的让步：虽然" class="headerlink" title="even though——强调事实的让步：虽然"></a>even though——强调事实的让步：虽然</h2><blockquote>
+<p>Even though means <em>despite the fact that</em> and is <strong>a more emphatic version of though and although</strong>.</p>
+</blockquote>
+<p>even though 表示的一定是事实</p>
+<blockquote>
+<p>I like her, even though she can be annoying at times.<br>“她有时可能烦人”是一个事实，但这不妨碍我喜欢她。</p>
+</blockquote>
+<blockquote>
+<p>Even though he was bigger, he never looked down on me.</p>
+</blockquote>
+<h2 id="even-if——不强调事实的让步"><a href="#even-if——不强调事实的让步" class="headerlink" title="even if——不强调事实的让步"></a>even if——<em>不强调</em>事实的让步</h2><blockquote>
+<p>even if: regardless of whether; irrespective of (something happening or being the case).</p>
+</blockquote>
+<p>even if 可以表示<em>假设的让步</em>（hypothesis；即使），但其所说的也可以是事实，不过说话者不强调它是事实。</p>
+<blockquote>
+<p>He is a great President, even if he has many enemies. 尽管他有许多敌人，他仍不失为是一位伟大的总统。<br>在此句中，他有敌人是一个事实，但说话者并不强调这一点（无论是与“他是否有敌人”还是与主句之间）</p>
+</blockquote>
+<blockquote>
+<p>Even if you have perfect vision, you should still have your eyes checked regularly.<br>无论你是否有1.0的视力，都要去检查。</p>
+</blockquote>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p>Even if I had two hours to spare for shopping, I wouldn’t go out and buy a suit.<br>Even though I had two hours to spare for shopping, I couldn’t find the suit I wanted.</p>
+<p>Even though he lost his job as Arts Minister, he continued to serve in the government.<br>Even if he loses his job as Arts Minister, I think he’ll continue to serve in the government.</p>
+<p>Even though the injury was serious, she decided to carry on playing. It was an important match.<br>I know she’ll want to carry on playing, even if she gets injured. It’s an important match.</p>
+<p>Even though I’ve cleaned it and polished it, it still doesn’t look new.<br>Even if I clean and polish it, it still won’t look new.</p>
+<p>ps. 还是<a href="http://www.bbc.co.uk/worldservice/learningenglish/youmeus/learnit/learnitv122.shtml" target="_blank" rel="noopener">BBC的那个网站</a>讲得好……</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+              <a href="/2019/02/01/English_card/" rel="next" title="2019/02/01 英语卡片">
+                <i class="fa fa-chevron-left"></i> 2019/02/01 英语卡片
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+              <a href="/2019/07/01/[UVa_11729]_Commando_War/" rel="prev" title="[UVa 11729] Commando War">
+                [UVa 11729] Commando War <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+  
+
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/avatar.jpg"
+      alt="thebesttv">
+  <p class="site-author-name" itemprop="name">thebesttv</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+        
+        
+          
+        
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">tags</span>
+        
+      </div>
+    
+  </nav>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#even-as"><span class="nav-number">1.</span> <span class="nav-text">even as</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#even-so"><span class="nav-number">2.</span> <span class="nav-text">even so</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#重头戏：even-if-even-though"><span class="nav-number">3.</span> <span class="nav-text">重头戏：even if, even though</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#even-though——强调事实的让步：虽然"><span class="nav-number">3.1.</span> <span class="nav-text">even though——强调事实的让步：虽然</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#even-if——不强调事实的让步"><span class="nav-number">3.2.</span> <span class="nav-text">even if——不强调事实的让步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例子"><span class="nav-number">3.3.</span> <span class="nav-text">例子</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">thebesttv</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/affix.js?v=7.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+    
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://https-thebesttv-github-io.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://thebesttv.github.io/2019/02/02/even_if_even_though_even_as_even_so/";
+    this.page.identifier = "2019/02/02/even_if_even_though_even_as_even_so/";
+    this.page.title = 'even if, even though, even as, even so';};
+  function loadComments() {
+    if (!window.DISQUS) {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://https-thebesttv-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    } else {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    }
+  }
+    window.addEventListener('load', loadComments, false);
+  
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

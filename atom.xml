@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://thebesttv.github.io/"/>
-  <updated>2019-08-04T11:42:58.412Z</updated>
+  <updated>2019-08-04T13:16:34.271Z</updated>
   <id>https://thebesttv.github.io/</id>
   
   <author>
@@ -17,13 +17,20 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>dr1</title>
-    <link href="https://thebesttv.github.io/2019/08/04/dr1/"/>
-    <id>https://thebesttv.github.io/2019/08/04/dr1/</id>
-    <published>2019-08-04T11:42:58.000Z</published>
-    <updated>2019-08-04T11:42:58.412Z</updated>
+    <title>[UVa 11729] Commando War</title>
+    <link href="https://thebesttv.github.io/2019/07/01/%5BUVa_11729%5D_Commando_War/"/>
+    <id>https://thebesttv.github.io/2019/07/01/[UVa_11729]_Commando_War/</id>
+    <published>2019-07-01T12:55:00.000Z</published>
+    <updated>2019-08-04T13:16:34.271Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给定 n 个士兵，让他们干活。对于每个士兵 i ，交代任务时间为 $B_i$ ，然后他执行任务的时间为 $J_i$。一个个给他们下达命令，求最小总时间</p><h1 id="解题报告"><a href="#解题报告" class="headerlink" title="解题报告"></a>解题报告</h1><p>贪心：将所有士兵按照 $j$ 排序，然后一个个下达命令即可。<br>汝佳的书上基本已经写清楚了，但我一开始还是不太理解为什么要交换“相邻”元素，后来想到冒泡排序。冒泡排序能把任意数列排到有序，那它的逆过程就能把一个有序序列变成任意序列。再扩展一下，只需多次相邻两两交换就可得到任意序列。</p><h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX = <span class="number">1000</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> n, kase=<span class="number">0</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Ind</span>&#123;</span></span><br><span class="line">  <span class="keyword">int</span> a,b;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> Ind &amp;i) <span class="keyword">const</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> b &gt; i.b;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;ind[MAX];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">  <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n) &amp;&amp; n)&#123;</span><br><span class="line">    FOR(i,<span class="number">0</span>,n) <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;ind[i].a, &amp;ind[i].b);</span><br><span class="line">    sort(ind, ind+n);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> ans=<span class="number">0</span>,sa=<span class="number">0</span>;</span><br><span class="line">    FOR(i,<span class="number">0</span>,n)&#123;</span><br><span class="line">      sa += ind[i].a;</span><br><span class="line">      ans = max(ans, sa + ind[i].b);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Case %d: %d\n"</span>,++kase,ans);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h1&gt;&lt;p&gt;给定 n 个士兵，让他们干活。对于每个士兵 i ，交代任务时间为 $B_i$ ，然后他执行任务的时间为 $J_i$。一个个给
+      
     
     </summary>
     
@@ -31,19 +38,42 @@
   </entry>
   
   <entry>
-    <title>po1</title>
-    <link href="https://thebesttv.github.io/2019/08/04/po1/"/>
-    <id>https://thebesttv.github.io/2019/08/04/po1/</id>
-    <published>2019-08-04T11:41:30.000Z</published>
-    <updated>2019-08-04T12:54:46.547Z</updated>
+    <title>even if, even though, even as, even so</title>
+    <link href="https://thebesttv.github.io/2019/02/02/even_if_even_though_even_as_even_so/"/>
+    <id>https://thebesttv.github.io/2019/02/02/even_if_even_though_even_as_even_so/</id>
+    <published>2019-02-01T16:00:00.000Z</published>
+    <updated>2019-08-04T13:03:55.691Z</updated>
     
-    <content type="html"><![CDATA[<p>\(\mathcal{F}(x)=\mathcal{H}(x)-x\)</p>]]></content>
+    <content type="html"><![CDATA[<p>这几个词连起来都可以当成歌来唱了……</p><h1 id="even-as"><a href="#even-as" class="headerlink" title="even as"></a>even as</h1><p>even：at the very time<br><img src="/_image/2019-02-02/15-12-53.jpg" alt="Image"></p><p>even as: exactly at the same time</p><blockquote><p>Even as she said this, she knew it was not quite true.<br>Even as I warned her, she slipped.</p></blockquote><h1 id="even-so"><a href="#even-so" class="headerlink" title="even so"></a>even so</h1><p>so 相当于代词，指代上文所提及的情况。even so 具有副词性质，不用作连词。</p><blockquote><p>The bus was only half full. Even so, a young man asked Nina if the seat next to her was taken.<br>There’re many spelling mistakes; even so, it’s quite a good essay.<br>It was cold, but even so we enjoyed the garden party.</p></blockquote><h1 id="重头戏：even-if-even-though"><a href="#重头戏：even-if-even-though" class="headerlink" title="重头戏：even if, even though"></a>重头戏：even if, even though</h1><p>even if &amp; even though 的本质，就是 if 和 though 被 even(ad.) 修饰（暂时这两个even的意思还不明白）。而 if 和 though 在此都为连词，那么这两个词组也就具有了连词的性质。<br>两个词的区别类似于“虽”的两个意思——虽然（表事实的让步）、即使（表假设的让步）</p><h2 id="even-though——强调事实的让步：虽然"><a href="#even-though——强调事实的让步：虽然" class="headerlink" title="even though——强调事实的让步：虽然"></a>even though——强调事实的让步：虽然</h2><blockquote><p>Even though means <em>despite the fact that</em> and is <strong>a more emphatic version of though and although</strong>.</p></blockquote><p>even though 表示的一定是事实</p><blockquote><p>I like her, even though she can be annoying at times.<br>“她有时可能烦人”是一个事实，但这不妨碍我喜欢她。</p></blockquote><blockquote><p>Even though he was bigger, he never looked down on me.</p></blockquote><h2 id="even-if——不强调事实的让步"><a href="#even-if——不强调事实的让步" class="headerlink" title="even if——不强调事实的让步"></a>even if——<em>不强调</em>事实的让步</h2><blockquote><p>even if: regardless of whether; irrespective of (something happening or being the case).</p></blockquote><p>even if 可以表示<em>假设的让步</em>（hypothesis；即使），但其所说的也可以是事实，不过说话者不强调它是事实。</p><blockquote><p>He is a great President, even if he has many enemies. 尽管他有许多敌人，他仍不失为是一位伟大的总统。<br>在此句中，他有敌人是一个事实，但说话者并不强调这一点（无论是与“他是否有敌人”还是与主句之间）</p></blockquote><blockquote><p>Even if you have perfect vision, you should still have your eyes checked regularly.<br>无论你是否有1.0的视力，都要去检查。</p></blockquote><h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p>Even if I had two hours to spare for shopping, I wouldn’t go out and buy a suit.<br>Even though I had two hours to spare for shopping, I couldn’t find the suit I wanted.</p><p>Even though he lost his job as Arts Minister, he continued to serve in the government.<br>Even if he loses his job as Arts Minister, I think he’ll continue to serve in the government.</p><p>Even though the injury was serious, she decided to carry on playing. It was an important match.<br>I know she’ll want to carry on playing, even if she gets injured. It’s an important match.</p><p>Even though I’ve cleaned it and polished it, it still doesn’t look new.<br>Even if I clean and polish it, it still won’t look new.</p><p>ps. 还是<a href="http://www.bbc.co.uk/worldservice/learningenglish/youmeus/learnit/learnitv122.shtml" target="_blank" rel="noopener">BBC的那个网站</a>讲得好……</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;\(\mathcal{F}(x)=\mathcal{H}(x)-x\)&lt;/p&gt;
+        &lt;p&gt;这几个词连起来都可以当成歌来唱了……&lt;/p&gt;
+&lt;h1 id=&quot;even-as&quot;&gt;&lt;a href=&quot;#even-as&quot; class=&quot;headerlink&quot; title=&quot;even as&quot;&gt;&lt;/a&gt;even as&lt;/h1&gt;&lt;p&gt;even：at the very time&lt;br
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>2019/02/01 英语卡片</title>
+    <link href="https://thebesttv.github.io/2019/02/01/English_card/"/>
+    <id>https://thebesttv.github.io/2019/02/01/English_card/</id>
+    <published>2019-01-31T16:00:00.000Z</published>
+    <updated>2019-08-04T13:08:02.324Z</updated>
+    
+    <content type="html"><![CDATA[<p>好久没有把一张英语卡片标注成这样了……</p><p><img src="card.jpg" alt="The Card"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;好久没有把一张英语卡片标注成这样了……&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;card.jpg&quot; alt=&quot;The Card&quot;&gt;&lt;/p&gt;
 
       
     
@@ -53,39 +83,157 @@
   </entry>
   
   <entry>
-    <title>Hello World</title>
-    <link href="https://thebesttv.github.io/1970/01/01/hello-world/"/>
-    <id>https://thebesttv.github.io/1970/01/01/hello-world/</id>
-    <published>1969-12-31T16:00:00.000Z</published>
-    <updated>2019-08-04T12:56:06.940Z</updated>
+    <title>Vasily Tsibliyev</title>
+    <link href="https://thebesttv.github.io/2019/01/29/Vasily_Tsibliyev/"/>
+    <id>https://thebesttv.github.io/2019/01/29/Vasily_Tsibliyev/</id>
+    <published>2019-01-28T16:00:00.000Z</published>
+    <updated>2019-08-04T13:12:37.747Z</updated>
     
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>$$<br>\begin{eqnarray}<br>\nabla\cdot\vec{E} &amp;=&amp; \frac{\rho}{\epsilon_0} \<br>\nabla\cdot\vec{B} &amp;=&amp; 0 \<br>\nabla\times\vec{E} &amp;=&amp; -\frac{\partial B}{\partial t} \<br>\nabla\times\vec{B} &amp;=&amp; \mu_0\left(\vec{J}+\epsilon_0\frac{\partial E}{\partial t} \right)<br>\end{eqnarray}<br>$$</p><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    <content type="html"><![CDATA[<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Tsibliyev.jpg/220px-Tsibliyev.jpg" alt="Vasily Tsibliyev"><br>今天看了《读写快易通（一）》的第四章，里面是一篇 Times 的关于俄罗斯宇航员 Vasily Tsibliyev 的报道。一开始看文章没太大感觉，不过里面有几道题不太会，然后就查了一下他的报道，然后就看到了另一篇 <a href="http://content.time.com/time/magazine/article/0,9171,138231,00.html" target="_blank" rel="noopener">Life After Mir</a> ，01年的，可能是他回到地球后的生活吧。感觉这篇文章全文都比较 gloomy。<br>一个宇航员，本应该被尊重，但因为几个过失（可能都不是他的错），就变得这样……<br>可能我没看懂文章，不过感觉还是挺悲伤的。</p><p>之后如果能多了解一下他，可能会来更新吧。</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+        &lt;p&gt;&lt;img src=&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Tsibliyev.jpg/220px-Tsibliyev.jpg&quot; alt=&quot;Vasily Tsibliyev&quot;&gt;&lt;br&gt;今天看了《读写
       
     
     </summary>
     
-      <category term="Rivalries" scheme="https://thebesttv.github.io/categories/Rivalries/"/>
     
-      <category term="Sports" scheme="https://thebesttv.github.io/categories/Sports/"/>
+  </entry>
+  
+  <entry>
+    <title>寒假之间</title>
+    <link href="https://thebesttv.github.io/2019/01/29/%E5%AF%92%E5%81%87%E4%B9%8B%E9%97%B4/"/>
+    <id>https://thebesttv.github.io/2019/01/29/寒假之间/</id>
+    <published>2019-01-28T16:00:00.000Z</published>
+    <updated>2019-08-04T13:13:16.895Z</updated>
     
-      <category term="Baseball" scheme="https://thebesttv.github.io/categories/Sports/Baseball/"/>
+    <content type="html"><![CDATA[<p>暂时有点不想干什么，随便写点抒发一下感慨……</p><p>这个寒假会过得很快很快，每天会有很多事做不完，不想做，然而还得继续做。</p><p>刚刚一篇文章的 summary，被 GR 的惊艳了一脸……我可能八辈子都不会用那么厉害的词，都没法归纳得那么精辟了…… emm, like a huge knock on my self-esteem? I don’t know, maybe.</p>]]></content>
     
-      <category term="MLB" scheme="https://thebesttv.github.io/categories/MLB/"/>
+    <summary type="html">
     
-      <category term="American League" scheme="https://thebesttv.github.io/categories/MLB/American-League/"/>
+      
+      
+        &lt;p&gt;暂时有点不想干什么，随便写点抒发一下感慨……&lt;/p&gt;
+&lt;p&gt;这个寒假会过得很快很快，每天会有很多事做不完，不想做，然而还得继续做。&lt;/p&gt;
+&lt;p&gt;刚刚一篇文章的 summary，被 GR 的惊艳了一脸……我可能八辈子都不会用那么厉害的词，都没法归纳得那么精辟了…… emm,
+      
     
-      <category term="New York Yankees" scheme="https://thebesttv.github.io/categories/MLB/American-League/New-York-Yankees/"/>
-    
-      <category term="Boston Red Sox" scheme="https://thebesttv.github.io/categories/MLB/American-League/Boston-Red-Sox/"/>
+    </summary>
     
     
-      <category term="HelloWorld" scheme="https://thebesttv.github.io/tags/HelloWorld/"/>
+  </entry>
+  
+  <entry>
+    <title>New Year 2019 — transition</title>
+    <link href="https://thebesttv.github.io/2019/01/01/New_Year_2019/"/>
+    <id>https://thebesttv.github.io/2019/01/01/New_Year_2019/</id>
+    <published>2018-12-31T16:00:00.000Z</published>
+    <updated>2019-08-04T13:11:06.213Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="1.jpg" alt="New Year"></p><p>So what is new year?<br>It’s a time for reflection. All you’ve done in the past year — all the achievements you’ve made, all the failures you’ve experienced, all the setbacks you’ve conquered; and all the sweetness you’ve enjoyed, all the bitterness you’ve tasted, something one can call “bittersweet”.<br>But it goes far more beyond that. It’s the end of this year, but the starting point of a whole new one, one you can hope, one you can have the wildest imagination about. The year 2019 is a year full of possibilities, and of course for me, full of tests &amp; scores &amp; mistakes &amp; corrections. And the most important, 高考。</p><p>（没想到看看别人说说就看到2019年了，挺欢乐的哈）</p><h1 id="overall"><a href="#overall" class="headerlink" title="overall"></a>overall</h1><p>这是一个从 OI 到文化课的一年——这是我暂时最好的总结，毕竟太多发生了，太多改变了。</p><h1 id="look-backward"><a href="#look-backward" class="headerlink" title="look backward"></a>look backward</h1><p>就按时间顺序说吧。</p><p>年初的时候我还在准备冬令营，恰逢大雪，期末考试延期，于是几天都待在文德楼。不去评说那段时间有多少成效（毕竟我也不知道），至少还挺温馨的吧。<br>记得去冬令营的前一天晚上，我又出去走了一圈，走得挺远。看一下那天的日记，发现我在思考 活着的意义 ，emm……，现在想想可能就像史铁生说的，用不着思考吧。走之前托 GR 帮我把各种讲义整理一下，她也的确很认真地帮我弄了。<br>其实冬令营那几天挺孤独的，唯一能说上几句话的就是两个市中的小朋友，期间心态也是各种不平。那段时间还好有 Spotlight Stories 啊，也算是无聊的时候的一点慰藉。GH 说好要打给我也没打，很无奈。最靠谱的还是 GR，讲义还帮我拿文件袋装好。<br>结束那天去 GH 楼下拿作业，喝了半小时西北风，也是很无奈。</p><p>那个寒假重心偏来移去的，一会 OI 一会文化课，可能效率真的不高吧。</p><p>去学校前两三天心态又炸了，不过看了看日记，调回来不少。那段时间就是真正的 <a href="https://thebesttv.github.io/2018/02/23/after_winter_holiday/">小高考，再是OI</a> 的转变了，但心里终究有点什么。<br>小高考备考的三个星期说长不长，道短不短，但终究是结束了。其实个人觉得小高考第一天心态还算可以（虽然事后发现成绩不如人意），但周围 GR、BRY 都说政治没考好。<br>最大的转变可能就在第一天的第二节晚自修吧，可以说心情直接低到底谷，具体原因的话，我只能说是我自己的问题，怪不得别人。第二天快到考场了， BRY 突然发现准考证忘拿了，于是跑回去拿，我像个傻子一样等在考场外面。</p><p>考完突然充满感情，给不少人发了祝福，之后回到OI。</p><blockquote><p>明天我至少要给我熟识的或者曾经熟识的大部分人发一条祝福吧，也算是感谢他们了。<br>再过十几天就是省选一试了，也算是倒数第二次比赛、一个再爱OI一次的机会吧。<br>停课基本上是不可能也不会了，不过晚二基本上还是会照常去的。<br>这三个星期眼睛算是废了，希望能调回来吧。<br>看到忧郁的黑客的一段博文：<br>“你知道自己的人生激情是什么吗？可能你并不知道，正如曾经的我。但是，当你发现自己深刻地爱上一样东西时，绝不放手。因为，它或许就是上帝对你的微笑。”<br>我表示同意大部分。<br>最后一个多月，再爱OI一次。</p></blockquote><p>然后是<strong>“被迫的”</strong>春游，上海科技馆还挺好玩的吧。</p><p>马上到四月份的省选一试，又一个好心的老师带我去南理工，他还是把全家都带过去的，也是去旅个游吧。碰到一个学姐，不过没说什么话。<br>不想写什么考试游记，简而言之，我考砸了，可以说是垫底。<br>现在想起来，心仍然会沉到谷底啊。<br>不过那两三天，我至少认识了 ZQY ，发现南理工鸟挺多。</p><p>随之而来的一个星期充满了这一年最大的打击。AFO、小高考2A、换位置，在一个星期里——确切地说，是两天里。这是我实在没有想到的，回想起来仍是语塞，“累累若丧家之犬”？</p><blockquote><p>今天于是又出去散心了。走到拆了的一中突然想进去看看，于是就先看了操场，再是励实楼，最后又看了几乎每个教室。还是看到不少好玩的东西的，虽然被吓得不轻…<br>走之前突然发现门口有一只猫，就和它玩了起来，之前本来想喂狗的豆腐干也正好派上了用场。也是第一次和猫玩吧，感觉它挺好玩的。<br>然后又是 routine ，跑到小学再回家。</p></blockquote><blockquote><p>说实话，本来我想借这次去寻找一下高考的动力，结果没怎么找到。<br>不过说实话，到一中看完，特别是和猫玩了一会，我就隐约感觉这趟旅程完满了。我至少有点动力了，就是周围那些好玩的啊。</p></blockquote><p>之后的事不提也罢，总之我从剧变慢慢走出，开始从 OI 到文化课的转变。<br>我开始习惯左边做着 LYY ，开始正视一团糟的成绩，开始努力甩去与过去的瓜葛，并走向新的未来。<br>期中考试算是给了我一点鼓励，班里勉强第六。<br>课本剧我竟然答应了去演 渔父 ，我们宿舍还策划了一场小小的“谋反”，我竟在凌晨花半小时查屈原的生平。</p><p>到期末考试都发生了什么，我基本上记不清了。<br>对了，有菁马跑，有 ZYF 陪我撑到最后；六月份有18届的高考，有 YWX，有 Candy? 。</p><p>这个暑假是我高中利用的最好的暑假（上一个大半都给竞赛了）。最值得写的就是我开始去楼下补语文，开始慢慢“会”写一点作文吧。</p><blockquote><p>甲壳虫的春天<br>刷题的日子，总是有些枯燥，像是小小的甲壳虫在无尽的树干上艰难地攀爬。<br>一道题，想了几天，终于完成。敲下思路，保存，关机。将机房的灯关上，门锁好。空荡荡的机房，电脑旁，是一只小甲壳虫的守望——你送的画我还好好地存着，我不会忘记那只小甲壳虫，艰难地爬到最高的树上，注视着远处的嫩绿的青草，背上几片雪花在阳光下熠熠发光。<br>三年前，你还在高一吧。那时选竞赛，他们选的不是数学就是物理，唯独你选择了信息学。我们学校向来是以前两者见长的，你也不是老师同学口中的“电脑天才”，可你说你更喜欢计算机与算法，于是你选择了它。<br>当他们聚在大教室里打打闹闹，听老师讲微积分时，你独自在教室，捧着书学习最基本的语言。当他们开始爬上属于自己的树梢时，你终于跨过第一关，真正接触算法。<br>你开始像那小甲虫一样，努力爬到最高的树上。你发觉刷题的重要，你找电脑老师找班主任找教务处，终于得到了梦寐以求的机房钥匙。那天，你高兴得带来了那幅画。<br>自此，高一高二的每一个夜晚，你都在机房中度过。<br>白天，你和他们一起安静地待在教室，做着一样的作业。上课时你也会举手，下课了你也会玩耍。晚自修前，你背上鼓鼓囊囊的书包，独自走过幽幽的长廊，来到上锁的机房。三个半小时的时光，面对电脑，调试程序与代码，屏幕的荧光照亮小甲壳虫的守望。<br>平凡的小甲虫想要爬到高高的树上，可这实在是太难了。俞敏洪最初在冬夜拎着浆糊张贴新东方的广告。甘地一次又一次绝食，为了心中“非暴力”的梦想。你不是老师同学口中的“电脑天才”，你也没有非凡的智商，你甚至要好几天才能理解一个简单的算法。可你拥有对信息学的渴望，你知道做出一道题后小小的骄傲，你见过凌晨校园黑暗的模样，还有四点半初升的朝阳……<br>苔花如米小，也学牡丹开。小小的甲壳虫没有上天赐予的翅膀，只有细细的腿与心中的渴望。<br>你也曾孤独过、迷茫过，觉得无尽的树干是渺茫的未来，纤细的小腿禁不住狂风的摧残。可你最终还是选择向上。你说你爱那些精妙绝伦的算法，你说偌大的互联网上有许多人同你一样，你说平凡人也有权利追逐自己的梦想，你说小甲虫也能看见春天的光芒……<br>回忆起刷题的日子，枯燥中散发光芒。平凡的小甲虫终于爬到最高的树上，痴痴地望着心中的远方。</p></blockquote><p>补课的时候遇到 GH、HYQ ，知道了一中现在高二的 DA ，那是挺好玩的一个人吧。</p><p>已经 <code>2019-01-01 00:48:50</code> 了，好像要快点写了。</p><p>八月份最大的事情就是那两只斑鸠了，开学前几天光顾着伺候它们了。<br>开学一周后又发生了一件不小的事，我找到 GR ，她帮我找到 CR，那两只斑鸠可算有了着落。<br>慢慢发现 CR 可能是个和 GR 一样好的人，真是佩服她们还有 BD 这么幸运是好朋友。</p><p>九月份到现在，说实话可能还不太适合回忆，就只写两三件事吧。<br>一是运动会，各种欢乐。我也可算下去了，也把感谢信给了 CR 。GH 颠球很神奇，HYQ 200米决赛拉伤了腿，BRY 接力跑挺好玩，GR 跑下了三千米，GH、LJY 三千米冲刺几乎狂奔。我们班的拔河是最厉害的吧，GH、XC、HYQ、ZYD、WY爸，很多人都很卖力。<br>还有艺术节，这是我第一次去，有 BRY 和 WZC 陪着，吃了顿还算可以的午饭，看到 CR 三次 XD。<br>最后就是圣诞节 CR 送的蛋了，老欢乐了。回家好不容易把蛋处理了一下，希望能保存着吧。<br><img src="2.jpg" alt><br>元旦放假当天菁园下起了雪，GH 和我在柳池附近玩了挺久。我摆了一个 New Year ，他看松树，临走还在门口顺了一个香橼……</p><p>总之这就是我的 2018 ，一个充满转变的年份。</p><p>终于渐渐远离 OI 了，也不知 zbtrs 什么时候从<a href="https://www.cnblogs.com/zbtrs/" target="_blank" rel="noopener">博客园</a>迁移到 <a href="https://zbtrs.github.io/" target="_blank" rel="noopener">github</a> 上了；也不知 scarlyw 进队后怎么样了，NOI 有拿到 PKU 一本吗？还有那么多人，Candy?、Menci、Capella，仿佛不怎么记得他们了。</p><h1 id="look-forward"><a href="#look-forward" class="headerlink" title="look forward"></a>look forward</h1><p>之后的展望，短期就是一模，长期就是高考。<br>具体不说了，已经 1:11 了，要睡觉了。</p><h1 id="周围的人"><a href="#周围的人" class="headerlink" title="周围的人"></a>周围的人</h1><p>I’m blessed with all of them, one way or another.<br>GR、ZYD、GH、WXC、DSY、HYQ、YY，等等等等。</p><p>不说了，睡吧，and wake up to a better tomorrow.</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;img src=&quot;1.jpg&quot; alt=&quot;New Year&quot;&gt;&lt;/p&gt;
+&lt;p&gt;So what is new year?&lt;br&gt;It’s a time for reflection. All you’ve done in the past year — all the ac
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>初赛一周年</title>
+    <link href="https://thebesttv.github.io/2018/10/13/%E5%88%9D%E8%B5%9B%E4%B8%80%E5%91%A8%E5%B9%B4/"/>
+    <id>https://thebesttv.github.io/2018/10/13/初赛一周年/</id>
+    <published>2018-10-12T16:00:00.000Z</published>
+    <updated>2019-08-04T13:14:11.344Z</updated>
+    
+    <content type="html"><![CDATA[<p>没有想到距离 NOIP2017 的初赛已经一年了，time does fly, right？<br>在这一年里当然发生了各种奇怪的事，不过也没什么，下个月还有复赛一周年呢 XD</p><p>去年立的 flag 总算是倒了，NOIP2018 我是不会去了。看来未来总是那么扑朔迷离啊，nothing’s ever for sure。不知道我们学校今年有谁会接着我的梦想呢，也不知道今年的初赛会不会闹出什么锅呢？</p><p>他们化竞的结果这周终于揭晓了，yyc 没有省队，myw、gr 没有省一，但至少还有几个可爱的人圆梦了吧。<br>故天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为，所以动心忍性，曾益其所不能。<br>我相信努力总是有成效的，就如同雨后定能有彩虹；我也相信好人终究有好报，a nice person will always go along。</p><p>ps. 运动会的还没写呢，恐怕要到很久之后才可能写了。<br>pps. 今天好像是路大佬的生日啊，happy coincidence，huh？</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;没有想到距离 NOIP2017 的初赛已经一年了，time does fly, right？&lt;br&gt;在这一年里当然发生了各种奇怪的事，不过也没什么，下个月还有复赛一周年呢 XD&lt;/p&gt;
+&lt;p&gt;去年立的 flag 总算是倒了，NOIP2018 我是不会去了。看来未来总是那么扑
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>斑斑鸠鸠</title>
+    <link href="https://thebesttv.github.io/2018/10/13/%E6%96%91%E6%96%91%E9%B8%A0%E9%B8%A0/"/>
+    <id>https://thebesttv.github.io/2018/10/13/斑斑鸠鸠/</id>
+    <published>2018-10-12T16:00:00.000Z</published>
+    <updated>2019-08-04T13:14:46.341Z</updated>
+    
+    <content type="html"><![CDATA[<p>2018-08-26 10:25<br>于是两只斑鸠找到了新主人，有爱心的 CR ，哦耶~</p><p>2018-10-13 21:03<br>国庆的时候两只已经都放飞了，我就当一个 well-wisher 吧。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;2018-08-26 10:25&lt;br&gt;于是两只斑鸠找到了新主人，有爱心的 CR ，哦耶~&lt;/p&gt;
+&lt;p&gt;2018-10-13 21:03&lt;br&gt;国庆的时候两只已经都放飞了，我就当一个 well-wisher 吧。&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>相思树</title>
+    <link href="https://thebesttv.github.io/2018/09/01/%E7%9B%B8%E6%80%9D%E6%A0%91/"/>
+    <id>https://thebesttv.github.io/2018/09/01/相思树/</id>
+    <published>2018-08-31T16:00:00.000Z</published>
+    <updated>2019-08-04T13:15:13.733Z</updated>
+    
+    <content type="html"><![CDATA[<p>看了南方周末的一篇文章：<a href="http://www.infzm.com/content/137992" target="_blank" rel="noopener">守卫西南边境线：感受变与不变</a>，挺有感触的，于是就写了，照着暑假里那篇作文的结构。<br>感觉题目没起好，字数也多了点，不过暂时就这样吧，等会给 fd 看一下。<br>之后说不定会写一篇关于边境农民排雷的（吧……）。</p><p>#正文<br>相思花开，落黄遍地。金鸡山顶，看着伫立你，看着前方的山川天际，还有山下繁荣的土地。<br>太阳还在云层里，山间水汽氤氲，萦绕着山顶。你松树般笔直地挺立，不放过远方的任何动静，身旁的相思树与你一同站立。<br>望着你的身影，想起曾经的点点滴滴。<br>七年前，刚进入大学一个月，还没来得及谈场恋爱，你就来了——来当兵。面对他人的不解，你说你向往，那铮铮铁骨的荣誉精神。<br>当他们还沉浸在初入大学的新鲜感时，你已背上行囊，来到几千公里外的广西。当他们学有所成毕业时，你依然站在这里。他们的青春是奔放而热烈的牡丹花，你的青春却在这里被消磨殆尽，一如山顶不被知晓的相思树。<br>没有手机信号的边境，对刚来哨所的你，简直是一种煎熬。像是回到了前文明时代，曾经的朋友逐渐远离。你抱怨吃饭的时间太短，身边总有不知名的毒虫。你不喜欢三四月份的湿气，让好不容易晒得半干的被子，一个晚上又能挤出水来。你说你看到那棵树就想家，想念母亲的锅巴。<br>七年间，训练、巡逻、站岗，单调又固定，像太阳总在东方升起。<br>每月至少八次的巡逻，一次就是一整天。早晨八点，背上枪，带上锄头、砍刀，还有一支小心揣着的朱笔。二十多公里的路途，穿过茂密的原始森林，趟过奔腾的河流，还要循着前人的足迹跨过危险的雷区。战友和军犬是最忠实的伴侣，毒蛇和蚂蝗是最常见的东西。<br>终于来到界碑，你说那是最庄严的地方，你说无论多累，到那时总会挺直腰杆。走近，擦拭，描红，宣誓，最后拍下带着当天日期的相片。你说那就是你曾经向往的，那就是荣誉。<br>今天是你站岗的日子，无需跋涉几十公里，但也没有丝毫的轻松。太阳早已升离云层，悬在半高的天。山雾消去，一切变得清晰又锐利。机警的山雀不时飞来，忙了一阵又离开。<br>家寄江东远，身对江西春。空见相思树，不见相思人。戍边守关总带着单调与思念。七年，见到的永远是那几个人，手中那杆枪，袋中那支朱笔，还有那被走过一遍又一遍的老路。你不记得多少次，于站岗之时，想起母亲，想起家乡。<br>你不是那些兵中最神气的，不能在阅兵大典上面对镜头，深情地望着你守护的那方百姓。你忍受着几十公里跋涉的煎熬，还有三四月早晨湿漉漉的被子。你担心脚下那些被遗弃的地雷哪天会伤到你的战友。<br>可你仍然坚持着。你说你喜欢那某条路旁那株风铃草，你说你看过日出东方，数过流星飞向远方。你说你知道献身于一项事业的骄傲，用朱笔在界碑上描下“中国”二字的自豪，还有菜园里故乡泥土的芬芳。<br>空气渐渐炎热起来，刺眼的太阳烘烤着金鸡山的大地。七年，曾经青涩的少年，变为面前汗流浃背却纹丝不动的战士，在寂寞中守望繁荣。<br>相思树下，一代又一代的哨兵曾在此站岗，不变的是他们的守望。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;看了南方周末的一篇文章：&lt;a href=&quot;http://www.infzm.com/content/137992&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;守卫西南边境线：感受变与不变&lt;/a&gt;，挺有感触的，于是就写了，照着暑假里那篇作文的结构。&lt;br&gt;
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="https://thebesttv.github.io/2018/08/17/%EF%BC%88%E8%BD%AC%E3%80%81%E6%94%B9%EF%BC%89%E5%8F%A4%E6%B1%89%E8%AF%AD%E4%B8%AD%E7%9A%84%E5%85%AD%E4%B8%AA%E4%B8%BB%E8%A6%81%E5%85%BC%E8%AF%8D/"/>
+    <id>https://thebesttv.github.io/2018/08/17/（转、改）古汉语中的六个主要兼词/</id>
+    <published>2018-08-17T13:00:31.000Z</published>
+    <updated>2019-08-04T13:15:28.350Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="何谓兼词"><a href="#何谓兼词" class="headerlink" title="何谓兼词"></a>何谓兼词</h1><p>兼词，即一个音节中包含着两个音节的词，如“诸”包含“之于（wū）”或“之乎”，“叵”包含“不可”。<br>兼词同时具有那两个词的意义和用法。</p><h1 id="六个主要兼词"><a href="#六个主要兼词" class="headerlink" title="六个主要兼词"></a>六个主要兼词</h1><h2 id="盍"><a href="#盍" class="headerlink" title="盍"></a>盍</h2><h3 id="兼“何不”"><a href="#兼“何不”" class="headerlink" title="兼“何不”"></a>兼“何不”</h3><p>可直接译为“何不”，或译为“为什么不”。</p><blockquote><p>颜渊、季路侍。子曰：“<strong>盍</strong>各言尔志？”子路曰：“愿车马，衣轻裘，与朋友共，敝之而无憾。”颜渊曰：“愿无伐善，无施劳。”子路曰：“愿闻子之志。”子曰：“老者安之，朋友信之，少者怀之。”——（《论语·公冶长》）</p></blockquote><p>“盍各言尔志？”：为什么不说说你们各自的志向呢？</p><blockquote><p>济阳之贾人，渡河，亡其舟，栖于浮苴之上，号焉。有渔者以舟往救之，未至，急号曰：“我，济上之巨室，能救我，予尔百金。”渔者载而升诸陆，则予十金。渔者曰：“向许百金而今予十金，无乃不可乎？”贾人曰：“若，渔者也，一日之获几何？骤得十金，犹为不足乎？”渔者黯然而退。他日，贾人浮吕梁而下，舟薄于石，又覆。而渔者在焉。人或曰：“<strong>盍</strong>救诸？”渔者曰：“是许金而不酬者也。”立而观之，遂没。</p></blockquote><p>“盍救诸”：为什么不救他呢？</p><blockquote><p>王欲行之，则盍反其本矣。<br>以一服八，何以异于邹敌楚哉？盍亦反其本矣。（为什么不返回到根本上来呢）<br>——《孟子·齐桓晋文之事》</p></blockquote><h2 id="诸"><a href="#诸" class="headerlink" title="诸"></a>诸</h2><h3 id="兼“之于（wu）”"><a href="#兼“之于（wu）”" class="headerlink" title="兼“之于（wū）”"></a>兼“之于（wū）”</h3><p>“诸”若处于句中，且不是代词，就是兼词，兼“之于”（“之”是代词，“于”是介词），其中“于”古音为 <code>wū</code>。</p><blockquote><p>渔者载而升<strong>诸</strong>陆，则予十金。</p></blockquote><blockquote><p>（阳处父）追<strong>诸</strong>河，则在舟中矣。——《殽之战》</p></blockquote><p>翻译：（阳处父）追赶他们到了黄河边上，他们原来已经坐在船上了。</p><p>懂得了这一点，对于现代汉语也是有帮助的。<br>如病句“诉诸于法律”、“付诸于行动”，句中的“于”都必须去掉，因为“诸”是兼词，里面已经包含者一个“于”字。</p><h3 id="兼“之乎”"><a href="#兼“之乎”" class="headerlink" title="兼“之乎”"></a>兼“之乎”</h3><p>“诸”若处于句末，兼“之乎”（“之”是代词，“乎”是语气助词）。</p><blockquote><p>人或曰：“盍救<strong>诸</strong>？”</p></blockquote><p>翻译：为什么不救他呢？</p><blockquote><p>王尝语庄子以好乐，有诸？——《孟子·庄暴见孟子》</p></blockquote><p>“有诸？”：有这件事吗？</p><blockquote></blockquote><p>（孟　子）曰：“保民而王，莫之能御也。”<br>（齐宣王）曰：“若寡人者，可以保民乎哉？”<br>（孟　子）曰：“可。”<br>（齐宣王）曰：“何由知吾可也？”<br>（孟　子）曰：“臣闻之胡齕曰，王坐于堂上，有牵牛而过堂下者，王见之，曰：‘牛何之？’对曰：‘将以衅钟。’王曰：‘舍之！吾不忍其觳觫，若无罪而就死地。’对曰：‘然则废衅钟与？’曰：‘何可废也？以羊易之！’不识有<strong>诸</strong>？”（不知是否有这件事？）<br>（齐宣王）曰：“有之。”<br>（孟　子）曰：“是心足以王矣。百姓皆以王为爱也，臣固知王之不忍也。”<br>——《孟子·齐桓晋文之事》</p><h2 id="焉"><a href="#焉" class="headerlink" title="焉"></a>焉</h2><h3 id="兼“于之”"><a href="#兼“于之”" class="headerlink" title="兼“于之”"></a>兼“于之”</h3><p>用于句末，是介词“于”和代词“之”，两个词的兼词。<br>翻译的时候，需要具体问题具体对待。</p><blockquote><p>积土成山，风雨兴<strong>焉</strong>；积水成渊，蛟龙生<strong>焉</strong>。（在那里）</p></blockquote><blockquote><p>青麻头伏<strong>焉</strong>。（在那里）——《促织》</p></blockquote><blockquote><p>彭蠡之扣有石钟山<strong>焉</strong>。（在那里）——《石钟山记》</p></blockquote><blockquote><p>余收尔骨<strong>焉</strong>。（到那里）——《殽之战》</p></blockquote><blockquote><p>或师焉，或否<strong>焉</strong>。（向老师）——《师说》</p></blockquote><h2 id="耳"><a href="#耳" class="headerlink" title="耳"></a>耳</h2><h3 id="兼“而已”"><a href="#兼“而已”" class="headerlink" title="兼“而已”"></a>兼“而已”</h3><p>用在句末，表示限止性语气。可以直接翻译为“而已”，也可以译为“罢了”。</p><blockquote><p>王变乎色曰：“寡人非能好先王之乐也，直好世俗之乐<strong>耳</strong>！”——《孟子·庄暴见孟子》</p></blockquote><blockquote><p>从此道至吾军，不过二十里<strong>耳</strong>。——《鸿们宴》</p></blockquote><h2 id="叵"><a href="#叵" class="headerlink" title="叵"></a>叵</h2><h3 id="兼“不可”"><a href="#兼“不可”" class="headerlink" title="兼“不可”"></a>兼“不可”</h3><p>《说文新附·可部》中说：“叵，不可也。”<br>现代汉语已经不用“叵”，它只保留在某些成语中，如“居心叵测”中的“叵”就是“不可”的意思。它用于动词前，表示动作行为不能实现或无法实现，可译为“不可”、“不可能”。</p><blockquote><p>布因指（刘）备曰：“是儿最<strong>叵</strong>信者。”——《三国志·魏书·吕布传》</p></blockquote><p>翻译：这小子是最不可信任的。</p><blockquote><p>（尹愔）尝受学于国子博士王道珪，称之曰：“吾门人多矣，尹子<strong>叵</strong>测也。”——《新唐书·尹愔传》</p></blockquote><p>翻译：我的弟子很多，尹愔是最不可测度的</p><h2 id="旃-XD"><a href="#旃-XD" class="headerlink" title="旃 XD"></a>旃 XD</h2><h3 id="兼“之焉”"><a href="#兼“之焉”" class="headerlink" title="兼“之焉”"></a>兼“之焉”</h3><p>作为一个兼词，它除了具有代词性，指代人或事物外，还兼有劝勉或揣度语气，可以理解为它就是“之焉”（或者理解为“之也”亦可）两个词的兼词。</p><blockquote><p>舍<strong>旃</strong>！舍<strong>旃</strong>！苟亦无然。——《诗经·唐风·采苓》</p></blockquote><p>翻译：丢掉它吧！丢掉它吧！确实不要认为是那样。</p><blockquote><p>夫睹之者掩口卢胡而笑，斯文之族，无乃类<strong>旃</strong>。——《后汉书·应劭传》</p></blockquote><p>翻译：那些看到了这种情况的人掩起口来胡噜而笑，斯斯文文的俗人，恐怕与此相类似吧。<br>“无乃…乎/欤？”译为“恐怕…吧”。该句中没有“乎/欤”，“吧”是由“旃”中隐含着的“焉”翻译出来的。</p><blockquote><p>方当盛汉之隆，愿勉<strong>旃</strong>，毋多谈。——《汉书·杨恽传》</p></blockquote><p>翻译：正当汉朝非常昌盛之时，（你）为自己的功名努力吧，不须跟我多谈论。</p><h1 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h1><p><a href="http://blog.sina.com.cn/s/blog_464934350102wgw9.html" target="_blank" rel="noopener">古汉语中的六个主要兼词 孙长江</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;何谓兼词&quot;&gt;&lt;a href=&quot;#何谓兼词&quot; class=&quot;headerlink&quot; title=&quot;何谓兼词&quot;&gt;&lt;/a&gt;何谓兼词&lt;/h1&gt;&lt;p&gt;兼词，即一个音节中包含着两个音节的词，如“诸”包含“之于（wū）”或“之乎”，“叵”包含“不可”。&lt;br&gt;兼词同时具有那两个
+      
+    
+    </summary>
+    
+    
+      <category term="文言文" scheme="https://thebesttv.github.io/tags/%E6%96%87%E8%A8%80%E6%96%87/"/>
     
   </entry>
   
