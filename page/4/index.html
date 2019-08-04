@@ -1183,120 +1183,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://thebesttv.github.io/2017/12/01/论快速幂的正确写法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="thebesttv">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="thebesttv's blog">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/12/01/论快速幂的正确写法/" class="post-title-link" itemprop="url">论快速幂的正确写法</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-12-01 00:00:00" itemprop="dateCreated datePublished" datetime="2017-12-01T00:00:00+08:00">2017-12-01</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2017-12-31 12:34:30" itemprop="dateModified" datetime="2017-12-31T12:34:30+08:00">2017-12-31</time>
-              </span>
-            
-          
-
-          
-            
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="fa fa-comment-o"></i>
-    </span>
-    
-      <span class="post-meta-item-text">Comments: </span>
-    
-  
-    <a href="/2017/12/01/论快速幂的正确写法/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/12/01/论快速幂的正确写法/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-            <a id="more"></a>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">fpow</span><span class="params">(<span class="keyword">int</span> x,ll p,<span class="keyword">int</span> yql)</span></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> ans=<span class="number">1</span>;</span><br><span class="line">  <span class="keyword">for</span>(;p;p&gt;&gt;=<span class="number">1</span>,x=<span class="number">1L</span>L*x*x%yql)</span><br><span class="line">    <span class="keyword">if</span>(p&amp;<span class="number">1</span>)ans=<span class="number">1L</span>L*ans*x%yql;</span><br><span class="line">  <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-          
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://thebesttv.github.io/2017/12/01/LuoGu_P2624_编译优化/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1395,6 +1281,120 @@
 <p>先讲一下60分的做法吧。<br>可以把它当成一个背包，用 f1[i][j] 表示考虑前 i 个格子，共放入 j 个，且选择第 i 的最优解， f0[i][j] 表示不选 i 的最优解，即可。<br>而因不能同时选择首项和尾项，那么可以做两次 DP ，第一次考虑[1:n-1]，第二次考虑[2:n]。</p>
 <p>然而正解好像是贪心，又仿佛能用网络流做……</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">200020</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="keyword">int</span> n,m,a[MAX];</span><br><span class="line"><span class="keyword">int</span> f0[MAX],f1[MAX];</span><br><span class="line"><span class="keyword">int</span> g0[MAX],g1[MAX];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m);</span><br><span class="line">  FORR(i,<span class="number">1</span>,n) <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a[i]);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(m &gt; n/<span class="number">2</span>) &#123;<span class="built_in">printf</span>(<span class="string">"Error!\n"</span>); <span class="keyword">return</span> <span class="number">0</span>;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> ansMax=-INF;</span><br><span class="line">  <span class="comment">//从 [1:n-1] 中选择</span></span><br><span class="line">  FORR(j,<span class="number">1</span>,m) f0[j]=-INF;</span><br><span class="line">  <span class="built_in">memcpy</span>(f1,f0,SIZ(f0)); <span class="built_in">memcpy</span>(g0,f0,SIZ(f0)); <span class="built_in">memcpy</span>(g1,f0,SIZ(f0));</span><br><span class="line">  <span class="comment">//f1[0]=f0[0]=0;</span></span><br><span class="line">  <span class="comment">//f1[1]=a[1];</span></span><br><span class="line">  g1[<span class="number">0</span>]=g0[<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">  g1[<span class="number">1</span>]=a[<span class="number">1</span>];</span><br><span class="line">  FOR(i,<span class="number">2</span>,n)&#123;</span><br><span class="line">    <span class="keyword">int</span> to=min(i/<span class="number">2</span>,m);</span><br><span class="line">    ROR(j,to,<span class="number">1</span>)&#123;</span><br><span class="line">      f1[j] = g0[j<span class="number">-1</span>] + a[i];</span><br><span class="line">      f0[j] = max(g1[j],g0[j]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">memcpy</span>(g0,f0,SIZ(f0)); <span class="built_in">memcpy</span>(g1,f1,SIZ(f1));</span><br><span class="line">    <span class="keyword">if</span>(to==m) ansMax=max(ansMax,max(f1[m],f0[m]));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//从 [2:n] 中选择</span></span><br><span class="line">  FORR(j,<span class="number">1</span>,m) f0[j]=-INF;</span><br><span class="line">  <span class="built_in">memcpy</span>(f1,f0,SIZ(f0)); <span class="built_in">memcpy</span>(g0,f0,SIZ(f0)); <span class="built_in">memcpy</span>(g1,f0,SIZ(f0));</span><br><span class="line">  <span class="comment">//f1[0]=f0[0]=0;</span></span><br><span class="line">  <span class="comment">//f1[1]=a[2];</span></span><br><span class="line">  g1[<span class="number">0</span>]=g0[<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">  g1[<span class="number">1</span>]=a[<span class="number">2</span>];</span><br><span class="line">  FORR(i,<span class="number">3</span>,n)&#123;</span><br><span class="line">    <span class="keyword">int</span> to=min(i/<span class="number">2</span>,m);</span><br><span class="line">    ROR(j,to,<span class="number">1</span>)&#123;</span><br><span class="line">      f1[j] = g0[j<span class="number">-1</span>] + a[i];</span><br><span class="line">      f0[j] = max(g1[j],g0[j]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">memcpy</span>(g0,f0,SIZ(f0)); <span class="built_in">memcpy</span>(g1,f1,SIZ(f1));</span><br><span class="line">    <span class="keyword">if</span>(to==m) ansMax=max(ansMax,max(f1[m],f0[m]));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ansMax);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">const int MAX=2020;</span></span><br><span class="line"><span class="comment">const int INF=0x3f3f3f3f;</span></span><br><span class="line"><span class="comment">int n,m,a[MAX];</span></span><br><span class="line"><span class="comment">int f0[MAX][MAX],f1[MAX][MAX];</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">int main(void)&#123;</span></span><br><span class="line"><span class="comment">  scanf("%d%d",&amp;n,&amp;m);</span></span><br><span class="line"><span class="comment">  FORR(i,1,n) scanf("%d",&amp;a[i]);</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">  if(m &gt; n/2) &#123;printf("Error!\n"); return 0;&#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">  int ansMax=-INF;</span></span><br><span class="line"><span class="comment">  //从 [1:n-1] 中选择</span></span><br><span class="line"><span class="comment">  f1[1][1]=a[1];</span></span><br><span class="line"><span class="comment">  FOR(i,2,n)&#123;</span></span><br><span class="line"><span class="comment">    int to=min(i/2,m);</span></span><br><span class="line"><span class="comment">    ROR(j,to,1)&#123;</span></span><br><span class="line"><span class="comment">      f1[i][j] = f0[i-1][j-1] + a[i];</span></span><br><span class="line"><span class="comment">      f0[i][j] = max(f1[i-1][j],f0[i-1][j]);</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">    if(to==m) ansMax=max(ansMax,max(f1[i][m],f0[i][m]));</span></span><br><span class="line"><span class="comment">  &#125;</span></span><br><span class="line"><span class="comment">#ifdef DEBUG</span></span><br><span class="line"><span class="comment">  FOR(i,2,n) FOR(j,1,min(i/2,m))&#123;</span></span><br><span class="line"><span class="comment">    if(f0[i][j]) printf("  f0[%d][%d]: %d\n",i,j,f0[i][j]);</span></span><br><span class="line"><span class="comment">    if(f1[i][j]) printf("  f1[%d][%d]: %d\n",i,j,f1[i][j]);</span></span><br><span class="line"><span class="comment">  &#125;</span></span><br><span class="line"><span class="comment">#endif</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">  //从 [2:n] 中选择</span></span><br><span class="line"><span class="comment">  MST(f0,0); MST(f1,0);</span></span><br><span class="line"><span class="comment">  FORR(i,2,n)&#123;</span></span><br><span class="line"><span class="comment">    int to=min(i/2,m);</span></span><br><span class="line"><span class="comment">    ROR(j,to,1)&#123;</span></span><br><span class="line"><span class="comment">      f1[i][j] = f0[i-1][j-1] + a[i];</span></span><br><span class="line"><span class="comment">      f0[i][j] = max(f1[i-1][j],f0[i-1][j]);</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">    if(to==m) ansMax=max(ansMax,max(f1[i][m],f0[i][m]));</span></span><br><span class="line"><span class="comment">  &#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">  printf("%d\n",ansMax);</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">  return 0;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://thebesttv.github.io/2017/12/01/论快速幂的正确写法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="thebesttv">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="thebesttv's blog">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/12/01/论快速幂的正确写法/" class="post-title-link" itemprop="url">论快速幂的正确写法</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-12-01 00:00:00" itemprop="dateCreated datePublished" datetime="2017-12-01T00:00:00+08:00">2017-12-01</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2017-12-31 12:34:30" itemprop="dateModified" datetime="2017-12-31T12:34:30+08:00">2017-12-31</time>
+              </span>
+            
+          
+
+          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Comments: </span>
+    
+  
+    <a href="/2017/12/01/论快速幂的正确写法/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/12/01/论快速幂的正确写法/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+            <a id="more"></a>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">fpow</span><span class="params">(<span class="keyword">int</span> x,ll p,<span class="keyword">int</span> yql)</span></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> ans=<span class="number">1</span>;</span><br><span class="line">  <span class="keyword">for</span>(;p;p&gt;&gt;=<span class="number">1</span>,x=<span class="number">1L</span>L*x*x%yql)</span><br><span class="line">    <span class="keyword">if</span>(p&amp;<span class="number">1</span>)ans=<span class="number">1L</span>L*ans*x%yql;</span><br><span class="line">  <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
           
