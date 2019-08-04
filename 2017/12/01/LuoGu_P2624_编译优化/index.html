@@ -55,18 +55,18 @@
   };
 </script>
 
-  <meta name="description" content="题目背景众所周知，衡量一个编译器是否优秀的标准，除了它的编译速度和正确性以外，编译出的代码的质量也很重要。最近，作为XCC系列编译器作者的Dr. X发明了一种跨时代的优化算法：“NanGe不等式优化”。一个程序可以看成是由若干个连续的函数构成的，NanGe不等式算法能针对某一个函数进行优化，得到一个优化效果值, 不同的函数的效果值可能是不同的。但这个算法还有一个很大的Bug：该算法不能同时优化相">
-<meta name="keywords" content="TODO,网络流,DP,背包,贪心">
+  <meta name="description" content="题目背景众所周知，衡量一个编译器是否优秀的标准，除了它的编译速度和正确性以外，编译出的代码的质量也很重要。最近，作为XCC系列编译器作者的Dr. X发明了一种跨时代的优化算法：“NanGe不等式优化”。一个程序可以看成是由若干个连续的函数构成的，NanGe不等式算法能针对某一个函数进行优化，得到一个优化效果值, 不同的函数的效果值可能是不同的。但这个算法还有一个很大的Bug：该算法不能同时优化相邻">
+<meta name="keywords" content="DP,TODO,网络流,背包,贪心">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[洛谷P2624] 编译优化">
 <meta property="og:url" content="https://thebesttv.github.io/2017/12/01/LuoGu_P2624_编译优化/index.html">
 <meta property="og:site_name" content="thebesttv&#39;s blog">
-<meta property="og:description" content="题目背景众所周知，衡量一个编译器是否优秀的标准，除了它的编译速度和正确性以外，编译出的代码的质量也很重要。最近，作为XCC系列编译器作者的Dr. X发明了一种跨时代的优化算法：“NanGe不等式优化”。一个程序可以看成是由若干个连续的函数构成的，NanGe不等式算法能针对某一个函数进行优化，得到一个优化效果值, 不同的函数的效果值可能是不同的。但这个算法还有一个很大的Bug：该算法不能同时优化相">
+<meta property="og:description" content="题目背景众所周知，衡量一个编译器是否优秀的标准，除了它的编译速度和正确性以外，编译出的代码的质量也很重要。最近，作为XCC系列编译器作者的Dr. X发明了一种跨时代的优化算法：“NanGe不等式优化”。一个程序可以看成是由若干个连续的函数构成的，NanGe不等式算法能针对某一个函数进行优化，得到一个优化效果值, 不同的函数的效果值可能是不同的。但这个算法还有一个很大的Bug：该算法不能同时优化相邻">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-12-31T04:34:30.000Z">
+<meta property="og:updated_time" content="2019-08-04T13:55:34.640Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[洛谷P2624] 编译优化">
-<meta name="twitter:description" content="题目背景众所周知，衡量一个编译器是否优秀的标准，除了它的编译速度和正确性以外，编译出的代码的质量也很重要。最近，作为XCC系列编译器作者的Dr. X发明了一种跨时代的优化算法：“NanGe不等式优化”。一个程序可以看成是由若干个连续的函数构成的，NanGe不等式算法能针对某一个函数进行优化，得到一个优化效果值, 不同的函数的效果值可能是不同的。但这个算法还有一个很大的Bug：该算法不能同时优化相">
+<meta name="twitter:description" content="题目背景众所周知，衡量一个编译器是否优秀的标准，除了它的编译速度和正确性以外，编译出的代码的质量也很重要。最近，作为XCC系列编译器作者的Dr. X发明了一种跨时代的优化算法：“NanGe不等式优化”。一个程序可以看成是由若干个连续的函数构成的，NanGe不等式算法能针对某一个函数进行优化，得到一个优化效果值, 不同的函数的效果值可能是不同的。但这个算法还有一个很大的Bug：该算法不能同时优化相邻">
   <link rel="alternate" href="/atom.xml" title="thebesttv's blog" type="application/atom+xml">
   <link rel="canonical" href="https://thebesttv.github.io/2017/12/01/LuoGu_P2624_编译优化/">
 
@@ -279,7 +279,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2017-12-31 12:34:30" itemprop="dateModified" datetime="2017-12-31T12:34:30+08:00">2017-12-31</time>
+                <time title="Modified: 2019-08-04 21:55:34" itemprop="dateModified" datetime="2019-08-04T21:55:34+08:00">2019-08-04</time>
               </span>
             
           
@@ -313,8 +313,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <a id="more"></a>
-<h1 id="题目背景"><a href="#题目背景" class="headerlink" title="题目背景"></a>题目背景</h1><p>众所周知，衡量一个编译器是否优秀的标准，除了它的编译速度和正确性以外，编译出的代码的质量也很重要。最近，作为XCC系列编译器作者的Dr. X发明了一种跨时代的优化算法：“NanGe不等式优化”。一个程序可以看成是由若干个连续的函数构成的，NanGe不等式算法能针对某一个函数进行优化，得到一个优化效果值, 不同的函数的效果值可能是不同的。但这个算法还有一个很大的Bug：该算法不能同时优化相邻的两个函数，否则就会直接Compile Error，值得注意的是，一个程序的第一个函数和最后一个函数也算是相邻的。</p>
+        <h1 id="题目背景"><a href="#题目背景" class="headerlink" title="题目背景"></a>题目背景</h1><p>众所周知，衡量一个编译器是否优秀的标准，除了它的编译速度和正确性以外，编译出的代码的质量也很重要。最近，作为XCC系列编译器作者的Dr. X发明了一种跨时代的优化算法：“NanGe不等式优化”。一个程序可以看成是由若干个连续的函数构成的，NanGe不等式算法能针对某一个函数进行优化，得到一个优化效果值, 不同的函数的效果值可能是不同的。但这个算法还有一个很大的Bug：该算法不能同时优化相邻的两个函数，否则就会直接Compile Error，值得注意的是，一个程序的第一个函数和最后一个函数也算是相邻的。</p>
+<a id="more"></a>
+
 <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>现在给你一个程序从头到尾每个函数的优化效果值，Dr. X想用NanGe不等式对该程序的M个函数进行优化，他该怎么选择才能使总的优化效果值最大（前提是不能出现错误）？如果错误不能避免，请输出“Error!”</p>
 <h2 id="输入输出格式"><a href="#输入输出格式" class="headerlink" title="输入输出格式"></a>输入输出格式</h2><h3 id="输入格式："><a href="#输入格式：" class="headerlink" title="输入格式："></a>输入格式：</h3><p>输入的第一行包含两个正整数n、m。<br>第二行为 n 个整数 ai。</p>
 <h3 id="输出格式："><a href="#输出格式：" class="headerlink" title="输出格式："></a>输出格式：</h3><p>输出仅一个整数，表示最后对该程序进行优化后的最大效果值。如果无解输出“Error!”，不包含引号。</p>
@@ -339,11 +340,11 @@
           
         
         <div class="post-tags">
+            <a href="/tags/DP/" rel="tag"># DP</a>
+          
             <a href="/tags/TODO/" rel="tag"># TODO</a>
           
             <a href="/tags/网络流/" rel="tag"># 网络流</a>
-          
-            <a href="/tags/DP/" rel="tag"># DP</a>
           
             <a href="/tags/背包/" rel="tag"># 背包</a>
           
@@ -352,8 +353,8 @@
         </div>
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
-              <a href="/2017/12/01/论快速幂的正确写法/" rel="next" title="论快速幂的正确写法">
-                <i class="fa fa-chevron-left"></i> 论快速幂的正确写法
+              <a href="/2017/11/28/LuoGu_P1345/" rel="next" title="[洛谷P1345] 奶牛的电信 Telecowmunication">
+                <i class="fa fa-chevron-left"></i> [洛谷P1345] 奶牛的电信 Telecowmunication
               </a>
             
           </div>
@@ -361,8 +362,8 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-              <a href="/2017/12/14/网络流学习笔记/" rel="prev" title="网络流学习笔记">
-                网络流学习笔记 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/12/01/论快速幂的正确写法/" rel="prev" title="论快速幂的正确写法">
+                论快速幂的正确写法 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
