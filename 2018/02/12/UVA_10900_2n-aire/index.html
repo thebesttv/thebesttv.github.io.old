@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next pisces use-motion" lang="zh-cn">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    save_scroll: false,
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta name="description" content="题目大意你正在玩一个游戏，一开始手中有 1 元。你可以依次回答 $n$ 个问题。对于每个问题，可以  放弃回答，带着手中的奖金退出游戏。 回答问题。如果成功，则进入下一轮，奖金加倍；如果失败，则游戏结束，你一分钱也拿不到。  若正确回答完所有 $n$ 个问题，将得到 $2^n$ 元的奖金。对于所有问题，回答成功的概率在 $[t,1]$ 上均匀分布。求出在最优策略下（即让奖金的期望尽量大），拿走奖金">
+<meta name="keywords" content="概率,期望,TODO,连续概率,HARD">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[UVA 10900] So you want to be a 2n-aire?">
+<meta property="og:url" content="https://thebesttv.github.io/2018/02/12/UVA_10900_2n-aire/index.html">
+<meta property="og:site_name" content="thebesttv&#39;s blog">
+<meta property="og:description" content="题目大意你正在玩一个游戏，一开始手中有 1 元。你可以依次回答 $n$ 个问题。对于每个问题，可以  放弃回答，带着手中的奖金退出游戏。 回答问题。如果成功，则进入下一轮，奖金加倍；如果失败，则游戏结束，你一分钱也拿不到。  若正确回答完所有 $n$ 个问题，将得到 $2^n$ 元的奖金。对于所有问题，回答成功的概率在 $[t,1]$ 上均匀分布。求出在最优策略下（即让奖金的期望尽量大），拿走奖金">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2018-02-12T08:37:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[UVA 10900] So you want to be a 2n-aire?">
+<meta name="twitter:description" content="题目大意你正在玩一个游戏，一开始手中有 1 元。你可以依次回答 $n$ 个问题。对于每个问题，可以  放弃回答，带着手中的奖金退出游戏。 回答问题。如果成功，则进入下一轮，奖金加倍；如果失败，则游戏结束，你一分钱也拿不到。  若正确回答完所有 $n$ 个问题，将得到 $2^n$ 元的奖金。对于所有问题，回答成功的概率在 $[t,1]$ 上均匀分布。求出在最优策略下（即让奖金的期望尽量大），拿走奖金">
+  <link rel="alternate" href="/atom.xml" title="thebesttv's blog" type="application/atom+xml">
+  <link rel="canonical" href="https://thebesttv.github.io/2018/02/12/UVA_10900_2n-aire/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>[UVA 10900] So you want to be a 2n-aire? | thebesttv's blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-cn">
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">thebesttv's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Think twice, then code once.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://thebesttv.github.io/2018/02/12/UVA_10900_2n-aire/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="thebesttv">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="thebesttv's blog">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">[UVA 10900] So you want to be a 2n-aire?
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-02-12 15:26:00 / Modified: 16:37:02" itemprop="dateCreated datePublished" datetime="2018-02-12T15:26:00+08:00">2018-02-12</time>
+            </span>
+          
+            
+
+            
+          
+
+          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Comments: </span>
+    
+  
+    <a href="/2018/02/12/UVA_10900_2n-aire/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/02/12/UVA_10900_2n-aire/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>你正在玩一个游戏，一开始手中有 1 元。你可以依次回答 $n$ 个问题。对于每个问题，可以</p>
+<ul>
+<li>放弃回答，带着手中的奖金退出游戏。</li>
+<li>回答问题。如果成功，则进入下一轮，奖金加倍；如果失败，则游戏结束，你一分钱也拿不到。</li>
+</ul>
+<p>若正确回答完所有 $n$ 个问题，将得到 $2^n$ 元的奖金。<br>对于所有问题，回答成功的概率在 $[t,1]$ 上均匀分布。<br>求出在最优策略下（即让奖金的期望尽量大），拿走奖金的期望。</p>
+<a id="more"></a>
+
+<h1 id="解题报告"><a href="#解题报告" class="headerlink" title="解题报告"></a>解题报告</h1><p>说实话这道题困扰了我好久……</p>
+<p>首先，考虑已经正确回答了 i 个问题的情况。此时，有放弃和继续两种决策。</p>
+<ul>
+<li>如果放弃，则可以拿到 $2^i$ 元奖金。</li>
+<li>如果继续，则期望的奖金为 正确回答第 i+1 个问题的概率 * 答对第 i+1 个问题之后的最大期望奖金。</li>
+</ul>
+<p>也就是说，当前的决策是受之后状态的影响的。<br>那么想到逆序递推。</p>
+<p>令 $d[i]$ 表示正确回答 i 个问题之后的最大期望奖金，则<br>  $$ d[i] = P(放弃) \times 2^i + P(继续) \times P(正确回答第 i+1 个问题) \times d[i+1] $$<br>答案即为 $d[0]$ 。<br>因为回答对问题的可能是在 $[t,1]$ 上均匀分布的，那么可以将 $d[i]$ 看作在 $p = t \thicksim 1 $ 上的一个积分，即<br>  $$ d[i] = \int_t^1 max{ 2^i, p \times d[i+1] } \,{\rm d}p $$<br>显然，一般情况下有 $d[i]$ 先取 $2^i$ ，再取 $p \times d[i+1]$ 。那么就需要分类讨论求出 $d[i]$ 。</p>
+<p>$ 2^i = p \times d[i+1] $ 为分界线，则令 $ p_0 = \frac{ 2^i }{ d[i+1] } $ ，$ p_1 = \frac{ p_0 - t }{ 1 - t } 。</p>
+<ul>
+<li>当 $ p &lt; p_0 $ 时，选择放弃，期望有 $ p_1 \times 2^i $ 的奖金。</li>
+<li>当 $ p \geq p_0 $ 是，选择继续，期望有 $ (1 - p_1) \frac{ 1 + p_1 }{2} \times d[i+1] $ 的奖金。</li>
+</ul>
+<p>由此得出，$ d[i] = p_1 \times 2^i + (1 - p_1) \frac{ 1 + p_1 }{2} \times d[i+1] $ 。</p>
+<p>不过我始终在这个式子上纠结。</p>
+<p>为什么 $p_1 = \frac{ p_0 - t }{ 1 - t }$ 要除上 $1-t$ ？<br>可以这么想：回答正确的概率 $p$ 始终是在 [t,1] 上均匀分布的，无论这个区间有多长，$p$ 的个数都可以说是不变的。（当然前提是 $ t \neq 1 $）而且再看 $d[i]$ 最初的公式，$(1+p_1)/2$ 正是正确回答问题的概率。</p>
+<p>这篇题解可能还有许多不完善的地方，可能将来某一天回顾的时候，思路能清晰一点吧。</p>
+<p>代码</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">50</span>;</span><br><span class="line"><span class="keyword">int</span> n; <span class="keyword">double</span> t,d[MAX];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">  <span class="keyword">while</span>(~<span class="built_in">scanf</span>(<span class="string">"%d%lf"</span>,&amp;n,&amp;t) &amp;&amp; n)&#123;</span><br><span class="line">    d[n] = <span class="number">1</span>&lt;&lt;n;</span><br><span class="line"></span><br><span class="line">    ROR(i,n<span class="number">-1</span>,<span class="number">0</span>)&#123;</span><br><span class="line">      <span class="keyword">double</span> p0 = max(t, (<span class="number">1</span>&lt;&lt;i)/d[i+<span class="number">1</span>]);</span><br><span class="line">      <span class="keyword">double</span> p1 = (p0-t)/(<span class="number">1</span>-t);</span><br><span class="line">      d[i] = p1*(<span class="number">1</span>&lt;&lt;i) + (<span class="number">1</span>-p1)*(<span class="number">1</span>+p0)/<span class="number">2</span>*d[i+<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%.3lf\n"</span>,d[<span class="number">0</span>]);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+        
+        <div class="post-tags">
+            <a href="/tags/概率/" rel="tag"># 概率</a>
+          
+            <a href="/tags/期望/" rel="tag"># 期望</a>
+          
+            <a href="/tags/TODO/" rel="tag"># TODO</a>
+          
+            <a href="/tags/连续概率/" rel="tag"># 连续概率</a>
+          
+            <a href="/tags/HARD/" rel="tag"># HARD</a>
+          
+        </div>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+              <a href="/2018/01/28/LuoGu_P3121_审查_Censoring/" rel="next" title="[洛谷 P3121] 审查 Censoring">
+                <i class="fa fa-chevron-left"></i> [洛谷 P3121] 审查 Censoring
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+              <a href="/2018/02/12/UVA_11605_Lights_inside_a_3d_Grid/" rel="prev" title="[UVA 11605] Lights inside a 3d Grid">
+                [UVA 11605] Lights inside a 3d Grid <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+  
+
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/avatar.jpg"
+      alt="thebesttv">
+  <p class="site-author-name" itemprop="name">thebesttv</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">46</span>
+        <span class="site-state-item-name">tags</span>
+        
+      </div>
+    
+  </nav>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目大意"><span class="nav-number">1.</span> <span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解题报告"><span class="nav-number">2.</span> <span class="nav-text">解题报告</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">thebesttv</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/affix.js?v=7.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+    
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://https-thebesttv-github-io.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://thebesttv.github.io/2018/02/12/UVA_10900_2n-aire/";
+    this.page.identifier = "2018/02/12/UVA_10900_2n-aire/";
+    this.page.title = '[UVA 10900] So you want to be a 2n-aire?';};
+  function loadComments() {
+    if (!window.DISQUS) {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://https-thebesttv-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    } else {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    }
+  }
+    window.addEventListener('load', loadComments, false);
+  
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

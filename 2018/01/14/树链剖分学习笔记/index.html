@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next pisces use-motion" lang="zh-cn">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    save_scroll: false,
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta name="description" content="树链剖分 树链剖分是一种维护树上信息的算法，它将一棵树剖分成一些不相交的链，使得每个节点在且仅在一条链上。并通过线段树、树状数组等数据结构维护每条链上的信息。">
+<meta name="keywords" content="树链剖分,学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树链剖分学习笔记">
+<meta property="og:url" content="https://thebesttv.github.io/2018/01/14/树链剖分学习笔记/index.html">
+<meta property="og:site_name" content="thebesttv&#39;s blog">
+<meta property="og:description" content="树链剖分 树链剖分是一种维护树上信息的算法，它将一棵树剖分成一些不相交的链，使得每个节点在且仅在一条链上。并通过线段树、树状数组等数据结构维护每条链上的信息。">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2018-01-27T06:16:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="树链剖分学习笔记">
+<meta name="twitter:description" content="树链剖分 树链剖分是一种维护树上信息的算法，它将一棵树剖分成一些不相交的链，使得每个节点在且仅在一条链上。并通过线段树、树状数组等数据结构维护每条链上的信息。">
+  <link rel="alternate" href="/atom.xml" title="thebesttv's blog" type="application/atom+xml">
+  <link rel="canonical" href="https://thebesttv.github.io/2018/01/14/树链剖分学习笔记/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>树链剖分学习笔记 | thebesttv's blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-cn">
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">thebesttv's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Think twice, then code once.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://thebesttv.github.io/2018/01/14/树链剖分学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="thebesttv">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="thebesttv's blog">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">树链剖分学习笔记
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-01-14 09:57:00" itemprop="dateCreated datePublished" datetime="2018-01-14T09:57:00+08:00">2018-01-14</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-01-27 14:16:08" itemprop="dateModified" datetime="2018-01-27T14:16:08+08:00">2018-01-27</time>
+              </span>
+            
+          
+
+          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Comments: </span>
+    
+  
+    <a href="/2018/01/14/树链剖分学习笔记/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/01/14/树链剖分学习笔记/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="树链剖分"><a href="#树链剖分" class="headerlink" title="树链剖分"></a>树链剖分</h1><blockquote>
+<p>树链剖分是一种维护树上信息的算法，它将一棵树剖分成一些不相交的链，使得每个节点在且仅在一条链上。并通过线段树、树状数组等数据结构维护每条链上的信息。</p>
+</blockquote>
+<a id="more"></a>
+
+<h1 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h1><p>通过结构体维护树上每个节点的size、深度、父节点、最大子节点、所在链等信息。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">Chain</span> *<span class="title">chain</span>;</span>  <span class="comment">//所在链</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">Edge</span> *<span class="title">se</span>;</span>      <span class="comment">//始边</span></span><br><span class="line">  Node *fa,*maxChild;   <span class="comment">//父节点和最大子节点</span></span><br><span class="line">  <span class="keyword">int</span> siz,dep,l,r;      <span class="comment">//l: 节点的dfs序</span></span><br><span class="line">  <span class="comment">//r: 以该节点为根的子树的最大dfs序，则 [l,r] 即可表示一棵子树</span></span><br><span class="line">&#125;node[MAX];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Chain</span>&#123;</span>           <span class="comment">//链</span></span><br><span class="line">  Node *top;            <span class="comment">//链顶元素</span></span><br><span class="line">  Chain(Node *top_): top(top_) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span>&#123;</span>            <span class="comment">//边</span></span><br><span class="line">  Node *v; Edge *next;</span><br><span class="line">&#125;edge[MAX];</span><br><span class="line"><span class="keyword">int</span> tailE;</span><br></pre></td></tr></table></figure>
+
+<h1 id="剖分"><a href="#剖分" class="headerlink" title="剖分"></a>剖分</h1><p>通过两次dfs，第一次先计算出每个节点的size、深度、父节点、最大子节点。<br>第二次，依据第一次的结果计算出节点的 l,r ，并计算所在链。当节点 u 是根节点或节点 u 不是其父节点的最大子节点时，要建新链。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs1</span><span class="params">(Node *u)</span></span>&#123;</span><br><span class="line">  u-&gt;siz=<span class="number">1</span>;</span><br><span class="line">  <span class="keyword">for</span>(Edge *e=u-&gt;se;e;e=e-&gt;next)&#123;</span><br><span class="line">    <span class="keyword">if</span>(e-&gt;v-&gt;siz) <span class="keyword">continue</span>; <span class="comment">//如果已被访问过</span></span><br><span class="line">    e-&gt;v-&gt;fa=u; e-&gt;v-&gt;dep=u-&gt;dep+<span class="number">1</span>;</span><br><span class="line">    dfs1(e-&gt;v);</span><br><span class="line">    u-&gt;siz+=e-&gt;v-&gt;siz;</span><br><span class="line">    <span class="keyword">if</span>(!u-&gt;maxChild || u-&gt;maxChild-&gt;siz &lt; e-&gt;v-&gt;siz)</span><br><span class="line">      u-&gt;maxChild=e-&gt;v; <span class="comment">//计算最大子节点</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> ts; <span class="comment">//dfs序</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs2</span><span class="params">(Node *u)</span></span>&#123;</span><br><span class="line">  u-&gt;l=++ts;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//计算所在链</span></span><br><span class="line">  <span class="keyword">if</span>(!u-&gt;fa || u-&gt;fa-&gt;maxChild!=u) u-&gt;chain = <span class="keyword">new</span> Chain(u);</span><br><span class="line">  <span class="keyword">else</span> u-&gt;chain = u-&gt;fa-&gt;chain;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(u-&gt;maxChild) dfs2(u-&gt;maxChild);  <span class="comment">//优先访问最大子节点</span></span><br><span class="line">  <span class="keyword">for</span>(Edge *e=u-&gt;se;e;e=e-&gt;next)&#123;</span><br><span class="line">    <span class="keyword">if</span>(e-&gt;v==u-&gt;fa || e-&gt;v==u-&gt;maxChild) <span class="keyword">continue</span>;</span><br><span class="line">    dfs2(e-&gt;v);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  u-&gt;r=ts;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">split</span><span class="params">()</span></span>&#123; <span class="comment">//剖分</span></span><br><span class="line">  node[<span class="number">1</span>].dep=<span class="number">1</span>;</span><br><span class="line">  dfs1(&amp;node[<span class="number">1</span>]);</span><br><span class="line">  dfs2(&amp;node[<span class="number">2</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="树上操作"><a href="#树上操作" class="headerlink" title="树上操作"></a>树上操作</h1><p>将树上的操作转移到线段树、树状数组等结构上。</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">100020</span>;</span><br><span class="line"><span class="keyword">int</span> n,q;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">Chain</span> *<span class="title">chain</span>;</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">Edge</span> *<span class="title">se</span>;</span></span><br><span class="line">  Node *fa,*maxChild;</span><br><span class="line">  <span class="keyword">int</span> siz,dep,l,r;</span><br><span class="line">&#125;node[MAX];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Chain</span>&#123;</span></span><br><span class="line">  Node *top;</span><br><span class="line">  Chain(Node *top_): top(top_) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span>&#123;</span></span><br><span class="line">  Node *v; Edge *next;</span><br><span class="line">&#125;edge[MAX];</span><br><span class="line"><span class="keyword">int</span> tailE;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sNode</span>&#123;</span></span><br><span class="line">  <span class="keyword">int</span> l,r,m,sum[<span class="number">2</span>];</span><br><span class="line">  <span class="keyword">bool</span> <span class="built_in">set</span>[<span class="number">2</span>];</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ST</span>&#123;</span></span><br><span class="line">  sNode sg[MAX&lt;&lt;<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">pushDown</span><span class="params">(<span class="keyword">int</span> root)</span></span>&#123;</span><br><span class="line">    sNode *t=&amp;sg[root];</span><br><span class="line">    sNode *lc=&amp;sg[root&lt;&lt;<span class="number">1</span>],*rc=&amp;sg[root&lt;&lt;<span class="number">1</span>|<span class="number">1</span>];</span><br><span class="line">    FORR(d,<span class="number">0</span>,<span class="number">1</span>) <span class="keyword">if</span>(t-&gt;<span class="built_in">set</span>[d])&#123;</span><br><span class="line">      lc-&gt;<span class="built_in">set</span>[d]=<span class="number">1</span>; lc-&gt;<span class="built_in">set</span>[d^<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line">      rc-&gt;<span class="built_in">set</span>[d]=<span class="number">1</span>; rc-&gt;<span class="built_in">set</span>[d^<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line">      lc-&gt;sum[d] = lc-&gt;r - lc-&gt;l + <span class="number">1</span>; lc-&gt;sum[d^<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line">      rc-&gt;sum[d] = rc-&gt;r - rc-&gt;l + <span class="number">1</span>; rc-&gt;sum[d^<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line">      t-&gt;<span class="built_in">set</span>[d]=<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> root, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">    sNode &amp;t=sg[root];</span><br><span class="line">    t.l=l; t.r=r; t.m=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(l==r) &#123;t.sum[<span class="number">0</span>]=<span class="number">1</span>; <span class="keyword">return</span>;&#125;</span><br><span class="line">    build(root&lt;&lt;<span class="number">1</span>,l,t.m); build(root&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,t.m+<span class="number">1</span>,r);</span><br><span class="line">    t.sum[<span class="number">0</span>]=sg[root&lt;&lt;<span class="number">1</span>].sum[<span class="number">0</span>]+sg[root&lt;&lt;<span class="number">1</span>|<span class="number">1</span>].sum[<span class="number">0</span>];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">set</span><span class="params">(<span class="keyword">int</span> root, <span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> d)</span></span>&#123;</span><br><span class="line">    sNode &amp;t=sg[root];</span><br><span class="line">    <span class="keyword">if</span>(l&lt;=t.l &amp;&amp; r&gt;=t.r)&#123;</span><br><span class="line">      t.sum[d]=t.r-t.l+<span class="number">1</span>; t.sum[d^<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line">      t.<span class="built_in">set</span>[d]=<span class="number">1</span>; t.<span class="built_in">set</span>[d^<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    pushDown(root);</span><br><span class="line">    <span class="keyword">if</span>(l&lt;=t.m) <span class="built_in">set</span>(root&lt;&lt;<span class="number">1</span>,l,r,d);</span><br><span class="line">    <span class="keyword">if</span>(r&gt;t.m) <span class="built_in">set</span>(root&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,l,r,d);</span><br><span class="line">    t.sum[<span class="number">0</span>]=sg[root&lt;&lt;<span class="number">1</span>].sum[<span class="number">0</span>]+sg[root&lt;&lt;<span class="number">1</span>|<span class="number">1</span>].sum[<span class="number">0</span>];</span><br><span class="line">    t.sum[<span class="number">1</span>]=sg[root&lt;&lt;<span class="number">1</span>].sum[<span class="number">1</span>]+sg[root&lt;&lt;<span class="number">1</span>|<span class="number">1</span>].sum[<span class="number">1</span>];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> root, <span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> d)</span></span>&#123;</span><br><span class="line">    sNode &amp;t=sg[root];</span><br><span class="line">    <span class="keyword">if</span>(l&lt;=t.l &amp;&amp; r&gt;=t.r) <span class="keyword">return</span> t.sum[d];</span><br><span class="line">    pushDown(root);</span><br><span class="line">    <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(l&lt;=t.m) ans+=sum(root&lt;&lt;<span class="number">1</span>,l,r,d);</span><br><span class="line">    <span class="keyword">if</span>(r&gt;t.m) ans+=sum(root&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,l,r,d);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;st;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addEdge</span><span class="params">(Node *u, Node *v)</span></span>&#123;</span><br><span class="line">  edge[tailE]=(Edge)&#123;v,u-&gt;se&#125;; u-&gt;se=&amp;edge[tailE++];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs1</span><span class="params">(Node *u)</span></span>&#123;</span><br><span class="line">  u-&gt;siz=<span class="number">1</span>;</span><br><span class="line">  <span class="keyword">for</span>(Edge *e=u-&gt;se;e;e=e-&gt;next)&#123;</span><br><span class="line">    <span class="keyword">if</span>(e-&gt;v-&gt;siz) <span class="keyword">continue</span>;</span><br><span class="line">    e-&gt;v-&gt;fa=u; e-&gt;v-&gt;dep=u-&gt;dep+<span class="number">1</span>;</span><br><span class="line">    dfs1(e-&gt;v);</span><br><span class="line">    u-&gt;siz+=e-&gt;v-&gt;siz;</span><br><span class="line">    <span class="keyword">if</span>(!u-&gt;maxChild || u-&gt;maxChild-&gt;siz &lt; e-&gt;v-&gt;siz)</span><br><span class="line">      u-&gt;maxChild=e-&gt;v;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> ts;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs2</span><span class="params">(Node *u)</span></span>&#123;</span><br><span class="line">  u-&gt;l=++ts;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(!u-&gt;fa || u-&gt;fa-&gt;maxChild!=u) u-&gt;chain = <span class="keyword">new</span> Chain(u);</span><br><span class="line">  <span class="keyword">else</span> u-&gt;chain = u-&gt;fa-&gt;chain;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(u-&gt;maxChild) dfs2(u-&gt;maxChild);</span><br><span class="line">  <span class="keyword">for</span>(Edge *e=u-&gt;se;e;e=e-&gt;next)&#123;</span><br><span class="line">    <span class="keyword">if</span>(e-&gt;v==u-&gt;fa || e-&gt;v==u-&gt;maxChild) <span class="keyword">continue</span>;</span><br><span class="line">    dfs2(e-&gt;v);</span><br><span class="line">  &#125;</span><br><span class="line">  u-&gt;r=ts;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">split</span><span class="params">()</span></span>&#123;</span><br><span class="line">  node[<span class="number">1</span>].dep=<span class="number">1</span>;</span><br><span class="line">  dfs1(node+<span class="number">1</span>); dfs2(node+<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">  <span class="keyword">int</span> x;</span><br><span class="line">  FORR(i,<span class="number">2</span>,n)&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;x); addEdge(node+x+<span class="number">1</span>,node+i);</span><br><span class="line">  &#125;</span><br><span class="line">  split();</span><br><span class="line">  st.build(<span class="number">1</span>,<span class="number">1</span>,ts);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">char</span> s1[<span class="number">14</span>];</span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;q);</span><br><span class="line">  FOR(i,<span class="number">0</span>,q)&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%s%d"</span>,s1,&amp;x);</span><br><span class="line">    Node *t=&amp;node[x+<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">if</span>(s1[<span class="number">0</span>]==<span class="string">'i'</span>)&#123;</span><br><span class="line">      <span class="keyword">int</span> sum=<span class="number">0</span>;</span><br><span class="line">      <span class="keyword">while</span>(t)&#123;</span><br><span class="line">        sum+=st.sum(<span class="number">1</span>,t-&gt;chain-&gt;top-&gt;l,t-&gt;l,<span class="number">0</span>); <span class="comment">//统计 0 的个数</span></span><br><span class="line">        st.<span class="built_in">set</span>(<span class="number">1</span>,t-&gt;chain-&gt;top-&gt;l,t-&gt;l,<span class="number">1</span>);  <span class="comment">//全设成 1</span></span><br><span class="line">        t=t-&gt;chain-&gt;top-&gt;fa;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,sum);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,st.sum(<span class="number">1</span>,t-&gt;l,t-&gt;r,<span class="number">1</span>)); <span class="comment">//统计 1 的个数</span></span><br><span class="line">      st.<span class="built_in">set</span>(<span class="number">1</span>,t-&gt;l,t-&gt;r,<span class="number">0</span>);  <span class="comment">//全设成 0</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+        
+        <div class="post-tags">
+            <a href="/tags/树链剖分/" rel="tag"># 树链剖分</a>
+          
+            <a href="/tags/学习笔记/" rel="tag"># 学习笔记</a>
+          
+        </div>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+              <a href="/2018/01/14/LuoGu_P2146_软件包管理器/" rel="next" title="[洛谷 P2146] 软件包管理器">
+                <i class="fa fa-chevron-left"></i> [洛谷 P2146] 软件包管理器
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+              <a href="/2018/01/25/NOI_2014_动物园/" rel="prev" title="[NOI 2014] 动物园">
+                [NOI 2014] 动物园 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+  
+
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/avatar.jpg"
+      alt="thebesttv">
+  <p class="site-author-name" itemprop="name">thebesttv</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">46</span>
+        <span class="site-state-item-name">tags</span>
+        
+      </div>
+    
+  </nav>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#树链剖分"><span class="nav-number">1.</span> <span class="nav-text">树链剖分</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#准备"><span class="nav-number">2.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#剖分"><span class="nav-number">3.</span> <span class="nav-text">剖分</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#树上操作"><span class="nav-number">4.</span> <span class="nav-text">树上操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码"><span class="nav-number">5.</span> <span class="nav-text">代码</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">thebesttv</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/affix.js?v=7.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+    
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://https-thebesttv-github-io.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://thebesttv.github.io/2018/01/14/树链剖分学习笔记/";
+    this.page.identifier = "2018/01/14/树链剖分学习笔记/";
+    this.page.title = '树链剖分学习笔记';};
+  function loadComments() {
+    if (!window.DISQUS) {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://https-thebesttv-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    } else {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    }
+  }
+    window.addEventListener('load', loadComments, false);
+  
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

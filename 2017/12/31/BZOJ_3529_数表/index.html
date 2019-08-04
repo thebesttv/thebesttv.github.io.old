@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next pisces use-motion" lang="zh-cn">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    save_scroll: false,
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta name="description" content="题目大意令  $$ f(i,j) = \sum_{d \mid i, d \mid j} d $$求出 $ i=1:n, j=1:m $ 中满足 $ f(i,j) \leq a $ 的 $f(i,j)$ 之和，答案模 $2^{31}$ 。（好难表达啊……）">
+<meta name="keywords" content="分块,线性筛">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[BZOJ 3529] 数表">
+<meta property="og:url" content="https://thebesttv.github.io/2017/12/31/BZOJ_3529_数表/index.html">
+<meta property="og:site_name" content="thebesttv&#39;s blog">
+<meta property="og:description" content="题目大意令  $$ f(i,j) = \sum_{d \mid i, d \mid j} d $$求出 $ i=1:n, j=1:m $ 中满足 $ f(i,j) \leq a $ 的 $f(i,j)$ 之和，答案模 $2^{31}$ 。（好难表达啊……）">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2017-12-31T07:13:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[BZOJ 3529] 数表">
+<meta name="twitter:description" content="题目大意令  $$ f(i,j) = \sum_{d \mid i, d \mid j} d $$求出 $ i=1:n, j=1:m $ 中满足 $ f(i,j) \leq a $ 的 $f(i,j)$ 之和，答案模 $2^{31}$ 。（好难表达啊……）">
+  <link rel="alternate" href="/atom.xml" title="thebesttv's blog" type="application/atom+xml">
+  <link rel="canonical" href="https://thebesttv.github.io/2017/12/31/BZOJ_3529_数表/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>[BZOJ 3529] 数表 | thebesttv's blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-cn">
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">thebesttv's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Think twice, then code once.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://thebesttv.github.io/2017/12/31/BZOJ_3529_数表/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="thebesttv">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="thebesttv's blog">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">[BZOJ 3529] 数表
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-12-31 09:42:00 / Modified: 15:13:52" itemprop="dateCreated datePublished" datetime="2017-12-31T09:42:00+08:00">2017-12-31</time>
+            </span>
+          
+            
+
+            
+          
+
+          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Comments: </span>
+    
+  
+    <a href="/2017/12/31/BZOJ_3529_数表/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/12/31/BZOJ_3529_数表/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>令<br>  $$ f(i,j) = \sum_{d \mid i, d \mid j} d $$<br>求出 $ i=1:n, j=1:m $ 中满足 $ f(i,j) \leq a $ 的 $f(i,j)$ 之和，答案模 $2^{31}$ 。<br>（好难表达啊……）</p>
+<a id="more"></a>
+
+<h1 id="解题报告"><a href="#解题报告" class="headerlink" title="解题报告"></a>解题报告</h1><h2 id="先不看-a-的限制"><a href="#先不看-a-的限制" class="headerlink" title="先不看 $a$ 的限制"></a>先不看 $a$ 的限制</h2><p>有 $ d \mid i, d \mid j \implies d \mid (i,j) $，那么 $f(i,j)$ 所求即为 $gcd(i,j)$ 的约数和。<br>令 $F(n)$ 为 $n$ 的约数和，则<br>  $$ ans = \sum_{d \mid gcd(i,j)} d = \sum_{\small{1\leq i \leq n, 1 \leq j \leq m}} F(gcd(i,j)) $$<br>令 $ f(k,n,m) $ 表示 $ (x,y) =k, 1 \leq x \leq n, 1 \leq y \leq m $ 的个数，由 <a href="/2017/12/28/HAOI_2011_Problem_b/">[HAOI 2011] Problem b</a> 可得<br>  $$ f(k,n,m) = \sum_{k \mid d}^{n} \mu\left(\frac{d}{k}\right) \left\lfloor \frac{n}{d} \right\rfloor \left\lfloor \frac{m}{d} \right\rfloor $$<br>则<br>\begin{split}<br>  ans &amp;= \sum_{k=1}^{n} f(k,n,m) F(k) \\<br>  &amp;= \sum_{k=1}^{n} F(k) \sum_{k \mid d}^{n} \mu\left(\frac{d}{k}\right) \left\lfloor \frac{n}{d} \right\rfloor \left\lfloor \frac{m}{d} \right\rfloor \\<br>  &amp;= \sum_{d=1}^{n} \left\lfloor \frac{n}{d} \right\rfloor \left\lfloor \frac{m}{d} \right\rfloor \sum_{k \mid d} \mu\left(\frac{d}{k} \right) F(k) \\<br>\end{split}<br>左边依旧可以 $O(\sqrt{n})$ 分块，只要能算出右边的前缀和即可。</p>
+<p>对于 $F(n)$，可以直接枚举 $i=1:n$ 然后更新 $ F(i \times j) += i $，也可以在线性筛中求得。</p>
+<h3 id="线性筛中求-F-n-："><a href="#线性筛中求-F-n-：" class="headerlink" title="线性筛中求 $F(n)$："></a>线性筛中求 $F(n)$：</h3><p>　当 $n$ 为质数时，有 $ F(n) = n+1 $ 。<br>　当 $n$ 为合数时，设 $p_1$ 为 $n$ 的最小质因子，$p_1$ 的次数为 $k_1$ 。<br>　　令 $ n = n’ \times p_1 $，则在线性筛中 $n$ 被 $ n’ \times p_1 $ 筛去。<br>　　当 $ p_1 \mid n’ $，即 $ k_1 \geq 2 $ 时，$n’$ 含有 $n$ 的所有质因子。<br>　　　当 $ n = 2^7 \times 3 \times 7 $ 时，有 $ n’ = 2^6 \times 3 \times 7, p_1=2, k_1=7 $，且有<br>　　　\begin{split}<br>　　　F(n) &amp;= \sum_{d \mid n} d = \sum_{d \mid n’} d + 2^7 + 2^7 \times 3 + 2^7 \times 7 + 2^7 \times 3 \times 7 \\<br>　　　&amp;= F(n’) + 2^7(1 + 3 + 7 + 3 \times 7) \\<br>　　　&amp;= F(n’) + 2^7F(3 \times 7) \\<br>　　　&amp;= F(n’) + 2^7\left( \frac{2^7 \times 3 \times 7}{2^7} \right) \\<br>　　　\end{split}<br>　　　所以有<br>　　　$$ F(n) = F(n’) + {p_1}^{k_1} F\left( \frac{n}{ {p_1}^{k_1} } \right), p_1 \mid n’ $$<br>　　　可以通过数组 tf 记录每个 $n$ 对应的 ${p_1}^{k_1}$， tf 可以在线性筛的同时求出。<br>　　当 $ p_1 \nmid n’ $，即 $ k_1 = 1 $ 时，$n’$ 与 $p_1$ 互质，由上式得<br>　　　$$ F(n) = F(n’) + p_1F(n’) = (1+p_1)F(n’), p_1 \nmid n’ $$<br>　这样就可以用筛法求出 $F(n)$ 了。<br>　不过枚举的速度和筛法差距很小，所以用不用没有多大区别……</p>
+<h3 id="求解-g-d"><a href="#求解-g-d" class="headerlink" title="求解 $g(d)$"></a>求解 $g(d)$</h3><p>令<br>  $$ g(d) = \sum_{k \mid d} \mu\left(\frac{d}{k} \right) F(k) $$<br>枚举 $ i=1:n $ 然后更新 $ g(i \times j) += \mu(j)F(i) $ ，最后计算前缀和即可。</p>
+<h2 id="现在再考虑-a-的限制"><a href="#现在再考虑-a-的限制" class="headerlink" title="现在再考虑 $a$ 的限制"></a>现在再考虑 $a$ 的限制</h2><p>因为对答案有贡献的只有 $F(k) \leq a$ 的 $k$，那么可以离线处理。<br>将询问按照 $a$ 升序排列，$F(k)$ 也升序排列。<br>每次处理询问时将 $ F(k) \leq a $ 的 $F(k)$ 插入 $g(d)$ 中，通过树状数组维护前缀和即可。</p>
+<p>至于答案的取模，可以利用自然溢出int，最后再对 $2^{31}-1$ 取<strong>与</strong>即可。<br>因为 $2^{31}$ 比 int 的范围大了 1，设 $ n = 2^{31} + k $，则 $ n ,, mod ,, 2^{31} = k $，而这与溢出时忽略符号位是一样的，因此可以任由 $n$ 溢出，最后只要通过与运算去掉符号位即可。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><h3 id="1-线性筛求-F"><a href="#1-线性筛求-F" class="headerlink" title="[1]线性筛求 F"></a>[1]线性筛求 F</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">100020</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN=MAX<span class="number">-20</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXQ=<span class="number">20020</span>;</span><br><span class="line"><span class="keyword">int</span> n,m,a;</span><br><span class="line"><span class="keyword">int</span> prime[MAX],tail,mu[MAX];</span><br><span class="line"><span class="keyword">int</span> g[MAX],s[MAX];  <span class="comment">// g 函数 和前缀和</span></span><br><span class="line"><span class="keyword">int</span> tf[MAX];  <span class="comment">//tf[n] = p1^k1</span></span><br><span class="line"><span class="keyword">bool</span> vis[MAX];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Query</span>&#123;</span> <span class="comment">//询问</span></span><br><span class="line">  <span class="keyword">int</span> n,m,a,num;</span><br><span class="line">  <span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> Query &amp; b) <span class="keyword">const</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> a&lt;b.a;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;query[MAXQ];</span><br><span class="line"><span class="keyword">int</span> ans[MAXQ];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sF</span>&#123;</span>  <span class="comment">//F(a) = b</span></span><br><span class="line">  <span class="keyword">int</span> a,b;</span><br><span class="line">  <span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> sF &amp; bb) <span class="keyword">const</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> b&lt;bb.b;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;F[MAX];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">  <span class="keyword">while</span>(x&gt;<span class="number">0</span>) &#123;ans+=s[x]; x-=x&amp;(-x);&#125;</span><br><span class="line">  <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> a)</span></span>&#123;</span><br><span class="line">  <span class="keyword">while</span>(x&lt;=MAXN) &#123;s[x]+=a; x+=x&amp;(-x);&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> n=MAXN)</span></span>&#123;</span><br><span class="line">  <span class="comment">//线性筛中计算出 mu 和 F(i) ，并按照 F 升序排列</span></span><br><span class="line">  mu[<span class="number">1</span>]=<span class="number">1</span>; F[<span class="number">1</span>].a=<span class="number">1</span>; F[<span class="number">1</span>].b=<span class="number">1</span>;</span><br><span class="line">  FORR(i,<span class="number">2</span>,n)&#123;</span><br><span class="line">    F[i].a=i;</span><br><span class="line">    <span class="keyword">if</span>(!vis[i])&#123;</span><br><span class="line">      prime[tail++]=i; mu[i]=<span class="number">-1</span>;</span><br><span class="line">      F[i].b=i+<span class="number">1</span>; tf[i]=i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> t,p;</span><br><span class="line">    FOR(j,<span class="number">0</span>,tail)&#123;</span><br><span class="line">      p=prime[j]; t=i*p;</span><br><span class="line">      <span class="keyword">if</span>(t&gt;n) <span class="keyword">break</span>;</span><br><span class="line">      vis[t]=<span class="number">1</span>;</span><br><span class="line">      <span class="keyword">if</span>(i%p==<span class="number">0</span>)&#123;</span><br><span class="line">        mu[t]=<span class="number">0</span>; tf[t]=tf[i]*p;</span><br><span class="line">        F[t].b = F[i].b + tf[t]*F[t/tf[t]].b;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        mu[t]=-mu[i]; tf[t]=p;</span><br><span class="line">        F[t].b=(<span class="number">1</span>+p)*F[i].b;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  sort(F+<span class="number">1</span>,F+<span class="number">1</span>+n);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update_g</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> n=MAXN)</span></span>&#123; <span class="comment">//用 F(a)=b 更新 g(n) = \sum_&#123;d|n&#125; F(d)*mu[n/d];</span></span><br><span class="line">  <span class="keyword">for</span>(RE <span class="keyword">int</span> j=a,cnt=<span class="number">1</span>,t;j&lt;=n;j+=a,cnt++)</span><br><span class="line">    <span class="keyword">if</span>(t=b*mu[cnt])&#123;</span><br><span class="line">      add(j,t); <span class="comment">//g[j] += b*mu[cnt]</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span></span>&#123;  <span class="comment">//分块</span></span><br><span class="line">  <span class="keyword">if</span>(n&gt;m) swap(n,m);</span><br><span class="line">  RE <span class="keyword">int</span> ans=<span class="number">0</span>,j,t1,t2;</span><br><span class="line">  <span class="keyword">for</span>(RE <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i=j+<span class="number">1</span>)&#123;</span><br><span class="line">    j=min(n/(t1=(n/i)),m/(t2=(m/i)));</span><br><span class="line">    ans += t1*t2*(sum(j)-sum(i<span class="number">-1</span>));</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">  init();</span><br><span class="line">  <span class="keyword">int</span> T; <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;T);</span><br><span class="line">  FOR(i,<span class="number">0</span>,T)&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;n,&amp;m,&amp;a);</span><br><span class="line">    query[i]=(Query)&#123;n,m,a,i&#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  sort(query,query+T);  <span class="comment">//询问按照 a 升序排列</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> a,j=<span class="number">1</span>;</span><br><span class="line">  FOR(i,<span class="number">0</span>,T)&#123;</span><br><span class="line">    Query &amp; Q=query[i];</span><br><span class="line">    <span class="keyword">while</span>(j&lt;=MAXN &amp;&amp; F[j].b&lt;=Q.a)&#123; <span class="comment">//更新 F</span></span><br><span class="line">      update_g(F[j].a,F[j].b); j++;</span><br><span class="line">    &#125;</span><br><span class="line">    ans[Q.num]=f(Q.n,Q.m) &amp; ((<span class="number">1L</span>L&lt;&lt;<span class="number">31</span>)<span class="number">-1</span>);  <span class="comment">//去掉符号位</span></span><br><span class="line">  &#125;</span><br><span class="line">  FOR(i,<span class="number">0</span>,T) <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans[i]);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-枚举求-F"><a href="#2-枚举求-F" class="headerlink" title="[2]枚举求 F"></a>[2]枚举求 F</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">100020</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN=MAX<span class="number">-20</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXQ=<span class="number">20020</span>;</span><br><span class="line"><span class="keyword">int</span> n,m,a;</span><br><span class="line"><span class="keyword">int</span> prime[MAX],tail,mu[MAX];</span><br><span class="line"><span class="keyword">int</span> g[MAX],s[MAX];  <span class="comment">// g 函数 和前缀和</span></span><br><span class="line"><span class="keyword">bool</span> vis[MAX];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Query</span>&#123;</span> <span class="comment">//询问</span></span><br><span class="line">  <span class="keyword">int</span> n,m,a,num;</span><br><span class="line">  <span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> Query &amp; b) <span class="keyword">const</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> a&lt;b.a;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;query[MAXQ];</span><br><span class="line"><span class="keyword">int</span> ans[MAXQ];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sF</span>&#123;</span>  <span class="comment">//F(a) = b</span></span><br><span class="line">  <span class="keyword">int</span> a,b;</span><br><span class="line">  <span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> sF &amp; bb) <span class="keyword">const</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> b&lt;bb.b;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;F[MAX];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">  <span class="keyword">while</span>(x&gt;<span class="number">0</span>) &#123;ans+=s[x]; x-=x&amp;(-x);&#125;</span><br><span class="line">  <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> a)</span></span>&#123;</span><br><span class="line">  <span class="keyword">while</span>(x&lt;=MAXN) &#123;s[x]+=a; x+=x&amp;(-x);&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> n=MAXN)</span></span>&#123;</span><br><span class="line">  <span class="comment">//F(i): i的约数和，计算出所有 F 并按照 F 升序排列</span></span><br><span class="line">  FORR(i,<span class="number">1</span>,n)&#123;</span><br><span class="line">    F[i].a=i;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j=i;j&lt;=n;j+=i)&#123;</span><br><span class="line">      F[j].b+=i;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  sort(F+<span class="number">1</span>,F+<span class="number">1</span>+n);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//计算出 mu</span></span><br><span class="line">  mu[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">  FORR(i,<span class="number">2</span>,n)&#123;</span><br><span class="line">    <span class="keyword">if</span>(!vis[i])&#123;</span><br><span class="line">      prime[tail++]=i; mu[i]=<span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    FOR(j,<span class="number">0</span>,tail)&#123;</span><br><span class="line">      <span class="keyword">int</span> t=i*prime[j];</span><br><span class="line">      <span class="keyword">if</span>(t&gt;n) <span class="keyword">break</span>;</span><br><span class="line">      vis[t]=<span class="number">1</span>;</span><br><span class="line">      <span class="keyword">if</span>(i%prime[j]==<span class="number">0</span>)&#123;</span><br><span class="line">        mu[t]=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        mu[t]=-mu[i];</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update_g</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> n=MAXN)</span></span>&#123; <span class="comment">//用 F(a)=b 更新 g(n) = \sum_&#123;d|n&#125; F(d)*mu[n/d];</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> j=a,cnt=<span class="number">1</span>;j&lt;=n;j+=a,cnt++) <span class="keyword">if</span>(b*mu[cnt])&#123;</span><br><span class="line">    add(j,b*mu[cnt]); <span class="comment">//g[j] += b*mu[cnt]</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span></span>&#123;  <span class="comment">//分块</span></span><br><span class="line">  <span class="keyword">if</span>(n&gt;m) swap(n,m);</span><br><span class="line">  <span class="keyword">int</span> ans=<span class="number">0</span>,j;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i=j+<span class="number">1</span>)&#123;</span><br><span class="line">    j=min(n/(n/i),m/(m/i));</span><br><span class="line">    ans += (n/i)*(m/i)*(sum(j)-sum(i<span class="number">-1</span>));</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">  init();</span><br><span class="line">  <span class="keyword">int</span> T; <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;T);</span><br><span class="line">  FOR(i,<span class="number">0</span>,T)&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;n,&amp;m,&amp;a);</span><br><span class="line">    query[i]=(Query)&#123;n,m,a,i&#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  sort(query,query+T);  <span class="comment">//询问按照 a 升序排列</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> a,j=<span class="number">1</span>;</span><br><span class="line">  FOR(i,<span class="number">0</span>,T)&#123;</span><br><span class="line">    Query &amp; Q=query[i];</span><br><span class="line">    <span class="keyword">while</span>(j&lt;=MAXN &amp;&amp; F[j].b&lt;=Q.a)&#123; <span class="comment">//更新 F</span></span><br><span class="line">      update_g(F[j].a,F[j].b); j++;</span><br><span class="line">    &#125;</span><br><span class="line">    ans[Q.num]=f(Q.n,Q.m) &amp; ((<span class="number">1L</span>L&lt;&lt;<span class="number">31</span>)<span class="number">-1</span>);  <span class="comment">//去掉符号位</span></span><br><span class="line">  &#125;</span><br><span class="line">  FOR(i,<span class="number">0</span>,T) <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans[i]);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+        
+        <div class="post-tags">
+            <a href="/tags/分块/" rel="tag"># 分块</a>
+          
+            <a href="/tags/线性筛/" rel="tag"># 线性筛</a>
+          
+        </div>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+              <a href="/2017/12/30/BZOJ_2820_YY的GCD/" rel="next" title="[BZOJ 2820] YY的GCD">
+                <i class="fa fa-chevron-left"></i> [BZOJ 2820] YY的GCD
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+              <a href="/2017/12/31/mu_and_euler_sieve/" rel="prev" title="莫比乌斯反演、莫比乌斯函数、线性筛">
+                莫比乌斯反演、莫比乌斯函数、线性筛 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+  
+
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/avatar.jpg"
+      alt="thebesttv">
+  <p class="site-author-name" itemprop="name">thebesttv</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">46</span>
+        <span class="site-state-item-name">tags</span>
+        
+      </div>
+    
+  </nav>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目大意"><span class="nav-number">1.</span> <span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解题报告"><span class="nav-number">2.</span> <span class="nav-text">解题报告</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#先不看-a-的限制"><span class="nav-number">2.1.</span> <span class="nav-text">先不看 $a$ 的限制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#线性筛中求-F-n-："><span class="nav-number">2.1.1.</span> <span class="nav-text">线性筛中求 $F(n)$：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#求解-g-d"><span class="nav-number">2.1.2.</span> <span class="nav-text">求解 $g(d)$</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#现在再考虑-a-的限制"><span class="nav-number">2.2.</span> <span class="nav-text">现在再考虑 $a$ 的限制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">2.3.</span> <span class="nav-text">代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-线性筛求-F"><span class="nav-number">2.3.1.</span> <span class="nav-text">[1]线性筛求 F</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-枚举求-F"><span class="nav-number">2.3.2.</span> <span class="nav-text">[2]枚举求 F</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">thebesttv</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/affix.js?v=7.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+    
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://https-thebesttv-github-io.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://thebesttv.github.io/2017/12/31/BZOJ_3529_数表/";
+    this.page.identifier = "2017/12/31/BZOJ_3529_数表/";
+    this.page.title = '[BZOJ 3529] 数表';};
+  function loadComments() {
+    if (!window.DISQUS) {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://https-thebesttv-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    } else {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    }
+  }
+    window.addEventListener('load', loadComments, false);
+  
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next pisces use-motion" lang="zh-cn">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    save_scroll: false,
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta name="description" content="题目大意给定 A,B 两人到达车站可能的时间区间 [s1,s2] 和 [t1,t2] 。两人中任何一人早到都会等待另一人 w 单位的时间，求出两人相会的概率。">
+<meta name="keywords" content="概率,几何">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[UVA 11722] Joining with Friend">
+<meta property="og:url" content="https://thebesttv.github.io/2017/12/23/UVA_11722_Joining_with_Friend/index.html">
+<meta property="og:site_name" content="thebesttv&#39;s blog">
+<meta property="og:description" content="题目大意给定 A,B 两人到达车站可能的时间区间 [s1,s2] 和 [t1,t2] 。两人中任何一人早到都会等待另一人 w 单位的时间，求出两人相会的概率。">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:image" content="https://thebesttv.github.io/2017/12/23/UVA_11722_Joining_with_Friend/1.png">
+<meta property="og:updated_time" content="2017-12-31T04:34:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[UVA 11722] Joining with Friend">
+<meta name="twitter:description" content="题目大意给定 A,B 两人到达车站可能的时间区间 [s1,s2] 和 [t1,t2] 。两人中任何一人早到都会等待另一人 w 单位的时间，求出两人相会的概率。">
+<meta name="twitter:image" content="https://thebesttv.github.io/2017/12/23/UVA_11722_Joining_with_Friend/1.png">
+  <link rel="alternate" href="/atom.xml" title="thebesttv's blog" type="application/atom+xml">
+  <link rel="canonical" href="https://thebesttv.github.io/2017/12/23/UVA_11722_Joining_with_Friend/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>[UVA 11722] Joining with Friend | thebesttv's blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-cn">
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">thebesttv's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Think twice, then code once.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://thebesttv.github.io/2017/12/23/UVA_11722_Joining_with_Friend/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="thebesttv">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="thebesttv's blog">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">[UVA 11722] Joining with Friend
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-12-23 19:04:50" itemprop="dateCreated datePublished" datetime="2017-12-23T19:04:50+08:00">2017-12-23</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2017-12-31 12:34:30" itemprop="dateModified" datetime="2017-12-31T12:34:30+08:00">2017-12-31</time>
+              </span>
+            
+          
+
+          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Comments: </span>
+    
+  
+    <a href="/2017/12/23/UVA_11722_Joining_with_Friend/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/12/23/UVA_11722_Joining_with_Friend/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>给定 A,B 两人到达车站可能的时间区间 [s1,s2] 和 [t1,t2] 。两人中任何一人早到都会等待另一人 w 单位的时间，求出两人相会的概率。</p>
+<a id="more"></a>
+
+<h1 id="解题报告："><a href="#解题报告：" class="headerlink" title="解题报告："></a>解题报告：</h1><p>几何概型，设 A 在 x 时刻到达，B 在 y 时刻到达，则 |x-y|&lt;=w 。<br>但是矩形在直线 y=x+w 和 y=x-w 之间的面积不太容易求得。</p>
+<h2 id="1-讨论求解"><a href="#1-讨论求解" class="headerlink" title="[1]讨论求解"></a>[1]讨论求解</h2><p>没太多好说的，分类罢了，不过分类也要分得巧一些。<br>我自己想的：可以计算 y=x-w 右边的面积 和 y=x+w 左边的面积 之和，如果&gt;=原面积，就减去一个原面积，即为答案。</p>
+<p>不过还有更好的方法，是我从网上看到的：<br>求出矩形分别在直线 y=x-w, y=x+w 右边的面积 S1, S2，有效面积即为S2-S1。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> s1,s2,t1,t2,w;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">area</span><span class="params">(<span class="keyword">int</span> w)</span></span>&#123;  <span class="comment">//矩形在 l: y=x+w 右边的面积（可能为非整数）</span></span><br><span class="line">  <span class="comment">//(s1,t2)   (s2,t2)</span></span><br><span class="line">  <span class="comment">//  A-----------B</span></span><br><span class="line">  <span class="comment">//  |           |</span></span><br><span class="line">  <span class="comment">//  D-----------C</span></span><br><span class="line">  <span class="comment">//(s1,t1)   (s2,t1)</span></span><br><span class="line">  <span class="keyword">if</span>(t1&gt;=s2+w) <span class="keyword">return</span> <span class="number">0</span>;  <span class="comment">//C在l左上方</span></span><br><span class="line">  <span class="keyword">if</span>(t2&lt;=s1+w) <span class="keyword">return</span> (s2-s1)*(t2-t1);  <span class="comment">//A在l右下方</span></span><br><span class="line">  <span class="keyword">int</span> a=s2-s1,b=t2-t1;</span><br><span class="line">  <span class="keyword">if</span>(a&gt;=b)&#123;</span><br><span class="line">    <span class="keyword">if</span>(t1&lt;=s1+w)&#123; <span class="comment">//A在l左上方</span></span><br><span class="line">      <span class="keyword">return</span> a*b - <span class="number">0.5</span>*(t2-s1-w)*(t2-s1-w);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(t2&lt;=s2+w)&#123; <span class="comment">//D在l左上方</span></span><br><span class="line">      <span class="keyword">return</span> <span class="number">0.5</span>*((s2-t2+w) + (s2-t1+w))*b;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">0.5</span>*(s2-t1+w)*(s2-t1+w);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(t2&lt;=s2+w)&#123; <span class="comment">//A在l左上方</span></span><br><span class="line">      <span class="keyword">return</span> a*b - <span class="number">0.5</span>*(t2-s1-w)*(t2-s1-w);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(t1&lt;=s1+w)&#123; <span class="comment">//B在l左上方</span></span><br><span class="line">      <span class="keyword">return</span> <span class="number">0.5</span>*((s2-t1+w) + (s1-t1+w))*a;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">0.5</span>*(s2-t1+w)*(s2-t1+w);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> T; <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;T);</span><br><span class="line">  FORR(kase,<span class="number">1</span>,T)&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d%d%d%d"</span>,&amp;t1,&amp;t2,&amp;s1,&amp;s2,&amp;w);</span><br><span class="line">    <span class="keyword">double</span> S1=area(-w),S2=area(w),S=(s2-s1)*(t2-t1);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Case #%d: %.8lf\n"</span>,kase,(S2-S1)/S);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-求出两直线之间的点，再求出形成的凸多边形的面积"><a href="#2-求出两直线之间的点，再求出形成的凸多边形的面积" class="headerlink" title="[2]求出两直线之间的点，再求出形成的凸多边形的面积"></a>[2]求出两直线之间的点，再求出形成的凸多边形的面积</h2><p>这个是我在考虑优化方法[1]的中途午睡时突然想到的，还特地起来在纸上试了一下 XD ，虽然比较烦，不过还是挺好玩的 XD</p>
+<p><img src="1.png" alt="示意图"></p>
+<p>矩形有4个顶点、8个边与直线的交点，而这12个点中，在两直线之间的点组成的多边形即为有效多边形，其面积即为有效面积。<br>先算出所有的有效点，然后找出最左下角的那个点P。因为是凸多边形，那么其他的点都与P都有所成角且都不同。<br>将其他的点按照与P所成角排序，然后计算多边形面积即可。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> s1,s2,t1,t2,w;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Point</span>&#123;</span> <span class="comment">//点，同时也是向量</span></span><br><span class="line">  <span class="keyword">int</span> x,y;</span><br><span class="line">  <span class="keyword">double</span> ang; <span class="comment">//与点P所成角</span></span><br><span class="line"></span><br><span class="line">  Point(<span class="keyword">int</span> x_, <span class="keyword">int</span> y_): x(x_), y(y_) &#123; &#125;;</span><br><span class="line">  <span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> Point &amp; b) <span class="keyword">const</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> ang&lt;b.ang;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Line</span>&#123;</span>  <span class="comment">//矩形的四条边所在直线</span></span><br><span class="line">  <span class="keyword">int</span> a,b,c;</span><br><span class="line">&#125;line[<span class="number">4</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">getXY</span><span class="params">(<span class="keyword">int</span> &amp; x, <span class="keyword">int</span> &amp; y, Line &amp; l, <span class="keyword">int</span> t)</span></span>&#123;</span><br><span class="line">  <span class="comment">//计算 y=x+t 与 ax+by=c 的交点(x,y)（整点），并返回它是否在矩形边界</span></span><br><span class="line">  x = (l.c-l.b*t)/(l.a+l.b);</span><br><span class="line">  y = (l.c+l.a*t)/(l.a+l.b);</span><br><span class="line">  <span class="keyword">return</span> x&gt;=s1 &amp;&amp; x&lt;=s2 &amp;&amp; y&gt;=t1 &amp;&amp; y&lt;=t2;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">between</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123; <span class="comment">//判断 (x,y) 是否在 y=x-w 和 y=x+w 之间</span></span><br><span class="line">  <span class="keyword">return</span> x-y&lt;=w &amp;&amp; y-x&lt;=w;  <span class="comment">//|x-y|&lt;=w</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cross</span><span class="params">(<span class="keyword">const</span> Point &amp; a, <span class="keyword">const</span> Point &amp; b)</span></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a.x*b.y - a.y*b.x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">com_left</span><span class="params">(<span class="keyword">const</span> Point &amp; a, <span class="keyword">const</span> Point &amp; b)</span></span>&#123;  <span class="comment">//寻找最左下角的点P</span></span><br><span class="line">  <span class="keyword">return</span> a.x!=b.x ? a.x&lt;b.x : a.y&lt;b.y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">area</span><span class="params">(VR&lt;Point&gt; &amp; v)</span></span>&#123; <span class="comment">//计算多边形面积</span></span><br><span class="line">  <span class="keyword">int</span> n=v.size();</span><br><span class="line">  <span class="keyword">double</span> sum=<span class="number">0</span>;</span><br><span class="line">  FOR(i,<span class="number">1</span>,n<span class="number">-1</span>)</span><br><span class="line">    sum+=cross(</span><br><span class="line">        Point(v[i].x-v[<span class="number">0</span>].x,v[i].y-v[<span class="number">0</span>].y),</span><br><span class="line">        Point(v[i+<span class="number">1</span>].x-v[<span class="number">0</span>].x,v[i+<span class="number">1</span>].y-v[<span class="number">0</span>].y));</span><br><span class="line">  <span class="keyword">return</span> sum/<span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">angle</span><span class="params">(<span class="keyword">const</span> Point &amp; a, <span class="keyword">const</span> Point &amp; b)</span></span>&#123; <span class="comment">//计算两点所成角</span></span><br><span class="line">  <span class="keyword">double</span> ma=<span class="built_in">sqrt</span>(a.x*a.x+a.y*a.y);</span><br><span class="line">  <span class="keyword">double</span> mb=<span class="built_in">sqrt</span>(b.x*b.x+b.y*b.y);</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">acos</span>((a.x*b.x+a.y*b.y)/ma/mb);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> T; <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;T);</span><br><span class="line">  FORR(kase,<span class="number">1</span>,T)&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d%d%d%d"</span>,&amp;t1,&amp;t2,&amp;s1,&amp;s2,&amp;w);</span><br><span class="line">    line[<span class="number">0</span>]=(Line)&#123;<span class="number">0</span>,<span class="number">1</span>,t1&#125;; <span class="comment">//y=t1</span></span><br><span class="line">    line[<span class="number">1</span>]=(Line)&#123;<span class="number">0</span>,<span class="number">1</span>,t2&#125;; <span class="comment">//y=t2</span></span><br><span class="line">    line[<span class="number">2</span>]=(Line)&#123;<span class="number">1</span>,<span class="number">0</span>,s1&#125;; <span class="comment">//x=t1</span></span><br><span class="line">    line[<span class="number">3</span>]=(Line)&#123;<span class="number">1</span>,<span class="number">0</span>,s2&#125;; <span class="comment">//x=t2</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> x,y;</span><br><span class="line">    VR&lt;Point&gt; v;</span><br><span class="line">    <span class="comment">//(s1,t2)   (s2,t2)</span></span><br><span class="line">    <span class="comment">//  +-----------+</span></span><br><span class="line">    <span class="comment">//  |           |</span></span><br><span class="line">    <span class="comment">//  +-----------+</span></span><br><span class="line">    <span class="comment">//(s1,t1)   (s2,t1)</span></span><br><span class="line">    <span class="keyword">if</span>(between(s1,t1)) v.push_back(Point(s1,t1));</span><br><span class="line">    <span class="keyword">if</span>(between(s1,t2)) v.push_back(Point(s1,t2));</span><br><span class="line">    <span class="keyword">if</span>(between(s2,t1)) v.push_back(Point(s2,t1));</span><br><span class="line">    <span class="keyword">if</span>(between(s2,t2)) v.push_back(Point(s2,t2));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">double</span> are=<span class="number">0</span>; <span class="comment">//有效面积</span></span><br><span class="line">    <span class="keyword">double</span> S=(s2-s1)*(t2-t1); <span class="comment">//原面积</span></span><br><span class="line">    FOR(i,<span class="number">0</span>,<span class="number">4</span>)&#123; <span class="comment">//矩形与两直线交点</span></span><br><span class="line">      <span class="keyword">if</span>(getXY(x,y,line[i],w))</span><br><span class="line">        v.push_back((Point)&#123;x,y&#125;);</span><br><span class="line">      <span class="keyword">if</span>(getXY(x,y,line[i],-w))</span><br><span class="line">        v.push_back((Point)&#123;x,y&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(!v.size()) <span class="keyword">goto</span> PRINT; <span class="comment">//如果无交点</span></span><br><span class="line">    sort(v.begin(),v.end(),com_left);</span><br><span class="line">    v[<span class="number">0</span>].ang=<span class="number">-1.0</span>;  <span class="comment">//确保P排序后在第一个</span></span><br><span class="line">    FOR(i,<span class="number">1</span>,v.size())&#123;  <span class="comment">//计算两点所成角</span></span><br><span class="line">      v[i].ang = angle(Point(<span class="number">1</span>,<span class="number">0</span>),Point(v[i].x-v[<span class="number">0</span>].x,v[i].y-v[<span class="number">0</span>].y));</span><br><span class="line">    &#125;</span><br><span class="line">    sort(v.begin(),v.end());</span><br><span class="line">    are=<span class="built_in">fabs</span>(area(v));</span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> DEBUG</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"  total: %d\n"</span>,v.size());</span><br><span class="line">    FOR(i,<span class="number">0</span>,v.size())&#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">"  (%d,%d), ang: %lf\n"</span>,v[i].x,v[i].y,v[i].ang);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"  area: %lf\n"</span>,are);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">PRINT:</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Case #%d: %.8lf\n"</span>,kase,are/S);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+        
+        <div class="post-tags">
+            <a href="/tags/概率/" rel="tag"># 概率</a>
+          
+            <a href="/tags/几何/" rel="tag"># 几何</a>
+          
+        </div>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+              <a href="/2017/12/19/UVA_1639_Candy/" rel="next" title="[UVA 1639] Candy">
+                <i class="fa fa-chevron-left"></i> [UVA 1639] Candy
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+              <a href="/2017/12/24/UVA_11021_Tribbles/" rel="prev" title="[UVA 11021] Tribbles">
+                [UVA 11021] Tribbles <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+  
+
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/avatar.jpg"
+      alt="thebesttv">
+  <p class="site-author-name" itemprop="name">thebesttv</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">46</span>
+        <span class="site-state-item-name">tags</span>
+        
+      </div>
+    
+  </nav>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目大意"><span class="nav-number">1.</span> <span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解题报告："><span class="nav-number">2.</span> <span class="nav-text">解题报告：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-讨论求解"><span class="nav-number">2.1.</span> <span class="nav-text">[1]讨论求解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-求出两直线之间的点，再求出形成的凸多边形的面积"><span class="nav-number">2.2.</span> <span class="nav-text">[2]求出两直线之间的点，再求出形成的凸多边形的面积</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">thebesttv</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/affix.js?v=7.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+    
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://https-thebesttv-github-io.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://thebesttv.github.io/2017/12/23/UVA_11722_Joining_with_Friend/";
+    this.page.identifier = "2017/12/23/UVA_11722_Joining_with_Friend/";
+    this.page.title = '[UVA 11722] Joining with Friend';};
+  function loadComments() {
+    if (!window.DISQUS) {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://https-thebesttv-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    } else {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    }
+  }
+    window.addEventListener('load', loadComments, false);
+  
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

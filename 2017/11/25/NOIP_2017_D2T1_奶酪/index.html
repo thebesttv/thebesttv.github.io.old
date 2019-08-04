@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next pisces use-motion" lang="zh-cn">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    save_scroll: false,
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta name="description" content="题目描述现有一块大奶酪，它的高度为 h ，它的长度和宽度我们可以认为是无限大的，奶酪中间有许多半径相同的球形空洞。我们可以在这块奶酪中建立空间坐标系，在坐标系中， 奶酪的下表面为 z=0 ，奶酪的上表面为 z=h 。现在，奶酪的下表面有一只小老鼠 Jerry ，它知道奶酪中所有空洞的球心所在的坐标。如果两个空洞相切或是相交，则 Jerry 可以从其中一个空洞跑到另一个空洞。特别地，如果一个空洞与">
+<meta name="keywords" content="NOIP,并查集,dfs,图">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[NOIP2017] D2T1 奶酪">
+<meta property="og:url" content="https://thebesttv.github.io/2017/11/25/NOIP_2017_D2T1_奶酪/index.html">
+<meta property="og:site_name" content="thebesttv&#39;s blog">
+<meta property="og:description" content="题目描述现有一块大奶酪，它的高度为 h ，它的长度和宽度我们可以认为是无限大的，奶酪中间有许多半径相同的球形空洞。我们可以在这块奶酪中建立空间坐标系，在坐标系中， 奶酪的下表面为 z=0 ，奶酪的上表面为 z=h 。现在，奶酪的下表面有一只小老鼠 Jerry ，它知道奶酪中所有空洞的球心所在的坐标。如果两个空洞相切或是相交，则 Jerry 可以从其中一个空洞跑到另一个空洞。特别地，如果一个空洞与">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2017-12-31T04:34:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[NOIP2017] D2T1 奶酪">
+<meta name="twitter:description" content="题目描述现有一块大奶酪，它的高度为 h ，它的长度和宽度我们可以认为是无限大的，奶酪中间有许多半径相同的球形空洞。我们可以在这块奶酪中建立空间坐标系，在坐标系中， 奶酪的下表面为 z=0 ，奶酪的上表面为 z=h 。现在，奶酪的下表面有一只小老鼠 Jerry ，它知道奶酪中所有空洞的球心所在的坐标。如果两个空洞相切或是相交，则 Jerry 可以从其中一个空洞跑到另一个空洞。特别地，如果一个空洞与">
+  <link rel="alternate" href="/atom.xml" title="thebesttv's blog" type="application/atom+xml">
+  <link rel="canonical" href="https://thebesttv.github.io/2017/11/25/NOIP_2017_D2T1_奶酪/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>[NOIP2017] D2T1 奶酪 | thebesttv's blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-cn">
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">thebesttv's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Think twice, then code once.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://thebesttv.github.io/2017/11/25/NOIP_2017_D2T1_奶酪/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="thebesttv">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="thebesttv's blog">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">[NOIP2017] D2T1 奶酪
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-11-25 22:34:33" itemprop="dateCreated datePublished" datetime="2017-11-25T22:34:33+08:00">2017-11-25</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2017-12-31 12:34:30" itemprop="dateModified" datetime="2017-12-31T12:34:30+08:00">2017-12-31</time>
+              </span>
+            
+          
+
+          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Comments: </span>
+    
+  
+    <a href="/2017/11/25/NOIP_2017_D2T1_奶酪/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/25/NOIP_2017_D2T1_奶酪/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <a id="more"></a>
+<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>现有一块大奶酪，它的高度为 h ，它的长度和宽度我们可以认为是无限大的，奶酪中间有许多半径相同的球形空洞。我们可以在这块奶酪中建立空间坐标系，在坐标系中， 奶酪的下表面为 z=0 ，奶酪的上表面为 z=h 。<br>现在，奶酪的下表面有一只小老鼠 Jerry ，它知道奶酪中所有空洞的球心所在的坐标。如果两个空洞相切或是相交，则 Jerry 可以从其中一个空洞跑到另一个空洞。特别地，如果一个空洞与下表面相切或是相交， Jerry 则可以从奶酪下表面跑进空洞；如果一个空洞与上表面相切或是相交， Jerry 则可以从空洞跑到奶酪上表面。<br>位于奶酪下表面的 Jerry 想知道，在不破坏奶酪的情况下，能否利用已有的空洞跑 到奶酪的上表面去?</p>
+<p>空间内两点 $P_2(x_2,y_2,z_2)$, $P_2(x_2,y_2,z_2)$ 的距离公式如下：<br>$$ dist(P_1,P_2) = \sqrt{ {(x_1-x_2)}^2 + {(y_1-y_2)}^2 + {(z_1-z_2)}^2 } $$</p>
+<h2 id="输入输出格式"><a href="#输入输出格式" class="headerlink" title="输入输出格式"></a>输入输出格式</h2><h3 id="输入格式："><a href="#输入格式：" class="headerlink" title="输入格式："></a>输入格式：</h3><p>每个输入文件包含多组数据。<br>输入文件的第一行，包含一个正整数 T，代表该输入文件中所含的数据组数。<br>接下来是 T 组数据，每组数据的格式如下： 第一行包含三个正整数 n,h,r ，两个数之间以一个空格分开，分别代表奶酪中空洞的数量，奶酪的高度和空洞的半径。<br>接下来的 n 行，每行包含三个整数 x,y,z ，两个数之间以一个空格分开，表示空洞球心坐标为(x,y,z)。</p>
+<h3 id="输出格式："><a href="#输出格式：" class="headerlink" title="输出格式："></a>输出格式：</h3><p>输出文件包含 T 行，分别对应 T 组数据的答案，如果在第 i 组数据中，Jerry 能从下表面跑到上表面，则输出 <code>Yes</code> ，如果不能，则输出 <code>No</code> 。</p>
+<h2 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h2><h3 id="输入样例-1："><a href="#输入样例-1：" class="headerlink" title="输入样例#1："></a>输入样例#1：</h3><p>3<br>2 4 1<br>0 0 1<br>0 0 3<br>2 5 1<br>0 0 1<br>0 0 4<br>2 5 2<br>0 0 2<br>2 0 4</p>
+<h3 id="输出样例-1："><a href="#输出样例-1：" class="headerlink" title="输出样例#1："></a>输出样例#1：</h3><p>Yes<br>No<br>Yes</p>
+<h1 id="得分：100"><a href="#得分：100" class="headerlink" title="得分：100"></a>得分：100</h1><h1 id="解题报告："><a href="#解题报告：" class="headerlink" title="解题报告："></a>解题报告：</h1><p>讨厌的浮点误差……</p>
+<p>考试的时候一开始被计算几何吓到了，然而仔细看了看才发现原来还是比较简单的。<br>考场上我想到的是图的做法：<br>先判断点 i,j 之间是否联通，如果联通则连接 i,j 。<br>然后遍历，判断点与上下表面是否连通，连通则建边（下表面为 0 ，上表面为 n+1 ）<br>然后再跑个 Dij ，判断起点和终点是否连通。</p>
+<p>虽然用了 Dij 吧，不过跑起来还是比较快的，至少在 CCF 的老爷机上没 T  XD</p>
+<h1 id="正解："><a href="#正解：" class="headerlink" title="正解："></a>正解：</h1><h2 id="1-并查集"><a href="#1-并查集" class="headerlink" title="[1]并查集"></a>[1]并查集</h2><p>同一个集合中的元素两两直接或间接连通。<br>同样进行三次遍历，判断点与点、点与下表面、点与上表面分别是否连通，如果连通则合并。<br>最后判断下表面（0）和上表面（n+1）是否连通即可。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">1020</span>;</span><br><span class="line"><span class="keyword">int</span> n,h,r;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">  <span class="keyword">int</span> x,y,z;</span><br><span class="line">&#125;node[MAX];</span><br><span class="line"><span class="keyword">int</span> p[MAX];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> p[x]&lt;<span class="number">0</span> ? x : p[x]=find(p[x]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">  x=find(x); y=find(y);</span><br><span class="line">  <span class="keyword">if</span>(x==y) <span class="keyword">return</span>;</span><br><span class="line">  <span class="keyword">if</span>(p[x]&lt;p[y])&#123;</span><br><span class="line">    p[x]+=p[y]; p[y]=x;</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    p[y]+=p[x]; p[x]=y;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">double</span> <span class="title">dis</span><span class="params">(Node &amp; a, Node &amp; b)</span></span>&#123;</span><br><span class="line">  <span class="keyword">double</span> dx=a.x-b.x, dy=a.y-b.y, dz=a.z-b.z;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">sqrt</span>(dx*dx + dy*dy + dz*dz);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> T; <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;T);</span><br><span class="line">  <span class="keyword">while</span>(T--)&#123;</span><br><span class="line">    MST(p,<span class="number">-1</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;n,&amp;h,&amp;r);</span><br><span class="line">    FORR(i,<span class="number">1</span>,n)&#123;</span><br><span class="line">      <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;node[i].x,&amp;node[i].y,&amp;node[i].z);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">double</span> dr=r&lt;&lt;<span class="number">1</span>;</span><br><span class="line">    FORR(i,<span class="number">1</span>,n) FORR(j,i+<span class="number">1</span>,n)</span><br><span class="line">      <span class="keyword">if</span>(dis(node[i],node[j])&lt;=dr) merge(i,j);</span><br><span class="line">      <span class="comment">//if(dis(node[i],node[j])-dr&lt;EPS) merge(i,j);</span></span><br><span class="line">      <span class="comment">//不使用 EPS 进行比较，除非开得够小（只在判断是否相等时使用 EPS ）</span></span><br><span class="line">    FORR(i,<span class="number">1</span>,n) <span class="keyword">if</span>(node[i].z&lt;=r) merge(<span class="number">0</span>,i);</span><br><span class="line">    FORR(i,<span class="number">1</span>,n) <span class="keyword">if</span>(node[i].z+r&gt;=h) merge(i,n+<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, find(<span class="number">0</span>)==find(n+<span class="number">1</span>) ? <span class="string">"Yes"</span> : <span class="string">"No"</span> );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-dfs"><a href="#2-dfs" class="headerlink" title="[2]dfs"></a>[2]dfs</h2><p>好像并没有什么可说的……</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">1020</span>;</span><br><span class="line"><span class="keyword">int</span> n,h,r;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">  <span class="keyword">int</span> x,y,z;</span><br><span class="line">&#125;node[MAX];</span><br><span class="line"><span class="keyword">bool</span> vis[MAX],flag;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">double</span> <span class="title">dis</span><span class="params">(Node &amp; a, Node &amp; b)</span></span>&#123;</span><br><span class="line">  <span class="keyword">double</span> dx=a.x-b.x, dy=a.y-b.y, dz=a.z-b.z;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">sqrt</span>(dx*dx + dy*dy + dz*dz);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;</span><br><span class="line">  vis[u]=<span class="number">1</span>;</span><br><span class="line">  <span class="keyword">if</span>(node[u].z+r&gt;=h) &#123;flag=<span class="number">1</span>; <span class="keyword">return</span>;&#125;</span><br><span class="line">  FORR(i,<span class="number">1</span>,n) <span class="keyword">if</span>(dis(node[i],node[u])&lt;=(r&lt;&lt;<span class="number">1</span>) &amp;&amp; !vis[i])</span><br><span class="line">    dfs(i);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> T; <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;T);</span><br><span class="line">  <span class="keyword">while</span>(T--)&#123;</span><br><span class="line">    flag=<span class="number">0</span>; MST(vis,<span class="number">0</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;n,&amp;h,&amp;r);</span><br><span class="line">    FORR(i,<span class="number">1</span>,n)&#123;</span><br><span class="line">      <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;node[i].x,&amp;node[i].y,&amp;node[i].z);</span><br><span class="line">    &#125;</span><br><span class="line">    FORR(i,<span class="number">1</span>,n) <span class="keyword">if</span>(node[i].z&lt;=r &amp;&amp; !vis[i])</span><br><span class="line">      dfs(i);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, flag ? <span class="string">"Yes"</span> : <span class="string">"No"</span> );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>考试时的代码</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">1020</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="keyword">int</span> n,h,r;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Cir</span>&#123;</span></span><br><span class="line">  <span class="keyword">int</span> x,y,z;</span><br><span class="line">&#125;cir[MAX];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span>&#123;</span></span><br><span class="line">  <span class="keyword">int</span> v,next;</span><br><span class="line">&#125;edge[MAX*MAX];</span><br><span class="line"><span class="keyword">int</span> se[MAX],tailE=<span class="number">1</span>;  <span class="comment">//bot: 0, top: n+1</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">  <span class="keyword">int</span> u,d;</span><br><span class="line">  <span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> Node &amp; b) <span class="keyword">const</span> &#123;<span class="keyword">return</span> d&gt;b.d;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">int</span> d[MAX];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">addEdge</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">dis</span><span class="params">(Cir &amp; a, Cir &amp; b)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Dij</span><span class="params">(<span class="keyword">int</span> s)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> T; <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;T);</span><br><span class="line">  <span class="keyword">int</span> x,y,z;</span><br><span class="line">  <span class="keyword">while</span>(T--)&#123;</span><br><span class="line">    tailE=<span class="number">1</span>; MST(se,<span class="number">0</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;n,&amp;h,&amp;r);</span><br><span class="line">    FORR(i,<span class="number">1</span>,n)&#123;</span><br><span class="line">      <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;x,&amp;y,&amp;z);</span><br><span class="line">      cir[i]=(Cir)&#123;x,y,z&#125;;</span><br><span class="line">      <span class="keyword">if</span>(<span class="built_in">abs</span>(z)&lt;=r) addEdge(<span class="number">0</span>,i);     <span class="comment">//bot</span></span><br><span class="line">      <span class="keyword">if</span>(<span class="built_in">abs</span>(z-h)&lt;=r) addEdge(i,n+<span class="number">1</span>); <span class="comment">//top</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> t=r&lt;&lt;<span class="number">1</span>;</span><br><span class="line">    FORR(i,<span class="number">1</span>,n) FORR(j,i+<span class="number">1</span>,n) <span class="comment">//if(fabs(dis(cir[i],cir[j])-t)&lt;1e-6)&#123;</span></span><br><span class="line">      <span class="keyword">if</span>(dis(cir[i],cir[j])&lt;=t)&#123;</span><br><span class="line">      addEdge(i,j),addEdge(j,i);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Dij(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, d[n+<span class="number">1</span>]&lt;INF ? <span class="string">"Yes"</span> : <span class="string">"No"</span> );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">addEdge</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> t=tailE++;</span><br><span class="line">  edge[t] = (Edge)&#123;v,se[u]&#125;; se[u]=t;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">dis</span><span class="params">(Cir &amp; a, Cir &amp; b)</span></span>&#123;</span><br><span class="line">  <span class="keyword">double</span> x = a.x-b.x, y = a.y-b.y, z = a.z-b.z;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">sqrt</span>(x*x + y*y + z*z);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Dij</span><span class="params">(<span class="keyword">int</span> s)</span></span>&#123;</span><br><span class="line">  MST(d,<span class="number">0x3f</span>); d[s]=<span class="number">0</span>;</span><br><span class="line">  PQ&lt;Node&gt; q; q.push((Node)&#123;s,<span class="number">0</span>&#125;);</span><br><span class="line">  <span class="keyword">while</span>(!q.empty())&#123;</span><br><span class="line">    Node t=q.top(); q.pop();</span><br><span class="line">    <span class="keyword">int</span> u=t.u,v;</span><br><span class="line">    <span class="keyword">if</span>(d[u]!=t.d) <span class="keyword">continue</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=se[u];i;i=edge[i].next)&#123;</span><br><span class="line">      v=edge[i].v;</span><br><span class="line">      <span class="keyword">if</span>(d[v]&gt;t.d+<span class="number">1</span>)&#123;</span><br><span class="line">        d[v]=t.d+<span class="number">1</span>;</span><br><span class="line">        q.push((Node)&#123;v,d[v]&#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+        
+        <div class="post-tags">
+            <a href="/tags/NOIP/" rel="tag"># NOIP</a>
+          
+            <a href="/tags/并查集/" rel="tag"># 并查集</a>
+          
+            <a href="/tags/dfs/" rel="tag"># dfs</a>
+          
+            <a href="/tags/图/" rel="tag"># 图</a>
+          
+        </div>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+              <a href="/2017/11/24/NOIP_2017_D1T3_逛公园/" rel="next" title="[NOIP2017] D1T3 逛公园">
+                <i class="fa fa-chevron-left"></i> [NOIP2017] D1T3 逛公园
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+              <a href="/2017/11/27/LuoGu-P1231/" rel="prev" title="[洛谷P1231] 教辅的组成">
+                [洛谷P1231] 教辅的组成 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+  
+
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/avatar.jpg"
+      alt="thebesttv">
+  <p class="site-author-name" itemprop="name">thebesttv</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">46</span>
+        <span class="site-state-item-name">tags</span>
+        
+      </div>
+    
+  </nav>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#输入输出格式"><span class="nav-number">1.1.</span> <span class="nav-text">输入输出格式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#输入格式："><span class="nav-number">1.1.1.</span> <span class="nav-text">输入格式：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出格式："><span class="nav-number">1.1.2.</span> <span class="nav-text">输出格式：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入输出样例"><span class="nav-number">1.2.</span> <span class="nav-text">输入输出样例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#输入样例-1："><span class="nav-number">1.2.1.</span> <span class="nav-text">输入样例#1：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出样例-1："><span class="nav-number">1.2.2.</span> <span class="nav-text">输出样例#1：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#得分：100"><span class="nav-number">2.</span> <span class="nav-text">得分：100</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解题报告："><span class="nav-number">3.</span> <span class="nav-text">解题报告：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正解："><span class="nav-number">4.</span> <span class="nav-text">正解：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-并查集"><span class="nav-number">4.1.</span> <span class="nav-text">[1]并查集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-dfs"><span class="nav-number">4.2.</span> <span class="nav-text">[2]dfs</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">thebesttv</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/affix.js?v=7.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+    
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://https-thebesttv-github-io.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://thebesttv.github.io/2017/11/25/NOIP_2017_D2T1_奶酪/";
+    this.page.identifier = "2017/11/25/NOIP_2017_D2T1_奶酪/";
+    this.page.title = '[NOIP2017] D2T1 奶酪';};
+  function loadComments() {
+    if (!window.DISQUS) {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://https-thebesttv-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    } else {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    }
+  }
+    window.addEventListener('load', loadComments, false);
+  
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

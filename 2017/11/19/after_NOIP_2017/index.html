@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next pisces use-motion" lang="zh-cn">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    save_scroll: false,
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta name="description" content="这是我的第一篇正式博文，算是尝试一下 Markdown 的语法，熟悉一下博客的使用，也借此回顾一下将近一年的OI生涯。">
+<meta name="keywords" content="随笔">
+<meta property="og:type" content="article">
+<meta property="og:title" content="写在 NOIP2017 之后">
+<meta property="og:url" content="https://thebesttv.github.io/2017/11/19/after_NOIP_2017/index.html">
+<meta property="og:site_name" content="thebesttv&#39;s blog">
+<meta property="og:description" content="这是我的第一篇正式博文，算是尝试一下 Markdown 的语法，熟悉一下博客的使用，也借此回顾一下将近一年的OI生涯。">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2017-12-31T04:34:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="写在 NOIP2017 之后">
+<meta name="twitter:description" content="这是我的第一篇正式博文，算是尝试一下 Markdown 的语法，熟悉一下博客的使用，也借此回顾一下将近一年的OI生涯。">
+  <link rel="alternate" href="/atom.xml" title="thebesttv's blog" type="application/atom+xml">
+  <link rel="canonical" href="https://thebesttv.github.io/2017/11/19/after_NOIP_2017/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>写在 NOIP2017 之后 | thebesttv's blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-cn">
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">thebesttv's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Think twice, then code once.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://thebesttv.github.io/2017/11/19/after_NOIP_2017/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="thebesttv">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="thebesttv's blog">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">写在 NOIP2017 之后
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-11-19 07:37:35" itemprop="dateCreated datePublished" datetime="2017-11-19T07:37:35+08:00">2017-11-19</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2017-12-31 12:34:30" itemprop="dateModified" datetime="2017-12-31T12:34:30+08:00">2017-12-31</time>
+              </span>
+            
+          
+
+          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Comments: </span>
+    
+  
+    <a href="/2017/11/19/after_NOIP_2017/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/19/after_NOIP_2017/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>这是我的第一篇正式博文，算是尝试一下 Markdown 的语法，熟悉一下博客的使用，也借此回顾一下将近一年的OI生涯。</p>
+<a id="more"></a>
+
+<h1 id="过去"><a href="#过去" class="headerlink" title="过去"></a>过去</h1><p>我一直对计算机这块比较感兴趣吧，感觉很好玩。曾经也尝试过学 Python ，然而还是弃了。就随便学了学 HTML 和 LaTex 。</p>
+<p>上高中以前，压根不知道有 OI 这种东西，现在想想，如果早点知道该多好啊。</p>
+<h1 id="初识"><a href="#初识" class="headerlink" title="初识"></a>初识</h1><p>应该是高一上校本课选课的时候吧， cwx 和我才第一次知道 OI ，也花了不少时间去熟悉这门竞赛，也第一次知道程序不是简简单单写写就出来的，而是要“数据结构+算法”，语言只是最基础的东西。然后，凭着一番热情，我们慢慢开始走向一个 OIer 的道路。</p>
+<h2 id="语言"><a href="#语言" class="headerlink" title="语言"></a>语言</h2><p>语言当然是最基础的。</p>
+<p>为了学 C ，我在学校图书馆里借了一本《21天学会 C 语言》， cwx 借了一本 C++ 的，然而没多久我们就都弃了，因为书写的实在有点无聊……</p>
+<p>后来我发现了一本很好的书，是清华大学出版的《程序设计语言——C》， cwx 也找到了本类似的。不知道为什么，我感觉这本书很有趣，基本上每天早上都四点半起来看它，于是就慢慢学到了很基础的部分。</p>
+<p>之后在寒假里发现了 MOOC 这个好东西，就报了一门《程序设计与算法（一）C语言程序设计》，它的《（二）算法基础》我也报了，不过因为当时感觉太难，没多久还是弃了。不过通过这两门课程，我知道了 OJ ，最先熟悉的就是 OpenJudge 了。</p>
+<p>就这么学会了语言，接下来也就是学习算法的时候了。</p>
+<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><p>仿佛在报《（二）》的时候我们的算法学习之路就正式开始了。这段时间磕磕绊绊，印象最深刻的就是“八皇后”和“熄灯问题”了。不过这门课我到底还是弃了，到底没学也没练。</p>
+<p>在网上找书，第一次知道 刘汝佳 大神，也买了一本他的黑书。不过因为黑书前面介绍概念太多了，我看到NPC的时候就放弃了……（我怎么弃了这么多东西 -_-）不过还是找到了汝佳大神的白书和粉书，坚持看了一个学期的白书（然而看的很少）。</p>
+<p>高一下学期这段时间，我开始发现很多不同的 OJ ，当时主要是在 VirtualJudge 和 洛谷 上做题。</p>
+<p>算法当然是 OI 的核心，是不可能学完的，不过暂且就说到这里吧。</p>
+<h3 id="分别"><a href="#分别" class="headerlink" title="分别 :("></a>分别 :(</h3><p>高一到底还是要分班的。最后 cwx 去了一班，我还留在二班，曾经要好不要好的同学也都到了不同的班级。我的 OI 之路也就是这个时候开始慢慢改变的吧。</p>
+<h1 id="刷题-D"><a href="#刷题-D" class="headerlink" title="刷题 :D"></a>刷题 :D</h1><p>暑假还是很美好的，可以一整天坐在电脑面前，也不怎么要担心作业。</p>
+<p>纠结了好久到底要看粉书还是白书，最终还是选择了粉书。<br>七月份我基本上用大半个下午的时间看粉书，也学到了不少算法，有过几个 “aha moment”，不过到底没怎么刷题（摊手）。</p>
+<p>到了八月，就很欢乐了。先是5天的洛谷夏令营，被金牌大佬讲得体无完肤，基本上什么都听不懂，只能听听晚上的助学课，现在这个坑我还没开始填呢。<br>之后，在 Vijos 上，我照着训练计划把复赛题从 2003 年刷到 2013 年，感觉码力和思维可以说是有了质的飞跃吧，感觉萌萌哒 XD<br>cwx 八月份是在杭州上物竞，估计没弄太多 OI 。</p>
+<p>然后很欢乐的， cwx 请我看了场电影，又吃了顿饭，还陪我剃了个头（我剃 XD），花了他两百多吧（仿佛从没吃过这么贵的烤肉）。期间惊奇地发现 xhy 成了二班班主任，符老大成了一班班主任，也是很无奈啊。<br>这顿饭到现在我都没有请回来，可能要到寒假了吧。</p>
+<p>于是暑假就这么结束了，在开学前学校里，我补了暑假作业，还看了粉书上的图论，白书上也看了一部分，不过并没有看懂。</p>
+<h1 id="开学"><a href="#开学" class="headerlink" title="开学 :|"></a>开学 :|</h1><p>开学的时候我是充满展望的吧，毕竟马上就是 NOIP2017 了。</p>
+<p>九月中旬的时候，也不知怎么有的勇气，我找到 twj ，希望能有个地方弄竞赛，他竟然答应了。于是我就可以每周三天在晚二到文德楼弄竞赛了。然而 cwx 物竞没过，打算走读弄个 OI ，最终还是放弃了……</p>
+<p>期间遇到了物竞没拿到省一但文化课第一的陆大佬，仿佛受到了激励，对 OI 更加展望了呢。</p>
+<h1 id="初赛"><a href="#初赛" class="headerlink" title="初赛"></a>初赛</h1><p>国庆前就开始慢慢准备初赛了，国庆后的一个星期，便是初赛。准备了不少，也就不说了吧。</p>
+<p>那天发现我们学校还有一个高三的学长也在弄 OI ，然后就是感慨我们学校 OI 真的是弱啊。<br>到了天一，逛了逛校园，发现天一的生态园很欢乐。走到里面，有一个很三国的场景——一片竹林中一条小道，通向中央的一个大鼎，走进去沙沙地响（如果是陆大佬写应该会更有带入感吧 :p）。</p>
+<p>果然考前都是颓，默了一遍 Dij 就开始考试了。然后，……</p>
+<p>这是什么？怎么页脚写着“NOIP2016”？<br>这第一题是什么鬼？我一个选 C++ 的管你 Pascal 什么时候禁止？<br>主定理怎么被改了？<br>怎么怎么多数竟题？莫非我学的是假 OI ？<br>网络流？要完要完。<br>这第一道模拟题怎么这么眼熟？（事后才是到是15年的“幻方”，然而错了，要完要完）<br>这第四道的性质怎么看不出来啊？要完要完。<br>大整数？我前几天刚说不太可能会考 XD</p>
+<p>考试结束感觉要完……</p>
+<p>无论如何，最终还是考了 80 分，比竞争线多了一道选择题 :D，然而 cwx 并没有过…… :(</p>
+<p>cwx 暂时滚回高考，而我慢慢弄复赛。</p>
+<p>这时候，我才真正发现我的 OI 之路会是一个人走过的吧。</p>
+<h1 id="复赛"><a href="#复赛" class="headerlink" title="复赛"></a>复赛</h1><p>其实关于复赛的，我都在日记里写了，这里就不细细说了。</p>
+<p>复赛的时候遇到了市中的 xxy ，是个高三的大佬。</p>
+<p>南航餐厅的饭菜还是很好吃的，比我们学校不知道要好多少。<del>也亏我们学校天天在那儿宣传……</del></p>
+<p>复赛结束后的几天，我拿到了源码，去洛谷上自测了一下，能有320，不过感觉这次的省一线至少330……<br>复赛后的期中考我算是彻底爆炸了，语文依旧是倒一，英语却没有正一，数学……算了别和我提数学…… -_-<br>cwx 现在到好像门门功课搞得风声水气，佩服佩服。<br>无论如果，感觉复赛要完，真正的成绩就等明天了吧。<del>也许我可以达成成就“复赛、期中考双爆炸”</del></p>
+<h1 id="展望"><a href="#展望" class="headerlink" title="展望"></a>展望</h1><p>其实接下来基本上由不得我了，可能要暂时滚回（小）高考了，基本上就是看复赛的成绩吧。</p>
+<p>当然，<strong>无论如何</strong> OI 这条路我是不会放弃的。我 <strong>flag</strong> 立这儿了，我就不信这个邪。<br>接下来，对付复赛，主要是去刷题吧，难度自然是“提高+/省选-”及以上的，而如果想要更高，还要学习很多算法。</p>
+<p>总之， OI 这条路我走了快一年，而还有一年，我会<strong>继续走下去</strong>无论是不是一个人，无论有多么难走，也无论结果怎样。<br>我暂时还不清楚要怎么走，但是我一定会坚持下来。</p>
+<h2 id="UPD-2017-11-21-15-45"><a href="#UPD-2017-11-21-15-45" class="headerlink" title="UPD: 2017-11-21 15:45"></a>UPD: 2017-11-21 15:45</h2><p>成绩终于出来了。</p>
+<p>从昨天早上我就开始等，物理课一上完我就跑到电脑前面查成绩，结果它告诉我“成绩为上传”，等一会看，又变成“18:00 公布初评成绩”，我也是很无奈。<br>然后晚一下课我又去看，发现 CCF 果不其然又跳水了，变成“11-21 8:30 公布初评成绩”。听说去年也是这样，可能这是 CCF 的传统吧。</p>
+<p>于是今天我去看成绩，一开始没查成功，后来终于查到了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">math  complexity  park  treasure  phalanx  cheese  总成绩</span><br><span class="line">50    100         10    35        30       100     325</span><br></pre></td></tr></table></figure>
+
+<p>感觉还不错吧，不过 D1T1 怎么只有 50 分， D2T2 怎么这么高……果然民间自评和 CCF 还是有点出入的。</p>
+<p>现在江苏的总体成绩还没出来，不过看到广东和浙江的成绩，我也就基本不抱什么希望了。诶，仿佛最多也就国二了（江苏的竞赛政策让我很无奈啊）。</p>
+<p>不过我觉得我有点理由再弄竞赛了。</p>
+<p>这几天一直在思考人生，想要理性地看高中弄 OI 是否真正值得，现在好像已经有了答案了吧。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+        
+        <div class="post-tags">
+            <a href="/tags/随笔/" rel="tag"># 随笔</a>
+          
+        </div>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+              <a href="/2017/11/18/test/" rel="next" title="test">
+                <i class="fa fa-chevron-left"></i> test
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+              <a href="/2017/11/21/a_boring_lesson/" rel="prev" title="无聊的电脑课">
+                无聊的电脑课 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+  
+
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/avatar.jpg"
+      alt="thebesttv">
+  <p class="site-author-name" itemprop="name">thebesttv</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">46</span>
+        <span class="site-state-item-name">tags</span>
+        
+      </div>
+    
+  </nav>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#过去"><span class="nav-number">1.</span> <span class="nav-text">过去</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#初识"><span class="nav-number">2.</span> <span class="nav-text">初识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#语言"><span class="nav-number">2.1.</span> <span class="nav-text">语言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法"><span class="nav-number">2.2.</span> <span class="nav-text">算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分别"><span class="nav-number">2.2.1.</span> <span class="nav-text">分别 :(</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#刷题-D"><span class="nav-number">3.</span> <span class="nav-text">刷题 :D</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开学"><span class="nav-number">4.</span> <span class="nav-text">开学 :|</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#初赛"><span class="nav-number">5.</span> <span class="nav-text">初赛</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#复赛"><span class="nav-number">6.</span> <span class="nav-text">复赛</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#展望"><span class="nav-number">7.</span> <span class="nav-text">展望</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#UPD-2017-11-21-15-45"><span class="nav-number">7.1.</span> <span class="nav-text">UPD: 2017-11-21 15:45</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">thebesttv</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/affix.js?v=7.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+    
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://https-thebesttv-github-io.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://thebesttv.github.io/2017/11/19/after_NOIP_2017/";
+    this.page.identifier = "2017/11/19/after_NOIP_2017/";
+    this.page.title = '写在 NOIP2017 之后';};
+  function loadComments() {
+    if (!window.DISQUS) {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://https-thebesttv-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    } else {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    }
+  }
+    window.addEventListener('load', loadComments, false);
+  
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>
