@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next pisces use-motion" lang="zh-cn">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    save_scroll: false,
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta name="description" content="这是一篇关于狄利克雷卷积、莫比乌斯反演、杜教筛的学习笔记。">
+<meta name="keywords" content="莫比乌斯反演,杜教筛,TODO,学习笔记,狄利克雷卷积">
+<meta property="og:type" content="article">
+<meta property="og:title" content="狄利克雷卷积、莫比乌斯反演、杜教筛">
+<meta property="og:url" content="https://thebesttv.github.io/2018/02/13/dirichlet_mu_dujiao_sieve/index.html">
+<meta property="og:site_name" content="thebesttv&#39;s blog">
+<meta property="og:description" content="这是一篇关于狄利克雷卷积、莫比乌斯反演、杜教筛的学习笔记。">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2019-08-04T14:34:17.718Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="狄利克雷卷积、莫比乌斯反演、杜教筛">
+<meta name="twitter:description" content="这是一篇关于狄利克雷卷积、莫比乌斯反演、杜教筛的学习笔记。">
+  <link rel="alternate" href="/atom.xml" title="thebesttv's blog" type="application/atom+xml">
+  <link rel="canonical" href="https://thebesttv.github.io/2018/02/13/dirichlet_mu_dujiao_sieve/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>狄利克雷卷积、莫比乌斯反演、杜教筛 | thebesttv's blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-cn">
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">thebesttv's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Think twice, then code once.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://thebesttv.github.io/2018/02/13/dirichlet_mu_dujiao_sieve/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="thebesttv">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="thebesttv's blog">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">狄利克雷卷积、莫比乌斯反演、杜教筛
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-02-13 00:00:00" itemprop="dateCreated datePublished" datetime="2018-02-13T00:00:00+08:00">2018-02-13</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-08-04 22:34:17" itemprop="dateModified" datetime="2019-08-04T22:34:17+08:00">2019-08-04</time>
+              </span>
+            
+          
+
+          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Comments: </span>
+    
+  
+    <a href="/2018/02/13/dirichlet_mu_dujiao_sieve/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/02/13/dirichlet_mu_dujiao_sieve/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>这是一篇关于狄利克雷卷积、莫比乌斯反演、杜教筛的学习笔记。</p>
+<a id="more"></a>
+
+<h1 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h1><h2 id="常见的积性函数"><a href="#常见的积性函数" class="headerlink" title="常见的积性函数"></a>常见的积性函数</h2><p>除数函数 $\sigma_k = \sum_{d|n}d^k$ ，表示 $n$ 的约数的 $k$ 次方和<br>约数个数函数 $d(n) = \sigma_0(n) = \sum_{d|n}1$<br>约数和函数 $\sigma(n) = \sigma_1(n) = \sum_{d|n}d$<br>单位元 $\epsilon(n) = [n=1]$<br>$id(n)=n$<br>$I(n)=1$<br>莫比乌斯函数 $\mu(n)$<br>欧拉函数 $\varphi(n) = \sum_{i=1}^{n} [(i,n)=1]$ ，表示不大于 $n$ 且与 $n$ 互质的数的个数。当 $n&gt;2$ 时，$\varphi(n)$ 为偶数。有 $\varphi(n) = n \prod (1-1/p_i)$ 。<br>TODO<br>有<br>$$ n=\prod_{i=1} ^ {k} p_{i} ^ {a_i}, g(n) = \sum_{d|n} f(d) \implies g(n) = \prod_{i=1} ^ {k} \sum_{j=1} ^ {a_i} f(p_i ^ j) $$<br>可以通过一一对应的思想证明。</p>
+<h2 id="狄利克雷卷积"><a href="#狄利克雷卷积" class="headerlink" title="狄利克雷卷积"></a>狄利克雷卷积</h2><p>对于 $\forall f,g \in \mathbf I $ ，其狄利克雷卷积为：<br>$$ (f*g)(n) = \sum_{d|n} f(d) g \left( \frac{n}{d} \right) $$</p>
+<p>狄利克雷卷积满足：</p>
+<p>结合律： $\forall f, g, h \in \mathbf I, f * ( g * h ) = ( f * g ) * h $<br>交换律： $\forall f, g \in \mathbf I, f * g = g * f $<br>加法分配率： $\forall f, g, h \in \mathbf I, f * ( g + h ) = f * g + f * h $<br>存在单位元： $\forall f \in \mathbf I, \epsilon * f = f * \epsilon = f $<br>若 $f,g$ 为积性函数，则 $f*g$ 也为积性函数</p>
+<h2 id="常见的卷积"><a href="#常见的卷积" class="headerlink" title="常见的卷积"></a>常见的卷积</h2><p>$ \mu * 1 = \epsilon \impliedby \sum_{d|n} \mu(d) = [n=1] $<br>$ \varphi * 1 = id \impliedby \sum_{d|n} \varphi(d) = n $<br>$ d = 1 * 1 $<br>$ \sigma = id * 1 $</p>
+<h2 id="莫比乌斯反演的另一种证明"><a href="#莫比乌斯反演的另一种证明" class="headerlink" title="莫比乌斯反演的另一种证明"></a>莫比乌斯反演的另一种证明</h2><p>\begin{split}<br>F(n) &amp;= ( f * 1 )(n) \\<br>(F * \mu)(n) &amp;= (f * ( 1 * \mu ) )(n) \\<br>\end{split}<br>由于 $ 1 * \mu = \epsilon $ ，则<br>$$ (F * \mu)(n) = f(n) $$</p>
+<p>有 $ \varphi * 1 = id \implies \varphi = id * \mu $ ，即<br>$$ \varphi(n) = \sum_{d|n} \mu(d) \cdot id\left(\frac{n}{d}\right) = n \sum_{d|n} \frac{\mu(d)}{d} \\<br>\frac{\varphi(n)}{n} = n \sum_{d|n} \frac{\mu(d)}{d} \\<br>$$</p>
+<h1 id="杜教筛"><a href="#杜教筛" class="headerlink" title="杜教筛"></a>杜教筛</h1><h2 id="一个好玩的结论"><a href="#一个好玩的结论" class="headerlink" title="一个好玩的结论"></a>一个好玩的结论</h2><p>对于任意函数 $f$ ，有<br>$$ \sum_{i=1}^{n} \sum_{j=1}^{ \lfloor \frac{n}{i} \rfloor} f(i) = \sum_{i=1}^{n} \sum_{j=1}^{ \lfloor \frac{n}{i} \rfloor} f(j) $$</p>
+<p>证明：<br>$$ 左边 = \sum_{i=1}^{n} \lfloor \frac{n}{i} \rfloor f(i) $$<br>也就是说每个 $f(i)$ 都被算了 $\lfloor n/i \rfloor$ 次。这样，只需证明右边每个 $f(j)$ 也被计算了 $\lfloor n/j \rfloor$ 次即可。<br>对于右边的每个 $f(j)$ ，当且仅当 $\lfloor n/i \rfloor \geq j$ 时会被计算到。则 $i\leq \lfloor n/j \rfloor$ ，$ i \in [1, \lfloor n/j \rfloor ]$ ，共有 $\lfloor n/j \rfloor$ 个，得证。</p>
+<p>ps: 经 gr 大神指点，如果把得到的结果看成一张表的话，那么左边和右边就是一个横着计算，一个竖着计算。嗯仿佛这就是所谓“算两遍”。仿佛回想起冬令营那节昏昏欲睡的课</p>
+<h2 id="杜教筛-1"><a href="#杜教筛-1" class="headerlink" title="杜教筛"></a>杜教筛</h2><p>杜教筛是一种能够在 $O(n^{2/3})$ 的时间内求出积性函数前缀和的算法。它与线性筛配合，<strong>人为构造</strong>一个易于计算的卷积前缀和，在<strong>缩小了问题规模</strong>的基础上允许分块，使其能够通过记忆化搜索求解。</p>
+<p>它通常适用于一种情况：对于函数 $f \in \mathbf I$ ，求出 $ S(n) = \sum_{i=1}^{n} f(i) $ ，其中 $n \geq 10^8$，无法通过线性筛求解。<br>人为构造一个函数 $ g \in \mathbf I $，且 $g(1) \neq 0$ ，对 $f$ 求卷积前缀和：<br>\begin{split}<br>\sum_{i=1}^{n} (f<em>g)(i) &amp;= \sum_{i=1}^{n} \sum_{d|i} g(d) f \left( \frac{i}{d} \right) \\<br>&amp;= \sum_{d=1}^{n} g(d) \sum_{d|i}^{ i \leq n } f \left( \frac{i}{d} \right) \\<br>&amp;= \sum_{d=1}^{n} g(d) \sum_{i=1}^{ \lfloor n/d \rfloor } f(i) \\<br>&amp;= \sum_{d=1}^{n} g(d) S\left( \lfloor n/d \rfloor \right) \\<br>\end{split}<br>再将 $d=1$ 时提出来，顺便改成 $i$ ，有<br>\begin{split}<br>\sum_{i=1}^{n} (f</em>g)(i) = g(1) S(n) + \sum_{i=2}^{n} g(i) S( \lfloor n/i \rfloor ) \\<br>\implies g(1) S(n) = \sum_{i=1}^{n} (f*g)(i) - \sum_{i=2}^{n} g(i) S( \lfloor n/i \rfloor ) \\<br>\end{split}</p>
+<p>通过人为构造一个函数 $g$ ，使得能够快速求出 $\sum_{i=1}^{n} (f*g)(i)$ ，这样就可以通过记忆化搜索逐步减小子问题的规模，直到可以通过线性筛求解。</p>
+<p>通常用线性筛预处理 $1:n^{2/3}$ 的前缀和，在子问题规模不超过 $n^{2/3}$ 时直接返回答案，其他情况分块，这样可达到最好时间复杂度 $O(n^{2/3})$ 。</p>
+<h2 id="两个简单的应用"><a href="#两个简单的应用" class="headerlink" title="两个简单的应用"></a>两个简单的应用</h2><p>求 $\mu$ 的前缀和<br>由 $\mu<em>1=\epsilon$ ，令 $g(n)=1$ 带入上述公式，有<br>$$ S(n) = \sum_{i=1}^{n} \mu</em>1 - \sum_{i=2}^{n} S( \lfloor n/i \rfloor ) = 1 - \sum_{i=2}^{n} S( \lfloor n/i \rfloor ) $$</p>
+<p>求 $\varphi$ 的前缀和<br>由 $\varphi*1=id$ ，令 $g(n)=1$ 带入上述公式，有<br>$$ S(n) = \sum_{i=1}^{n}i - \sum_{i=2}^{n} S( \lfloor n/i \rfloor ) = \frac{n(n+1)}{2} - \sum_{i=2}^{n} S( \lfloor n/i \rfloor ) $$</p>
+<p>ps: 仿佛杜教筛=卷积前缀和+记忆化+线性筛+分块</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+        
+        <div class="post-tags">
+            <a href="/tags/莫比乌斯反演/" rel="tag"># 莫比乌斯反演</a>
+          
+            <a href="/tags/杜教筛/" rel="tag"># 杜教筛</a>
+          
+            <a href="/tags/TODO/" rel="tag"># TODO</a>
+          
+            <a href="/tags/学习笔记/" rel="tag"># 学习笔记</a>
+          
+            <a href="/tags/狄利克雷卷积/" rel="tag"># 狄利克雷卷积</a>
+          
+        </div>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+              <a href="/2018/02/12/UVA_11637_Garbage_Remembering_Exam/" rel="next" title="[UVA 11637] Garbage Remembering Exam">
+                <i class="fa fa-chevron-left"></i> [UVA 11637] Garbage Remembering Exam
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+              <a href="/2018/02/13/NOI_2005_cchkk/" rel="prev" title="[NOI 2005] 聪聪和可可">
+                [NOI 2005] 聪聪和可可 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+  
+
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/avatar.jpg"
+      alt="thebesttv">
+  <p class="site-author-name" itemprop="name">thebesttv</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-name">tags</span>
+        
+      </div>
+    
+  </nav>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#预备知识"><span class="nav-number">1.</span> <span class="nav-text">预备知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常见的积性函数"><span class="nav-number">1.1.</span> <span class="nav-text">常见的积性函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#狄利克雷卷积"><span class="nav-number">1.2.</span> <span class="nav-text">狄利克雷卷积</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见的卷积"><span class="nav-number">1.3.</span> <span class="nav-text">常见的卷积</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#莫比乌斯反演的另一种证明"><span class="nav-number">1.4.</span> <span class="nav-text">莫比乌斯反演的另一种证明</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#杜教筛"><span class="nav-number">2.</span> <span class="nav-text">杜教筛</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一个好玩的结论"><span class="nav-number">2.1.</span> <span class="nav-text">一个好玩的结论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#杜教筛-1"><span class="nav-number">2.2.</span> <span class="nav-text">杜教筛</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两个简单的应用"><span class="nav-number">2.3.</span> <span class="nav-text">两个简单的应用</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">thebesttv</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/affix.js?v=7.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+    
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://https-thebesttv-github-io.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://thebesttv.github.io/2018/02/13/dirichlet_mu_dujiao_sieve/";
+    this.page.identifier = "2018/02/13/dirichlet_mu_dujiao_sieve/";
+    this.page.title = '狄利克雷卷积、莫比乌斯反演、杜教筛';};
+  function loadComments() {
+    if (!window.DISQUS) {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://https-thebesttv-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    } else {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    }
+  }
+    window.addEventListener('load', loadComments, false);
+  
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>
