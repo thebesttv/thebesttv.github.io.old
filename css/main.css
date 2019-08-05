@@ -1089,29 +1089,6 @@ pre .javascript .function {
   margin: 60px 20px 0;
   overflow: hidden;
 }
-.back-to-top {
-  background: #eee;
-  cursor: pointer;
-  font-size: 12px;
-  margin: 8px -10px -20px;
-  opacity: 0.6;
-  text-align: center;
-  visibility: hidden;
-}
-.back-to-top:hover {
-  opacity: 0.8;
-}
-@media (max-width: 991px) {
-  .back-to-top {
-    display: none;
-  }
-}
-.back-to-top.back-to-top-on {
-  visibility: visible;
-  transition-delay: 0s;
-  transition-duration: 0.2s;
-  transition-timing-function: ease-in-out;
-}
 .header {
   background: transparent;
 }
@@ -1729,7 +1706,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ffdebb;
+  background: #af3bff;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
