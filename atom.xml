@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://thebesttv.github.io/"/>
-  <updated>2019-08-04T13:35:11.881Z</updated>
+  <updated>2019-08-05T07:23:11.626Z</updated>
   <id>https://thebesttv.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>hello world</title>
+    <link href="https://thebesttv.github.io/2019/08/05/hello-world/"/>
+    <id>https://thebesttv.github.io/2019/08/05/hello-world/</id>
+    <published>2019-08-05T07:11:40.000Z</published>
+    <updated>2019-08-05T07:23:11.626Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>Elegant in code, simple in core. </p></blockquote><div class="pdf" target="https://www.souravsengupta.com/cds2015/python/LPTHW.pdf" height></div>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;Elegant in code, simple in core. &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&quot;pdf&quot; target=&quot;https://www.souravseng
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>[UVa 11729] Commando War</title>
@@ -77,26 +100,6 @@
   </entry>
   
   <entry>
-    <title>Vasily Tsibliyev</title>
-    <link href="https://thebesttv.github.io/2019/01/29/Vasily_Tsibliyev/"/>
-    <id>https://thebesttv.github.io/2019/01/29/Vasily_Tsibliyev/</id>
-    <published>2019-01-28T16:00:00.000Z</published>
-    <updated>2019-08-05T03:48:58.423Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Tsibliyev.jpg/220px-Tsibliyev.jpg" alt="Vasily Tsibliyev"></p><a id="more"></a><p>今天看了《读写快易通（一）》的第四章，里面是一篇 Times 的关于俄罗斯宇航员 Vasily Tsibliyev 的报道。一开始看文章没太大感觉，不过里面有几道题不太会，然后就查了一下他的报道，然后就看到了另一篇 <a href="http://content.time.com/time/magazine/article/0,9171,138231,00.html" target="_blank" rel="noopener">Life After Mir</a> ，01年的，可能是他回到地球后的生活吧。感觉这篇文章全文都比较 gloomy。<br>一个宇航员，本应该被尊重，但因为几个过失（可能都不是他的错），就变得这样……<br>可能我没看懂文章，不过感觉还是挺悲伤的。</p><p>之后如果能多了解一下他，可能会来更新吧。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Tsibliyev.jpg/220px-Tsibliyev.jpg&quot; alt=&quot;Vasily Tsibliyev&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="随笔" scheme="https://thebesttv.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
     <title>寒假之间</title>
     <link href="https://thebesttv.github.io/2019/01/29/%E5%AF%92%E5%81%87%E4%B9%8B%E9%97%B4/"/>
     <id>https://thebesttv.github.io/2019/01/29/寒假之间/</id>
@@ -108,6 +111,26 @@
     <summary type="html">
     
       &lt;p&gt;暂时有点不想干什么，随便写点抒发一下感慨……&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="随笔" scheme="https://thebesttv.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Vasily Tsibliyev</title>
+    <link href="https://thebesttv.github.io/2019/01/29/Vasily_Tsibliyev/"/>
+    <id>https://thebesttv.github.io/2019/01/29/Vasily_Tsibliyev/</id>
+    <published>2019-01-28T16:00:00.000Z</published>
+    <updated>2019-08-05T03:48:58.423Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Tsibliyev.jpg/220px-Tsibliyev.jpg" alt="Vasily Tsibliyev"></p><a id="more"></a><p>今天看了《读写快易通（一）》的第四章，里面是一篇 Times 的关于俄罗斯宇航员 Vasily Tsibliyev 的报道。一开始看文章没太大感觉，不过里面有几道题不太会，然后就查了一下他的报道，然后就看到了另一篇 <a href="http://content.time.com/time/magazine/article/0,9171,138231,00.html" target="_blank" rel="noopener">Life After Mir</a> ，01年的，可能是他回到地球后的生活吧。感觉这篇文章全文都比较 gloomy。<br>一个宇航员，本应该被尊重，但因为几个过失（可能都不是他的错），就变得这样……<br>可能我没看懂文章，不过感觉还是挺悲伤的。</p><p>之后如果能多了解一下他，可能会来更新吧。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Tsibliyev.jpg/220px-Tsibliyev.jpg&quot; alt=&quot;Vasily Tsibliyev&quot;&gt;&lt;/p&gt;
     
     </summary>
     
@@ -139,26 +162,6 @@
   </entry>
   
   <entry>
-    <title>斑斑鸠鸠</title>
-    <link href="https://thebesttv.github.io/2018/10/13/%E6%96%91%E6%96%91%E9%B8%A0%E9%B8%A0/"/>
-    <id>https://thebesttv.github.io/2018/10/13/斑斑鸠鸠/</id>
-    <published>2018-10-12T16:00:00.000Z</published>
-    <updated>2019-08-05T03:49:22.209Z</updated>
-    
-    <content type="html"><![CDATA[<p>2018-08-26 10:25<br>于是两只斑鸠找到了新主人，有爱心的 CR ，哦耶~</p><a id="more"></a><p>2018-10-13 21:03<br>国庆的时候两只已经都放飞了，我就当一个 well-wisher 吧。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;2018-08-26 10:25&lt;br&gt;于是两只斑鸠找到了新主人，有爱心的 CR ，哦耶~&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="随笔" scheme="https://thebesttv.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
     <title>初赛一周年</title>
     <link href="https://thebesttv.github.io/2018/10/13/%E5%88%9D%E8%B5%9B%E4%B8%80%E5%91%A8%E5%B9%B4/"/>
     <id>https://thebesttv.github.io/2018/10/13/初赛一周年/</id>
@@ -170,6 +173,26 @@
     <summary type="html">
     
       &lt;p&gt;没有想到距离 NOIP2017 的初赛已经一年了，time does fly, right？&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="随笔" scheme="https://thebesttv.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>斑斑鸠鸠</title>
+    <link href="https://thebesttv.github.io/2018/10/13/%E6%96%91%E6%96%91%E9%B8%A0%E9%B8%A0/"/>
+    <id>https://thebesttv.github.io/2018/10/13/斑斑鸠鸠/</id>
+    <published>2018-10-12T16:00:00.000Z</published>
+    <updated>2019-08-05T03:49:22.209Z</updated>
+    
+    <content type="html"><![CDATA[<p>2018-08-26 10:25<br>于是两只斑鸠找到了新主人，有爱心的 CR ，哦耶~</p><a id="more"></a><p>2018-10-13 21:03<br>国庆的时候两只已经都放飞了，我就当一个 well-wisher 吧。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;2018-08-26 10:25&lt;br&gt;于是两只斑鸠找到了新主人，有爱心的 CR ，哦耶~&lt;/p&gt;
     
     </summary>
     
@@ -418,30 +441,6 @@
     <summary type="html">
     
       &lt;h1 id=&quot;题目大意&quot;&gt;&lt;a href=&quot;#题目大意&quot; class=&quot;headerlink&quot; title=&quot;题目大意&quot;&gt;&lt;/a&gt;题目大意&lt;/h1&gt;&lt;p&gt;给定一个长 $n$ 的环，其中所有元素有序。对这 $n$ 个环上的元素随机建立一条长 $n$ 的链。对于元素$a$和$b$，若它们在环上的距离和它们在链上的距离都不超过 $k$ ，则称$a$和$b$都是无效的。求平均有多少个无效的元素。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="概率" scheme="https://thebesttv.github.io/tags/%E6%A6%82%E7%8E%87/"/>
-    
-      <category term="期望" scheme="https://thebesttv.github.io/tags/%E6%9C%9F%E6%9C%9B/"/>
-    
-      <category term="期望的线性性质" scheme="https://thebesttv.github.io/tags/%E6%9C%9F%E6%9C%9B%E7%9A%84%E7%BA%BF%E6%80%A7%E6%80%A7%E8%B4%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>[UVA 11605] Lights inside a 3d Grid</title>
-    <link href="https://thebesttv.github.io/2018/02/12/UVA_11605_Lights_inside_a_3d_Grid/"/>
-    <id>https://thebesttv.github.io/2018/02/12/UVA_11605_Lights_inside_a_3d_Grid/</id>
-    <published>2018-02-12T08:39:00.000Z</published>
-    <updated>2018-02-12T09:35:26.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>给定一个大小为 $ N \times M \times P $ 的三维网格，每格有一个灯，初始时所有灯关闭。进行 $K$ 次操作，每次随机选择两个格子（可以重合），将以这两格为对角顶点的长方体内的所有灯的状态取反。问最终量着的灯数量的期望。</p><a id="more"></a><h1 id="解题报告"><a href="#解题报告" class="headerlink" title="解题报告"></a>解题报告</h1><p>每个点都是独立的，不会受到周围点的影响。</p><p>$$ ans = E \left( \sum A_{i,j,k} \right) = \sum_{i,j,k} E(A_{i,j,k}) $$</p><p>只需求出每个点最终亮灯的期望即可。</p><p>设点 $A$ 被选择的概率为 $P(A)$，当且仅当 $A$ 被选择奇数次时亮灯，那么有<br>$$ E(A) = \sum_{i=1,3,5,\cdots } ^ { i \leq k } C_k^i , P(A)^i , (1-P(A))^{k-i} $$<br>可以看出这与二项式定理很像，但只有奇数项。<br>由<br>$$ ( P + (1 - P)) ^ k = \sum_{i=0}^{k} C_k^i , P^i , (1-P)^{k-i} $$<br>$$ - ( - P + (1 - P)) ^ k = - \sum_{i=0}^{k} C_k^i ,  (-1)^i , P^i , (1-P)^{k-i} $$<br>两式相加就消除了偶数项，就有<br>\begin{split}<br>  E(A) &amp;= \frac { (P(A)+(1-P(A)))^k - (-P(A)+(1-P(A)))^k } {2} \\<br>       &amp;= \frac {1 - (1 - 2P(A))^k } {2}<br>\end{split}<br>那么现在就只需算出 $P(A)$ 了。</p><p>因为每次选择的是一个长方体，对于每个长方体来说是等可能的，而对于每个点来说却是不等的。选择了一个矩形，等效于在X轴、Y轴、Z轴上分别选择三个区间。一个点 $A(x,y,z)$ 被选择，一定要保证 $x$ 被X轴上的区间覆盖到（$y$ 与 $z$ 亦然）。那么 $P(A_{x,y,z}) = P(x) \cdot P(y) \cdot P(z) $，其中 $P(x)$ 为在X轴上点$x$被覆盖到的可能。</p><p>现在只需求出 $P(x)$ 即可，$P(y)$ 和 $P(z)$ 同理。<br>考虑一维空间上的区间选择：<br>  $$ a – b – c $$<br>一共有 9 种等可能的选择方法，$P(a) = P(c) = \frac{5}{9}$, $P(b) = \frac{7}{9}$ 。<br>可以发现，对于选择区间的端点 $x_1,x_2$，有<br>\begin{split}<br>  P(x) &amp;= P(x_1 \leq x \cap x_2 \geq x) \cup P(x_2 \leq x \cap x_1 \geq x) \\<br>       &amp;= P(x_1 \leq x \cap x_2 \geq x) + P(x_2 \leq x \cap x_1 \geq x) - P( x_1 = x_2 = x)\\<br>       &amp;= 2 P(x_1 \leq x) \cdot P(x_2 \geq x) - P(x_1=x) \cdot P(x_2=x) \\<br>       &amp;= 2 \frac { x } { n } \cdot \frac { n - x + 1 } { n } - \frac {1}{n} \cdot \frac {1}{n} \\<br>       &amp;= \frac { 2x(n-x+1) - 1 } {n^2} \\<br>\end{split}<br>那么就可以求出答案了。</p><p>代码</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a,b,c,k;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">double</span> <span class="title">P</span><span class="params">(<span class="keyword">double</span> x, <span class="keyword">double</span> n)</span></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (<span class="number">2</span>*x*(n-x+<span class="number">1</span>)<span class="number">-1</span>)/n/n;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> T; <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;T);</span><br><span class="line">  FORR(kase,<span class="number">1</span>,T)&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d%d%d"</span>,&amp;a,&amp;b,&amp;c,&amp;k);</span><br><span class="line">    <span class="keyword">double</span> px,py,pz,ans=<span class="number">0</span>;</span><br><span class="line">    FORR(x,<span class="number">1</span>,a)&#123;</span><br><span class="line">      px=P(x,a);</span><br><span class="line">      FORR(y,<span class="number">1</span>,b)&#123;</span><br><span class="line">        py=P(y,b);</span><br><span class="line">        FORR(z,<span class="number">1</span>,c)&#123;</span><br><span class="line">          pz=P(z,c);</span><br><span class="line">          <span class="keyword">double</span> p = px*py*pz;</span><br><span class="line">          ans += ( <span class="number">1</span> - <span class="built_in">pow</span>(<span class="number">1</span><span class="number">-2</span>*p,k) )/<span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Case %d: %.10lf\n"</span>,kase,ans);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;题目大意&quot;&gt;&lt;a href=&quot;#题目大意&quot; class=&quot;headerlink&quot; title=&quot;题目大意&quot;&gt;&lt;/a&gt;题目大意&lt;/h1&gt;&lt;p&gt;给定一个大小为 $ N \times M \times P $ 的三维网格，每格有一个灯，初始时所有灯关闭。进行 $K$ 次操作，每次随机选择两个格子（可以重合），将以这两格为对角顶点的长方体内的所有灯的状态取反。问最终量着的灯数量的期望。&lt;/p&gt;
     
     </summary>
     

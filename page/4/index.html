@@ -4,7 +4,7 @@
 
 
 
-<html class="theme-next pisces use-motion" lang="zh-cn">
+<html class="theme-next gemini" lang="en">
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="generator" content="Hexo 3.9.0">
@@ -26,12 +26,12 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Pisces',
+    scheme: 'Gemini',
     version: '7.3.0',
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
     save_scroll: false,
-    copycode: {"enable":false,"show_result":false,"style":null},
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
     fancybox: false,
     mediumzoom: false,
     lazyload: false,
@@ -46,7 +46,7 @@
     localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
     path: '',
     tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     translation: {
       copy_button: 'Copy',
       copy_success: 'Copied',
@@ -60,7 +60,7 @@
 <meta property="og:title" content="thebesttv&#39;s blog">
 <meta property="og:url" content="https://thebesttv.github.io/page/4/index.html">
 <meta property="og:site_name" content="thebesttv&#39;s blog">
-<meta property="og:locale" content="zh-cn">
+<meta property="og:locale" content="en">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="thebesttv&#39;s blog">
   <link rel="alternate" href="/atom.xml" title="thebesttv's blog" type="application/atom+xml">
@@ -115,7 +115,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-cn">
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left">
     <div class="headband"></div>
@@ -203,6 +203,17 @@
     <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
 
   </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-word-of-the-day">
+      
+    
+
+    <a href="https://www.merriam-webster.com/word-of-the-day" rel="noopener" target="_blank"><i class="menu-item-icon fa fa-fw fa-book"></i> <br>Word of the day</a>
+
+  </li>
   </ul>
 
 </nav>
@@ -220,6 +231,114 @@
           <div id="content" class="content page-home">
             
   <section id="posts" class="posts-expand">
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://thebesttv.github.io/2018/01/06/HNOI_2008_玩具装箱/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="thebesttv">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="thebesttv's blog">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/01/06/HNOI_2008_玩具装箱/" class="post-title-link" itemprop="url">[HNOI 2008] 玩具装箱</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-01-06 21:43:00 / Modified: 21:59:18" itemprop="dateCreated datePublished" datetime="2018-01-06T21:43:00+08:00">2018-01-06</time>
+            </span>
+          
+            
+
+            
+          
+
+          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Comments: </span>
+    
+  
+    <a href="/2018/01/06/HNOI_2008_玩具装箱/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/01/06/HNOI_2008_玩具装箱/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>给定 n 个玩具，每个玩具的长度为 c[i] ，按顺序装入数量不限的箱子中。对于每个箱子，装入第 i:j 的玩具的代价为 $ (j-i + \sum_{k=i}^{j} c[k] -L)^2 $ ，求出最小的总代价。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/01/06/HNOI_2008_玩具装箱/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
       
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
@@ -1264,124 +1383,6 @@
   </article>
 
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://thebesttv.github.io/2017/12/14/网络流学习笔记/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="thebesttv">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="thebesttv's blog">
-    </span>
-      <header class="post-header">
-
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/12/14/网络流学习笔记/" class="post-title-link" itemprop="url">网络流学习笔记</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-12-14 00:00:00" itemprop="dateCreated datePublished" datetime="2017-12-14T00:00:00+08:00">2017-12-14</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-01-27 16:09:56" itemprop="dateModified" datetime="2018-01-27T16:09:56+08:00">2018-01-27</time>
-              </span>
-            
-          
-
-          
-            
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="fa fa-comment-o"></i>
-    </span>
-    
-      <span class="post-meta-item-text">Comments: </span>
-    
-  
-    <a href="/2017/12/14/网络流学习笔记/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/12/14/网络流学习笔记/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>网络流的学习笔记</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2017/12/14/网络流学习笔记/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </section>
 
   
@@ -1422,7 +1423,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1587,7 +1588,7 @@
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.3.0</div>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.3.0</div>
 
         
 
@@ -1611,15 +1612,13 @@
 
   
   <script src="/lib/jquery/index.js?v=3.4.1"></script>
-  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
 <script src="/js/utils.js?v=7.3.0"></script>
-  <script src="/js/motion.js?v=7.3.0"></script>
 
 
   <script src="/js/affix.js?v=7.3.0"></script>
   <script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
 
 
 <script src="/js/next-boot.js?v=7.3.0"></script>
@@ -1652,6 +1651,36 @@
 
 
 
+<script>
+function embedPDF() {
+  $('body').find('div.pdf').each(function(i, o) {
+    PDFObject.embed($(o).attr('target'), $(o), {
+      pdfOpenParams: {
+        navpanes: 0,
+        toolbar: 0,
+        statusbar: 0,
+        pagemode: 'thumbs',
+        view: 'FitH'
+      },
+      PDFJS_URL: '/lib/pdf/web/viewer.html',
+      height: $(o).attr('height') || '500px'
+    });
+  });
+}
+if ($('body').find('div.pdf').length) {
+  if (PDFObject) {
+    embedPDF();
+  } else {
+    $.ajax({
+      type: 'GET',
+      url: '//cdn.jsdelivr.net/npm/pdfobject@2/pdfobject.min.js',
+      dataType: 'script',
+      cache: true,
+      success: embedPDF
+    });
+  }
+}
+</script>
 
 
 

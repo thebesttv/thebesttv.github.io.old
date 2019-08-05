@@ -4,7 +4,7 @@
 
 
 
-<html class="theme-next pisces use-motion" lang="zh-cn">
+<html class="theme-next gemini" lang="en">
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="generator" content="Hexo 3.9.0">
@@ -26,12 +26,12 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Pisces',
+    scheme: 'Gemini',
     version: '7.3.0',
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
     save_scroll: false,
-    copycode: {"enable":false,"show_result":false,"style":null},
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
     fancybox: false,
     mediumzoom: false,
     lazyload: false,
@@ -46,7 +46,7 @@
     localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
     path: '',
     tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     translation: {
       copy_button: 'Copy',
       copy_success: 'Copied',
@@ -62,7 +62,7 @@
 <meta property="og:url" content="https://thebesttv.github.io/2018/02/18/CF_934A/index.html">
 <meta property="og:site_name" content="thebesttv&#39;s blog">
 <meta property="og:description" content="题目大意甲（小Tommy）乙（大Banban）两人分别有 $n,m$ 个灯笼，甲每个灯笼的分值为 $a_i$ ，乙的为 $b_i$ 。 甲先进行选择，他会隐藏一个灯笼 $a_i$ ；然后乙进行选择，他在剩下的灯笼中选择 $a_i$ 和 $b_j$ ，得到 $a_i b_j$ 分。甲想要让乙得分最小，而乙想要自己得分最大。现假设两人的决策都为最优，求出乙的得分。">
-<meta property="og:locale" content="zh-cn">
+<meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2019-08-04T14:35:48.534Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[CF 934A] A Compatible Pair">
@@ -119,7 +119,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-cn">
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left">
     <div class="headband"></div>
@@ -205,6 +205,17 @@
     
 
     <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-word-of-the-day">
+      
+    
+
+    <a href="https://www.merriam-webster.com/word-of-the-day" rel="noopener" target="_blank"><i class="menu-item-icon fa fa-fw fa-book"></i> <br>Word of the day</a>
 
   </li>
   </ul>
@@ -421,7 +432,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -603,7 +614,7 @@
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.3.0</div>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.3.0</div>
 
         
 
@@ -627,15 +638,13 @@
 
   
   <script src="/lib/jquery/index.js?v=3.4.1"></script>
-  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
 <script src="/js/utils.js?v=7.3.0"></script>
-  <script src="/js/motion.js?v=7.3.0"></script>
 
 
   <script src="/js/affix.js?v=7.3.0"></script>
   <script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
 
 
 <script src="/js/next-boot.js?v=7.3.0"></script>
@@ -668,6 +677,36 @@
 
 
 
+<script>
+function embedPDF() {
+  $('body').find('div.pdf').each(function(i, o) {
+    PDFObject.embed($(o).attr('target'), $(o), {
+      pdfOpenParams: {
+        navpanes: 0,
+        toolbar: 0,
+        statusbar: 0,
+        pagemode: 'thumbs',
+        view: 'FitH'
+      },
+      PDFJS_URL: '/lib/pdf/web/viewer.html',
+      height: $(o).attr('height') || '500px'
+    });
+  });
+}
+if ($('body').find('div.pdf').length) {
+  if (PDFObject) {
+    embedPDF();
+  } else {
+    $.ajax({
+      type: 'GET',
+      url: '//cdn.jsdelivr.net/npm/pdfobject@2/pdfobject.min.js',
+      dataType: 'script',
+      cache: true,
+      success: embedPDF
+    });
+  }
+}
+</script>
 
 
 
