@@ -29,7 +29,7 @@
     scheme: 'Gemini',
     version: '7.3.0',
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
     save_scroll: false,
     copycode: {"enable":true,"show_result":true,"style":"flat"},
     fancybox: false,
@@ -56,7 +56,7 @@
 </script>
 
   <meta name="description" content="题目背景众所周知，衡量一个编译器是否优秀的标准，除了它的编译速度和正确性以外，编译出的代码的质量也很重要。最近，作为XCC系列编译器作者的Dr. X发明了一种跨时代的优化算法：“NanGe不等式优化”。一个程序可以看成是由若干个连续的函数构成的，NanGe不等式算法能针对某一个函数进行优化，得到一个优化效果值, 不同的函数的效果值可能是不同的。但这个算法还有一个很大的Bug：该算法不能同时优化相邻">
-<meta name="keywords" content="TODO,DP,网络流,背包,贪心">
+<meta name="keywords" content="DP,TODO,网络流,背包,贪心">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[洛谷P2624] 编译优化">
 <meta property="og:url" content="https://thebesttv.github.io/2017/12/01/LuoGu_P2624_编译优化/index.html">
@@ -280,20 +280,6 @@
               <time title="Created: 2017-12-01 00:00:00" itemprop="dateCreated datePublished" datetime="2017-12-01T00:00:00+08:00">2017-12-01</time>
             </span>
           
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-08-04 21:55:34" itemprop="dateModified" datetime="2019-08-04T21:55:34+08:00">2019-08-04</time>
-              </span>
-            
-          
 
           
             
@@ -351,9 +337,9 @@
           
         
         <div class="post-tags">
-            <a href="/tags/TODO/" rel="tag"># TODO</a>
-          
             <a href="/tags/DP/" rel="tag"># DP</a>
+          
+            <a href="/tags/TODO/" rel="tag"># TODO</a>
           
             <a href="/tags/网络流/" rel="tag"># 网络流</a>
           
@@ -603,6 +589,13 @@
         </div>
       <!--/noindex-->
       
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
 
     </div>
   </aside>
@@ -636,9 +629,6 @@
         
       </div>
     </footer>
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-      </div>
 
     
 
