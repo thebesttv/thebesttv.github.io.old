@@ -266,7 +266,7 @@
         
          
           
-        Nice! 54 posts in total. Keep on posting.
+        Nice! 53 posts in total. Keep on posting.
       </span>
       
 
@@ -428,7 +428,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">53</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -656,36 +656,6 @@
 
 
 
-<script>
-function embedPDF() {
-  $('body').find('div.pdf').each(function(i, o) {
-    PDFObject.embed($(o).attr('target'), $(o), {
-      pdfOpenParams: {
-        navpanes: 0,
-        toolbar: 0,
-        statusbar: 0,
-        pagemode: 'thumbs',
-        view: 'FitH'
-      },
-      PDFJS_URL: '/lib/pdf/web/viewer.html',
-      height: $(o).attr('height') || '500px'
-    });
-  });
-}
-if ($('body').find('div.pdf').length) {
-  if (PDFObject) {
-    embedPDF();
-  } else {
-    $.ajax({
-      type: 'GET',
-      url: '//cdn.jsdelivr.net/npm/pdfobject@2/pdfobject.min.js',
-      dataType: 'script',
-      cache: true,
-      success: embedPDF
-    });
-  }
-}
-</script>
 
 
 

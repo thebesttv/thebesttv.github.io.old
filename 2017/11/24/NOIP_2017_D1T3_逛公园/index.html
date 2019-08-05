@@ -56,7 +56,7 @@
 </script>
 
   <meta name="description" content="题目描述策策同学特别喜欢逛公园。公园可以看成一张 N 个点 M 条边构成的有向图，且没有自环和重边。其中 1 号点是公园的入口， N 号点是公园的出口，每条边有一个非负权值，代表策策经过这条边所要花的时间。策策每天都会去逛公园，他总是从 1 号点进去，从 N 号点出来。策策喜欢新鲜的事物，它不希望有两天逛公园的路线完全一样，同时策策还是一个 特别热爱学习的好孩子，它不希望每天在逛公园这件事上花费太">
-<meta name="keywords" content="DP,最短路,NOIP,拓扑排序">
+<meta name="keywords" content="DP,NOIP,拓扑排序,最短路">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[NOIP2017] D1T3 逛公园">
 <meta property="og:url" content="https://thebesttv.github.io/2017/11/24/NOIP_2017_D1T3_逛公园/index.html">
@@ -354,11 +354,11 @@
         <div class="post-tags">
             <a href="/tags/DP/" rel="tag"># DP</a>
           
-            <a href="/tags/最短路/" rel="tag"># 最短路</a>
-          
             <a href="/tags/NOIP/" rel="tag"># NOIP</a>
           
             <a href="/tags/拓扑排序/" rel="tag"># 拓扑排序</a>
+          
+            <a href="/tags/最短路/" rel="tag"># 最短路</a>
           
         </div>
         <div class="post-nav">
@@ -439,7 +439,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">53</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -684,36 +684,6 @@
 
 
 
-<script>
-function embedPDF() {
-  $('body').find('div.pdf').each(function(i, o) {
-    PDFObject.embed($(o).attr('target'), $(o), {
-      pdfOpenParams: {
-        navpanes: 0,
-        toolbar: 0,
-        statusbar: 0,
-        pagemode: 'thumbs',
-        view: 'FitH'
-      },
-      PDFJS_URL: '/lib/pdf/web/viewer.html',
-      height: $(o).attr('height') || '500px'
-    });
-  });
-}
-if ($('body').find('div.pdf').length) {
-  if (PDFObject) {
-    embedPDF();
-  } else {
-    $.ajax({
-      type: 'GET',
-      url: '//cdn.jsdelivr.net/npm/pdfobject@2/pdfobject.min.js',
-      dataType: 'script',
-      cache: true,
-      success: embedPDF
-    });
-  }
-}
-</script>
 
 
 
