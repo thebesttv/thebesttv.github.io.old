@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://thebesttv.github.io/"/>
-  <updated>2019-08-05T08:43:29.106Z</updated>
+  <updated>2019-08-07T12:32:54.719Z</updated>
   <id>https://thebesttv.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hexo 笔记</title>
+    <link href="https://thebesttv.github.io/2019/08/07/Hexo-notes/"/>
+    <id>https://thebesttv.github.io/2019/08/07/Hexo-notes/</id>
+    <published>2019-08-07T11:40:38.000Z</published>
+    <updated>2019-08-07T12:32:54.719Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="简介——What-is-Hexo"><a href="#简介——What-is-Hexo" class="headerlink" title="简介——What is Hexo?"></a>简介——What is Hexo?</h1><blockquote><p>Hexo is a fast, simple and powerful blog framework.</p></blockquote><p>简言之，Hexo 是一个静态博客生成器，简便且快速。<br>至于什么是静态博客 TODO</p><h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>Hexo 依赖 Node.js, Git。在此建议*<em>不要使用 apt 的方法安装 Node.js *</em>，否则之后很多操作都会需要 root 权限，会造成很大不便。</p><ol><li><p>安装 Git （跳过）</p></li><li><p>安装 nvm (Node Version Manager)</p></li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash</span><br></pre></td></tr></table></figure><ol start="3"><li>使用 nvm 安装 Node.js（安装时不挂系统代理）</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nvm install stable</span><br></pre></td></tr></table></figure><p>也可先 <code>nvm ls-remote</code> 查看可用安装包，然后 <code>nvm install &lt;version&gt;</code>。</p><ol start="4"><li>使用 npm 安装 Hexo</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure><h1 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init &lt;folder&gt;</span><br><span class="line">$ <span class="built_in">cd</span> &lt;folder&gt;</span><br><span class="line">$ npm install <span class="comment"># 安装依赖</span></span><br></pre></td></tr></table></figure><p>此时文档结构为</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.yml   # Hexo 配置文件</span><br><span class="line">├── node_modules  # 模块 ???</span><br><span class="line">├── package.json</span><br><span class="line">├── package-lock.json</span><br><span class="line">├── scaffolds     # 文章模板</span><br><span class="line">│   ├── draft.md</span><br><span class="line">│   ├── page.md</span><br><span class="line">│   └── post.md</span><br><span class="line">├── source        # 主要博客内容</span><br><span class="line">│   └── _posts    # 文章</span><br><span class="line">└── themes        # Hexo 主题</span><br><span class="line">    └── landscape</span><br></pre></td></tr></table></figure><h1 id="插件-amp-配置"><a href="#插件-amp-配置" class="headerlink" title="插件&amp;配置"></a>插件&amp;配置</h1><ol><li><p>RSS</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-feed --save</span><br></pre></td></tr></table></figure></li><li><p>部署到 GitHub Pages<br>安装</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></li></ol><p>配置 <code>_config.yml</code></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: &lt;GitHub Pages repo 地址&gt;</span><br><span class="line">  # repo: git@github.com:thebesttv/thebesttv.github.io.git</span><br><span class="line">    # 使用 ssh 的方式避免每次输入用户名和密码</span><br></pre></td></tr></table></figure><ol start="3"><li>使用 NexT 主题<br>进入博客根目录，安装 NexT<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/theme-next/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure></li></ol><p>将 Hexo 配置文件的 theme 改为 NexT<br>清空缓存 <code>hexo clean</code></p><p>next/_config.yml:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scheme: Pisces # Menci 同款 hh</span><br><span class="line">avatar # 头像</span><br></pre></td></tr></table></figure><ol start="4"><li>新建页面</li></ol><p>对于 NexT 主题中的 Tags, Categories, About, 404 等页面的创建</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page &lt;page name&gt;</span><br></pre></td></tr></table></figure><p>TODO</p><h1 id="日常使用"><a href="#日常使用" class="headerlink" title="日常使用"></a>日常使用</h1><h2 id="新建post"><a href="#新建post" class="headerlink" title="新建post"></a>新建post</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo new [layout] &lt;title&gt;</span><br><span class="line"><span class="comment"># layout 即为 scaffolds 目录下的模板，默认有 post / draft / page</span></span><br></pre></td></tr></table></figure><h2 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h2><p><code>hexo g; hexo d</code> 或 <code>hexo g -d</code> 或 <code>hexo d -g</code></p><h2 id="本地测试"><a href="#本地测试" class="headerlink" title="本地测试"></a>本地测试</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure><h2 id="有层次的category："><a href="#有层次的category：" class="headerlink" title="有层次的category："></a>有层次的category：</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">categories:</span><br><span class="line"><span class="bullet">- </span>[Sports, Baseball]</span><br><span class="line"><span class="bullet">- </span>[MLB, American League, Boston Red Sox]</span><br><span class="line"><span class="bullet">- </span>[MLB, American League, New York Yankees]</span><br><span class="line"><span class="bullet">- </span>Rivalries</span><br></pre></td></tr></table></figure><h2 id="Tag-Plugins-标签插件："><a href="#Tag-Plugins-标签插件：" class="headerlink" title="Tag Plugins 标签插件："></a>Tag Plugins 标签插件：</h2>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;简介——What-is-Hexo&quot;&gt;&lt;a href=&quot;#简介——What-is-Hexo&quot; class=&quot;headerlink&quot; title=&quot;简介——What is Hexo?&quot;&gt;&lt;/a&gt;简介——What is Hexo?&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p
+      
+    
+    </summary>
+    
+    
+      <category term="Notes" scheme="https://thebesttv.github.io/tags/Notes/"/>
+    
+      <category term="Hexo" scheme="https://thebesttv.github.io/tags/Hexo/"/>
+    
+  </entry>
   
   <entry>
     <title>DSYの喜羊羊与灰太郎</title>
@@ -97,26 +123,6 @@
   </entry>
   
   <entry>
-    <title>Vasily Tsibliyev</title>
-    <link href="https://thebesttv.github.io/2019/01/29/Vasily_Tsibliyev/"/>
-    <id>https://thebesttv.github.io/2019/01/29/Vasily_Tsibliyev/</id>
-    <published>2019-01-28T16:00:00.000Z</published>
-    <updated>2019-08-05T03:48:58.423Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Tsibliyev.jpg/220px-Tsibliyev.jpg" alt="Vasily Tsibliyev"></p><a id="more"></a><p>今天看了《读写快易通（一）》的第四章，里面是一篇 Times 的关于俄罗斯宇航员 Vasily Tsibliyev 的报道。一开始看文章没太大感觉，不过里面有几道题不太会，然后就查了一下他的报道，然后就看到了另一篇 <a href="http://content.time.com/time/magazine/article/0,9171,138231,00.html" target="_blank" rel="noopener">Life After Mir</a> ，01年的，可能是他回到地球后的生活吧。感觉这篇文章全文都比较 gloomy。<br>一个宇航员，本应该被尊重，但因为几个过失（可能都不是他的错），就变得这样……<br>可能我没看懂文章，不过感觉还是挺悲伤的。</p><p>之后如果能多了解一下他，可能会来更新吧。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Tsibliyev.jpg/220px-Tsibliyev.jpg&quot; alt=&quot;Vasily Tsibliyev&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="随笔" scheme="https://thebesttv.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
     <title>寒假之间</title>
     <link href="https://thebesttv.github.io/2019/01/29/%E5%AF%92%E5%81%87%E4%B9%8B%E9%97%B4/"/>
     <id>https://thebesttv.github.io/2019/01/29/寒假之间/</id>
@@ -128,6 +134,26 @@
     <summary type="html">
     
       &lt;p&gt;暂时有点不想干什么，随便写点抒发一下感慨……&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="随笔" scheme="https://thebesttv.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Vasily Tsibliyev</title>
+    <link href="https://thebesttv.github.io/2019/01/29/Vasily_Tsibliyev/"/>
+    <id>https://thebesttv.github.io/2019/01/29/Vasily_Tsibliyev/</id>
+    <published>2019-01-28T16:00:00.000Z</published>
+    <updated>2019-08-05T03:48:58.423Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Tsibliyev.jpg/220px-Tsibliyev.jpg" alt="Vasily Tsibliyev"></p><a id="more"></a><p>今天看了《读写快易通（一）》的第四章，里面是一篇 Times 的关于俄罗斯宇航员 Vasily Tsibliyev 的报道。一开始看文章没太大感觉，不过里面有几道题不太会，然后就查了一下他的报道，然后就看到了另一篇 <a href="http://content.time.com/time/magazine/article/0,9171,138231,00.html" target="_blank" rel="noopener">Life After Mir</a> ，01年的，可能是他回到地球后的生活吧。感觉这篇文章全文都比较 gloomy。<br>一个宇航员，本应该被尊重，但因为几个过失（可能都不是他的错），就变得这样……<br>可能我没看懂文章，不过感觉还是挺悲伤的。</p><p>之后如果能多了解一下他，可能会来更新吧。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Tsibliyev.jpg/220px-Tsibliyev.jpg&quot; alt=&quot;Vasily Tsibliyev&quot;&gt;&lt;/p&gt;
     
     </summary>
     
@@ -421,30 +447,6 @@
       <category term="学习笔记" scheme="https://thebesttv.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
       <category term="狄利克雷卷积" scheme="https://thebesttv.github.io/tags/%E7%8B%84%E5%88%A9%E5%85%8B%E9%9B%B7%E5%8D%B7%E7%A7%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>[UVA 11637] Garbage Remembering Exam</title>
-    <link href="https://thebesttv.github.io/2018/02/12/UVA_11637_Garbage_Remembering_Exam/"/>
-    <id>https://thebesttv.github.io/2018/02/12/UVA_11637_Garbage_Remembering_Exam/</id>
-    <published>2018-02-12T09:38:00.000Z</published>
-    <updated>2018-02-12T10:20:44.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>给定一个长 $n$ 的环，其中所有元素有序。对这 $n$ 个环上的元素随机建立一条长 $n$ 的链。对于元素$a$和$b$，若它们在环上的距离和它们在链上的距离都不超过 $k$ ，则称$a$和$b$都是无效的。求平均有多少个无效的元素。</p><a id="more"></a><h1 id="解题报告"><a href="#解题报告" class="headerlink" title="解题报告"></a>解题报告</h1><p>正难则反，转化为求平均的有效元素，然后用 $n$ 减去它即可。</p><p>$$ ans = E \left(\sum 链上元素有效 \right) = \sum E(链上元素i有效) $$</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">  A1 &lt;-  B1  i  B2  -&gt;  A2</span><br><span class="line">------|------x------|--------&gt;</span><br></pre></td></tr></table></figure><p>对于链上的第 i 个元素，其对应的环上元素的左右各有 $k$ 个不能靠近的元素，它们都要放到A1和A2组成的区间中，而剩下的 $n-2k-1$ 个元素则放入剩下的空位中。假设A1和A2共能放入x个元素，有<br>\begin{split}<br>  E(i) &amp;= \frac { A_{x}^{2k} \cdot A_{n-2k-1}^{n-2k-1} } {A_{n-1}^{n-1}} \\<br>       &amp;= \frac { x! \cdot (n-2k-1)! } { (x-2k)! \cdot (n-1)! } \\<br>\end{split}<br>而 $x$ 的计算比较简便，两边分别计数即可：<br>$$ x = max(i-k-1,0) + max(n-i-k,0) $$</p><p>但如果只是这样，每计算一个 $E(i)$ 就要花 $O(k)$ 的时间，总的复杂度会变成 $O(nk)$，需要优化对 $E(i)$ 的求解。<br>对于 $E(i)$ 的推到式，两边同取 $ln$ ，有<br>  $$ ln(E(i)) = ln(x!) - ln(x-2k)! + ln(n-2k-1)! - ln(n-1)! $$<br>这样一来，只需初始化 $ln(1:k)$ ，就可以实现 $O(1)$ 求 $E(i)$ 。<br>初始化时，有 $ ln(x!) = ln(x) + ln(x-1)! $ 。</p><p>ps: 还有一个要注意的坑点，当 $n=1$ 时，答案一定是 $0$ 。</p><p>代码</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">100020</span>;</span><br><span class="line"><span class="keyword">int</span> n,k;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">double</span> lf[MAX];  <span class="comment">// lf[i] = log(i!)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//期望的线性性质 E(a+b) = E(a) + E(b)</span></span><br><span class="line"><span class="comment">// E( sum&#123;队列中的第i个单词是无效的期望&#125; ) = sum&#123; E(i) &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">  FOR(i,<span class="number">2</span>,MAX) lf[i] = lf[i<span class="number">-1</span>] + <span class="built_in">log</span>(i);</span><br><span class="line">  <span class="keyword">int</span> kase=<span class="number">0</span>;</span><br><span class="line">  <span class="keyword">while</span>(~<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;k) &amp;&amp; n)&#123;</span><br><span class="line">    <span class="keyword">double</span> ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(n==<span class="number">1</span>) ans=<span class="number">0</span>; <span class="comment">//&lt;b&gt; &lt;/b&gt;</span></span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">      FORR(i,<span class="number">1</span>,n)&#123;</span><br><span class="line">        <span class="keyword">int</span> x = max(i<span class="number">-1</span>-k,<span class="number">0</span>) + max(n-i-k,<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">if</span>(x &lt; <span class="number">2</span>*k) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">double</span> t = lf[x] - lf[x<span class="number">-2</span>*k] + lf[n<span class="number">-1</span><span class="number">-2</span>*k] - lf[n<span class="number">-1</span>];</span><br><span class="line">        ans += <span class="built_in">exp</span>(t);  <span class="comment">// exp(t) = e^t</span></span><br><span class="line">      &#125;</span><br><span class="line">      ans = n-ans;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Case %d: %.4lf\n"</span>,++kase,ans);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;题目大意&quot;&gt;&lt;a href=&quot;#题目大意&quot; class=&quot;headerlink&quot; title=&quot;题目大意&quot;&gt;&lt;/a&gt;题目大意&lt;/h1&gt;&lt;p&gt;给定一个长 $n$ 的环，其中所有元素有序。对这 $n$ 个环上的元素随机建立一条长 $n$ 的链。对于元素$a$和$b$，若它们在环上的距离和它们在链上的距离都不超过 $k$ ，则称$a$和$b$都是无效的。求平均有多少个无效的元素。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="概率" scheme="https://thebesttv.github.io/tags/%E6%A6%82%E7%8E%87/"/>
-    
-      <category term="期望" scheme="https://thebesttv.github.io/tags/%E6%9C%9F%E6%9C%9B/"/>
-    
-      <category term="期望的线性性质" scheme="https://thebesttv.github.io/tags/%E6%9C%9F%E6%9C%9B%E7%9A%84%E7%BA%BF%E6%80%A7%E6%80%A7%E8%B4%A8/"/>
     
   </entry>
   
