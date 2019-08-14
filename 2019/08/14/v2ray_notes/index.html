@@ -63,7 +63,7 @@
 <meta property="og:site_name" content="thebesttv&#39;s blog">
 <meta property="og:description" content="这是一个初级的 V2Ray 教程，主要为了阐明配置文件的结构，解释基本配置，并提供一个简明的模板，以便日后查阅、复习、深入。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-08-14T14:12:39.326Z">
+<meta property="og:updated_time" content="2019-08-14T14:16:10.198Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="V2Ray Notes">
 <meta name="twitter:description" content="这是一个初级的 V2Ray 教程，主要为了阐明配置文件的结构，解释基本配置，并提供一个简明的模板，以便日后查阅、复习、深入。">
@@ -440,7 +440,7 @@
 </ol>
 <h4 id="IP"><a href="#IP" class="headerlink" title="IP"></a>IP</h4><ol>
 <li>完整IP</li>
-<li>Geoip：”geoip:双字符国家代码”，如 “geoip:cn”。还有 “geoip:private”，包含所有私有地址。</li>
+<li>Geoip：<code>&quot;geoip:双字符国家代码&quot;</code>，如 <code>&quot;geoip:cn&quot;</code>。还有 <code>&quot;geoip:private&quot;</code>，包含所有私有地址。</li>
 <li>从文件中加载IP（见手册 as well）</li>
 </ol>
 <h3 id="客户端示例-2"><a href="#客户端示例-2" class="headerlink" title="客户端示例"></a>客户端示例</h3><p>内网和大陆直连，屏蔽广告，其余代理。</p>
@@ -455,7 +455,7 @@
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"inbounds"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"port"</span>: TODO,</span><br><span class="line">      <span class="attr">"protocol"</span>: <span class="string">"vmess"</span>,</span><br><span class="line">      <span class="attr">"settings"</span>: &#123;</span><br><span class="line">        <span class="attr">"clients"</span>: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="attr">"id"</span>: <span class="string">"TODO"</span>,</span><br><span class="line">            <span class="attr">"alterId"</span>: TODO</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"outbounds"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"protocol"</span>: <span class="string">"freedom"</span>,</span><br><span class="line">      <span class="attr">"tag"</span>: <span class="string">"direct"</span></span><br><span class="line">    &#125;,&#123;</span><br><span class="line">      <span class="attr">"protocol"</span>: <span class="string">"blackhole"</span>,</span><br><span class="line">      <span class="attr">"tag"</span>: <span class="string">"blocked"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"routing"</span>: &#123;</span><br><span class="line">    <span class="attr">"rules"</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"type"</span>: <span class="string">"field"</span>,</span><br><span class="line">        <span class="attr">"ip"</span>: [ <span class="string">"geoip:private"</span> ],</span><br><span class="line">        <span class="attr">"outboundTag"</span>: <span class="string">"blocked"</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><ul>
-<li><a href="https://www.v2ray.com/" target="_blank" rel="noopener">V2Ray 官方文档</a> 以及下面的白话文教程，还有更多。</li>
+<li><a href="https://www.v2ray.com/" target="_blank" rel="noopener">V2Ray 官方文档</a> 以及文档左侧的白话文教程，还有更多。</li>
 </ul>
 
     </div>
