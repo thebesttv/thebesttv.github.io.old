@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://thebesttv.github.io/"/>
-  <updated>2019-08-14T14:16:10.198Z</updated>
+  <updated>2019-08-15T08:21:56.393Z</updated>
   <id>https://thebesttv.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Bash 的 Vi 模式</title>
+    <link href="https://thebesttv.github.io/2019/08/15/bash_with_vi/"/>
+    <id>https://thebesttv.github.io/2019/08/15/bash_with_vi/</id>
+    <published>2019-08-15T07:06:00.000Z</published>
+    <updated>2019-08-15T08:21:56.393Z</updated>
+    
+    <content type="html"><![CDATA[<p>突然发现 bash 有个 Vi 模式，真是太方便了！</p><a id="more"></a><p>Linux 下有一个 library call 为<code>readline</code>，是许多程序命令行下的单行编辑函数。它提供了两种模式<code>emacs</code>和<code>vi</code>，默认为<code>emacs</code>。</p><h1 id="设置-readline"><a href="#设置-readline" class="headerlink" title="设置 readline"></a>设置 readline</h1><p>可以通过文件 <code>~/.inputrc</code> 配置 readline，每条命令为 <code>set &lt;variable-name&gt; &lt;value&gt;</code> 的形式。这里介绍一下我用到的命令。（详情见man文档）<br>开头为 variable-name ，value有布尔值（<code>on/1</code>为真，<code>off/0</code>为假），也有字符串。</p><ul><li><p><code>editing-mode</code>: <code>vi</code>|<code>emacs</code><br>配置 readline 所在的模式。Vi 模式类似于vim，分为<code>insert</code>和<code>command</code>模式，每次 prompt 默认处于插入模式，按下<code>ESC</code>转为命令模式。</p></li><li><p><code>show-mode-in-prompt</code>: <code>on</code><br>在 Vi 模式下，是否在每个 prompt 开头显示当前模式，默认用<code>(ins)</code>和<code>(cmd)</code>表示两个模式。</p></li><li><p><code>vi-cmd-mode-string</code>: <code>\033[1;33mc-</code><br>配置命令模式下的模式提示符。与 <code>PS1</code>, <code>PS2</code> 类似，可以接受 ANSI escape code ，从而控制颜色、下划线等。不过由于它与 <code>PS1</code> 无关，bash无需计算它的字符长度，也就不需要像<code>PS1</code>中一样用<code>\[</code>和<code>\]</code>包裹 non-printing 字符，直接输入即可。在此我设置的是黄色的<code>c-</code>（看起来甚至像是暗金色hh）。<br>关于控制颜色的详情可以阅读<em>The Linux Command Line</em>一书第13章：Customizing the Prompt。</p></li><li><p><code>vi-ins-mode-string</code>: <code>\033[1;33mi-</code><br>类似，配置插入模式下的模式提示符。在此为黄色的<code>i-</code></p></li><li><p><code>bell-style</code>: <code>none</code><br>对终端响铃<code>\a</code>的反应。</p></li><li><p><code>blink-matching-paren</code>: <code>on</code><br>如果有一长串包含括号的命令，在输入右括号时会显示其对应的左括号。</p></li><li><p><code>colored-completion-prefix</code>: <code>on</code><br>把自动补全列表中的 common prefix 上色</p></li><li><p><code>colored-stats</code>: <code>on</code><br>将自动补全列表中的文件用颜色区别类型。超好玩 hh</p></li><li><p><code>completion-ignore-case</code>: <code>on</code><br>自动补全时不区分大小写。</p><h1 id="treat-each-paste-only-as-a-string-of-caracters-instead-of-as-if-it’s-read-from-keyboard"><a href="#treat-each-paste-only-as-a-string-of-caracters-instead-of-as-if-it’s-read-from-keyboard" class="headerlink" title="treat each paste only as a string of caracters, instead of as if it’s read from keyboard"></a>treat each paste only as a string of caracters, instead of as if it’s read from keyboard</h1><h1 id="可防止剪贴板中的回车导致命令粘贴后立即运行"><a href="#可防止剪贴板中的回车导致命令粘贴后立即运行" class="headerlink" title="可防止剪贴板中的回车导致命令粘贴后立即运行"></a>可防止剪贴板中的回车导致命令粘贴后立即运行</h1></li><li><p><code>enable-bracketed-paste</code>: <code>on</code><br>控制对粘贴的文本的处理，开启表示将文本当作普通的字符串，关闭表示将文本当作键盘输入。<br>看起来区别不大，但是这决定了终端是否对文本中的回车等字符作出反应。比如，有时偷个懒，直接把网上的命令复制粘贴到终端，如果一不小心复制了最后的回车，那说不定就悲剧了。开启了这一选项可以防止此类事件的发生。</p></li></ul><h1 id="Vi模式的使用"><a href="#Vi模式的使用" class="headerlink" title="Vi模式的使用"></a>Vi模式的使用</h1><p>其实……对我这样的轻度使用者，也就好了一点吧，不过心理上还是很安慰的，终于不用看到那么多快捷键了 hh</p><p>……<br>……<br>……<br>……<br>……</p><p>真的不用吗……想多了。Vi模式还是有不少快捷键的，这里提供一份 <a href="https://catonmat.net/" target="_blank" rel="noopener">CATONMAT</a> 网站的 <a href="https://catonmat.net/ftp/bash-vi-editing-mode-cheat-sheet.pdf" target="_blank" rel="noopener">Cheat Sheet</a>。</p><div class="pdf" target="https://catonmat.net/ftp/bash-vi-editing-mode-cheat-sheet.pdf" height></div>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;突然发现 bash 有个 Vi 模式，真是太方便了！&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Linux" scheme="https://thebesttv.github.io/categories/Linux/"/>
+    
+      <category term="Bash" scheme="https://thebesttv.github.io/categories/Linux/Bash/"/>
+    
+    
+      <category term="bash" scheme="https://thebesttv.github.io/tags/bash/"/>
+    
+      <category term="notes" scheme="https://thebesttv.github.io/tags/notes/"/>
+    
+  </entry>
   
   <entry>
     <title>V2Ray Notes</title>
@@ -69,11 +95,11 @@
   </entry>
   
   <entry>
-    <title>Daisy の喜羊羊与灰太郎</title>
+    <title>Daisyの喜羊羊与灰太郎</title>
     <link href="https://thebesttv.github.io/2019/08/05/Daisy_e_xyyyhtl/"/>
     <id>https://thebesttv.github.io/2019/08/05/Daisy_e_xyyyhtl/</id>
     <published>2019-08-05T08:05:25.000Z</published>
-    <updated>2019-08-15T01:13:00.922Z</updated>
+    <updated>2019-08-15T01:16:50.943Z</updated>
     
     <content type="html"><![CDATA[<p>Daisy plays 小提琴……</p><a id="more"></a><p>有喜羊羊，其实还有memory hh</p><p>喜羊羊<br><audio controls><br>  <source src="xyy.m4a" type="audio/mp4"><br>  Emm… audio element not supported by your browser :(<br></audio></p><p>Memory<br><audio controls><br>  <source src="memory.m4a" type="audio/mp4"><br>  Emm… audio element not supported by your browser :(<br></audio></p>]]></content>
     
@@ -416,35 +442,6 @@
       <category term="概率" scheme="https://thebesttv.github.io/tags/%E6%A6%82%E7%8E%87/"/>
     
       <category term="Pólya 瓦罐模型" scheme="https://thebesttv.github.io/tags/Polya-%E7%93%A6%E7%BD%90%E6%A8%A1%E5%9E%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>[NOI 2005] 聪聪和可可</title>
-    <link href="https://thebesttv.github.io/2018/02/13/NOI_2005_cchkk/"/>
-    <id>https://thebesttv.github.io/2018/02/13/NOI_2005_cchkk/</id>
-    <published>2018-02-13T08:21:00.000Z</published>
-    <updated>2018-02-13T10:27:44.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>给定一个无向图，一只猫和一只老鼠在图上移动。在每个单位时间内：</p><ul><li>猫先移动一步，到达离老鼠最近的序号最小的点。如果还没抓到老鼠，再同样移动一步。若与老鼠相遇，则吃掉老鼠；</li><li>若老鼠还没被吃，则它能够向周围距离不超过 $1$ 的点（包括当前所在点）等概率地移动。</li></ul><p>已知猫和老鼠的起点，求出猫抓到老鼠的平均消耗时间。</p><a id="more"></a><h1 id="解题报告"><a href="#解题报告" class="headerlink" title="解题报告"></a>解题报告</h1><p>令 $f[i][j]$ 表示猫在 $i$ 点，老鼠在 $j$ 点时，猫抓老鼠的期望消耗时间，则<br>  $$ f[i][j] = \sum f[g[i][j]][k] / (p+1) $$<br>其中 $g[i][j]$ 表示猫在 $i$ 点，老鼠在 $j$ 点，猫将会走到哪里，$p$ 表示 $j$ 周围距离为 $1$ 的节点数。显然只要 $i,j$ 不变，$g[i][j]$ 不会改变。那么就可以预处理出来。</p><p>有一个很好的办法，先 Floyd 求出最短路，令 $to[i][j]$ 表示猫在 $i$ 点，老鼠在 $j$ 点，猫<strong>最多走一步</strong>将会走到哪里，则当且仅当 $d[i][k]=1$ 并且 $d[i][j] = d[i][k] + d[k][j] $ 时 $to[i][j]=k$ 。这样以来，$g$ 就可以轻松确定了。</p><p>代码</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">1020</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="keyword">int</span> n,m,s,t,d[MAX][MAX];</span><br><span class="line"><span class="keyword">int</span> to[MAX][MAX]; <span class="comment">// to[i][j]: 从 i 到 j ，走一步能走到的最近点（序号最小）</span></span><br><span class="line">VR&lt;<span class="keyword">int</span>&gt; G[MAX];</span><br><span class="line"><span class="keyword">double</span> check_f[MAX][MAX];</span><br><span class="line"><span class="keyword">bool</span> vis[MAX][MAX];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> s, <span class="keyword">int</span> t)</span></span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(s==t) <span class="keyword">return</span> <span class="number">0.0</span>;</span><br><span class="line">  <span class="keyword">if</span>(vis[s][t]) <span class="keyword">return</span> check_f[s][t];</span><br><span class="line">  <span class="keyword">double</span> &amp;a=check_f[s][t]; vis[s][t]=<span class="number">1</span>;</span><br><span class="line">  <span class="keyword">if</span>(d[s][t]&lt;=<span class="number">2</span>) a=<span class="number">1.0</span>;</span><br><span class="line">  <span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">int</span> v=to[to[s][t]][t]; a=f(v,t);</span><br><span class="line">    FOR(i,<span class="number">0</span>,G[t].size()) a+=f(v,G[t][i]);</span><br><span class="line">    a = a/(<span class="number">1</span>+G[t].size()) + <span class="number">1.0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">  MST(d,<span class="number">0x3f</span>);</span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">"%d%d%d%d"</span>,&amp;n,&amp;m,&amp;s,&amp;t);</span><br><span class="line">  FORR(i,<span class="number">1</span>,n) d[i][i]=<span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> u,v;</span><br><span class="line">  <span class="keyword">while</span>(m--)&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;u,&amp;v);</span><br><span class="line">    d[u][v]=d[v][u]=<span class="number">1</span>;</span><br><span class="line">    G[u].push_back(v); G[v].push_back(u);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// Floyd</span></span><br><span class="line">  ROR(k,n,<span class="number">1</span>) FORR(i,<span class="number">1</span>,n) <span class="keyword">if</span>(d[i][k]&lt;INF) FORR(j,<span class="number">1</span>,n)</span><br><span class="line">    d[i][j] = min(d[i][j],d[i][k]+d[k][j]);</span><br><span class="line">  <span class="comment">// init to</span></span><br><span class="line">  FORR(i,<span class="number">1</span>,n) FORR(j,<span class="number">1</span>,n)&#123;</span><br><span class="line">    <span class="keyword">if</span>(d[i][j]&lt;=<span class="number">1</span>) to[i][j]=j;</span><br><span class="line">    <span class="keyword">else</span> FORR(k,<span class="number">1</span>,n) <span class="keyword">if</span>(d[i][k]==<span class="number">1</span> &amp;&amp; d[i][j]==d[i][k]+d[k][j])&#123;</span><br><span class="line">      to[i][j]=k; <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"%.3lf\n"</span>,f(s,t));</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;题目大意&quot;&gt;&lt;a href=&quot;#题目大意&quot; class=&quot;headerlink&quot; title=&quot;题目大意&quot;&gt;&lt;/a&gt;题目大意&lt;/h1&gt;&lt;p&gt;给定一个无向图，一只猫和一只老鼠在图上移动。在每个单位时间内：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;猫先移动一步，到达离老鼠最近的序号最小的点。如果还没抓到老鼠，再同样移动一步。若与老鼠相遇，则吃掉老鼠；&lt;/li&gt;
-&lt;li&gt;若老鼠还没被吃，则它能够向周围距离不超过 $1$ 的点（包括当前所在点）等概率地移动。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;已知猫和老鼠的起点，求出猫抓到老鼠的平均消耗时间。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="概率" scheme="https://thebesttv.github.io/tags/%E6%A6%82%E7%8E%87/"/>
-    
-      <category term="期望" scheme="https://thebesttv.github.io/tags/%E6%9C%9F%E6%9C%9B/"/>
-    
-      <category term="最短路" scheme="https://thebesttv.github.io/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF/"/>
     
   </entry>
   

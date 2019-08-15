@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next gemini" lang="en">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":false,"sidebar":true,"scrollpercent":true},
+    save_scroll: false,
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    }
+  };
+</script>
+
+  <meta name="description" content="突然发现 bash 有个 Vi 模式，真是太方便了！">
+<meta name="keywords" content="bash,notes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bash 的 Vi 模式">
+<meta property="og:url" content="https://thebesttv.github.io/2019/08/15/bash_with_vi/index.html">
+<meta property="og:site_name" content="thebesttv&#39;s blog">
+<meta property="og:description" content="突然发现 bash 有个 Vi 模式，真是太方便了！">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-08-15T08:21:56.393Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Bash 的 Vi 模式">
+<meta name="twitter:description" content="突然发现 bash 有个 Vi 模式，真是太方便了！">
+  <link rel="alternate" href="/atom.xml" title="thebesttv's blog" type="application/atom+xml">
+  <link rel="canonical" href="https://thebesttv.github.io/2019/08/15/bash_with_vi/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Bash 的 Vi 模式 | thebesttv's blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">thebesttv's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Think twice, then code once.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-word-of-the-day">
+      
+    
+
+    <a href="https://www.merriam-webster.com/word-of-the-day" rel="noopener" target="_blank"><i class="menu-item-icon fa fa-fw fa-book"></i> <br>Word of the day</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://thebesttv.github.io/2019/08/15/bash_with_vi/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="thebesttv">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="thebesttv's blog">
+    </span>
+      <header class="post-header">
+
+        
+          <h1 class="post-title" itemprop="name headline">Bash 的 Vi 模式
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-08-15 15:06:00" itemprop="dateCreated datePublished" datetime="2019-08-15T15:06:00+08:00">2019-08-15</time>
+            </span>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/Bash/" itemprop="url" rel="index"><span itemprop="name">Bash</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Comments: </span>
+    
+  
+    <a href="/2019/08/15/bash_with_vi/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/08/15/bash_with_vi/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>突然发现 bash 有个 Vi 模式，真是太方便了！</p>
+<a id="more"></a>
+
+<p>Linux 下有一个 library call 为<code>readline</code>，是许多程序命令行下的单行编辑函数。它提供了两种模式<code>emacs</code>和<code>vi</code>，默认为<code>emacs</code>。</p>
+<h1 id="设置-readline"><a href="#设置-readline" class="headerlink" title="设置 readline"></a>设置 readline</h1><p>可以通过文件 <code>~/.inputrc</code> 配置 readline，每条命令为 <code>set &lt;variable-name&gt; &lt;value&gt;</code> 的形式。这里介绍一下我用到的命令。（详情见man文档）<br>开头为 variable-name ，value有布尔值（<code>on/1</code>为真，<code>off/0</code>为假），也有字符串。</p>
+<ul>
+<li><p><code>editing-mode</code>: <code>vi</code>|<code>emacs</code><br>配置 readline 所在的模式。Vi 模式类似于vim，分为<code>insert</code>和<code>command</code>模式，每次 prompt 默认处于插入模式，按下<code>ESC</code>转为命令模式。</p>
+</li>
+<li><p><code>show-mode-in-prompt</code>: <code>on</code><br>在 Vi 模式下，是否在每个 prompt 开头显示当前模式，默认用<code>(ins)</code>和<code>(cmd)</code>表示两个模式。</p>
+</li>
+<li><p><code>vi-cmd-mode-string</code>: <code>\033[1;33mc-</code><br>配置命令模式下的模式提示符。与 <code>PS1</code>, <code>PS2</code> 类似，可以接受 ANSI escape code ，从而控制颜色、下划线等。不过由于它与 <code>PS1</code> 无关，bash无需计算它的字符长度，也就不需要像<code>PS1</code>中一样用<code>\[</code>和<code>\]</code>包裹 non-printing 字符，直接输入即可。在此我设置的是黄色的<code>c-</code>（看起来甚至像是暗金色hh）。<br>关于控制颜色的详情可以阅读<em>The Linux Command Line</em>一书第13章：Customizing the Prompt。</p>
+</li>
+<li><p><code>vi-ins-mode-string</code>: <code>\033[1;33mi-</code><br>类似，配置插入模式下的模式提示符。在此为黄色的<code>i-</code></p>
+</li>
+<li><p><code>bell-style</code>: <code>none</code><br>对终端响铃<code>\a</code>的反应。</p>
+</li>
+<li><p><code>blink-matching-paren</code>: <code>on</code><br>如果有一长串包含括号的命令，在输入右括号时会显示其对应的左括号。</p>
+</li>
+<li><p><code>colored-completion-prefix</code>: <code>on</code><br>把自动补全列表中的 common prefix 上色</p>
+</li>
+<li><p><code>colored-stats</code>: <code>on</code><br>将自动补全列表中的文件用颜色区别类型。超好玩 hh</p>
+</li>
+<li><p><code>completion-ignore-case</code>: <code>on</code><br>自动补全时不区分大小写。</p>
+<h1 id="treat-each-paste-only-as-a-string-of-caracters-instead-of-as-if-it’s-read-from-keyboard"><a href="#treat-each-paste-only-as-a-string-of-caracters-instead-of-as-if-it’s-read-from-keyboard" class="headerlink" title="treat each paste only as a string of caracters, instead of as if it’s read from keyboard"></a>treat each paste only as a string of caracters, instead of as if it’s read from keyboard</h1><h1 id="可防止剪贴板中的回车导致命令粘贴后立即运行"><a href="#可防止剪贴板中的回车导致命令粘贴后立即运行" class="headerlink" title="可防止剪贴板中的回车导致命令粘贴后立即运行"></a>可防止剪贴板中的回车导致命令粘贴后立即运行</h1></li>
+<li><p><code>enable-bracketed-paste</code>: <code>on</code><br>控制对粘贴的文本的处理，开启表示将文本当作普通的字符串，关闭表示将文本当作键盘输入。<br>看起来区别不大，但是这决定了终端是否对文本中的回车等字符作出反应。比如，有时偷个懒，直接把网上的命令复制粘贴到终端，如果一不小心复制了最后的回车，那说不定就悲剧了。开启了这一选项可以防止此类事件的发生。</p>
+</li>
+</ul>
+<h1 id="Vi模式的使用"><a href="#Vi模式的使用" class="headerlink" title="Vi模式的使用"></a>Vi模式的使用</h1><p>其实……对我这样的轻度使用者，也就好了一点吧，不过心理上还是很安慰的，终于不用看到那么多快捷键了 hh</p>
+<p>……<br>……<br>……<br>……<br>……</p>
+<p>真的不用吗……想多了。Vi模式还是有不少快捷键的，这里提供一份 <a href="https://catonmat.net/" target="_blank" rel="noopener">CATONMAT</a> 网站的 <a href="https://catonmat.net/ftp/bash-vi-editing-mode-cheat-sheet.pdf" target="_blank" rel="noopener">Cheat Sheet</a>。</p>
+<div class="pdf" target="https://catonmat.net/ftp/bash-vi-editing-mode-cheat-sheet.pdf" height></div>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+        
+        <div class="post-tags">
+            <a href="/tags/bash/" rel="tag"># bash</a>
+          
+            <a href="/tags/notes/" rel="tag"># notes</a>
+          
+        </div>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+              <a href="/2019/08/14/v2ray_notes/" rel="next" title="V2Ray Notes">
+                <i class="fa fa-chevron-left"></i> V2Ray Notes
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+          </div>
+        </div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+  
+
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/avatar.jpg"
+      alt="thebesttv">
+  <p class="site-author-name" itemprop="name">thebesttv</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">57</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-name">tags</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#设置-readline"><span class="nav-number">1.</span> <span class="nav-text">设置 readline</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#treat-each-paste-only-as-a-string-of-caracters-instead-of-as-if-it’s-read-from-keyboard"><span class="nav-number">2.</span> <span class="nav-text">treat each paste only as a string of caracters, instead of as if it’s read from keyboard</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#可防止剪贴板中的回车导致命令粘贴后立即运行"><span class="nav-number">3.</span> <span class="nav-text">可防止剪贴板中的回车导致命令粘贴后立即运行</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Vi模式的使用"><span class="nav-number">4.</span> <span class="nav-text">Vi模式的使用</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">thebesttv</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.3.0</div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+
+
+  <script src="/js/affix.js?v=7.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+    
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://https-thebesttv-github-io.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://thebesttv.github.io/2019/08/15/bash_with_vi/";
+    this.page.identifier = "2019/08/15/bash_with_vi/";
+    this.page.title = 'Bash 的 Vi 模式';};
+  function loadComments() {
+    if (!window.DISQUS) {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://https-thebesttv-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    } else {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    }
+  }
+    window.addEventListener('load', loadComments, false);
+  
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+</body>
+</html>
