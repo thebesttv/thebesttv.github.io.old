@@ -63,7 +63,7 @@
 <meta property="og:site_name" content="thebesttv&#39;s blog">
 <meta property="og:description" content="突然发现 bash 有个 Vi 模式，真是太方便了！">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-08-15T08:55:57.807Z">
+<meta property="og:updated_time" content="2019-08-15T12:16:42.684Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bash 的 Vi 模式">
 <meta name="twitter:description" content="突然发现 bash 有个 Vi 模式，真是太方便了！">
@@ -342,7 +342,7 @@
 </li>
 <li><p><code>show-mode-in-prompt</code>: <code>on</code><br>在 Vi 模式下，是否在每个 prompt 开头显示当前模式，默认用<code>(ins)</code>和<code>(cmd)</code>表示两个模式。</p>
 </li>
-<li><p><code>vi-cmd-mode-string</code>: <code>\033[1;33mc-</code><br>配置命令模式下的模式提示符。与 <code>PS1</code>, <code>PS2</code> 类似，可以接受 ANSI escape code 从而控制颜色、下划线等。不过由于它与 <code>PS1</code> 无关，bash无需计算它的字符长度，也就不需要像<code>PS1</code>中一样用<code>\[</code>和<code>\]</code>包裹 non-printing 字符，直接输入即可。在此我设置的是黄色的<code>c-</code>（看起来甚至像是暗金色hh）。<br>关于控制颜色的详情可以阅读 <em>The Linux Command Line</em> 一书第13章：Customizing the Prompt。</p>
+<li><p><code>vi-cmd-mode-string</code>: <code>\033[1;33mc-</code><br>配置命令模式下的模式提示符。<br>突然发现一开始确实没什么问题，但如果命令长了，在首尾跳跃多次后就会出现光标偏移的状况……也没法设置不打印字符……Anyway就暂时不设置颜色吧……<br><del>与 <code>PS1</code>, <code>PS2</code> 类似，可以接受 ANSI escape code 从而控制颜色、下划线等。不过由于它与 <code>PS1</code> 无关，bash无需计算它的字符长度，也就不需要像<code>PS1</code>中一样用<code>\[</code>和<code>\]</code>包裹 non-printing 字符，直接输入即可。在此我设置的是黄色的<code>c-</code>（看起来甚至像是暗金色hh）。</del><br>关于控制颜色的详情可以阅读 <em>The Linux Command Line</em> 一书第13章：Customizing the Prompt。</p>
 </li>
 <li><p><code>vi-ins-mode-string</code>: <code>\033[1;33mi-</code><br>类似，配置插入模式下的模式提示符。在此为黄色的<code>i-</code></p>
 </li>
