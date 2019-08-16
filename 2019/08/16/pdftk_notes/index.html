@@ -63,10 +63,12 @@
 <meta property="og:site_name" content="thebesttv&#39;s blog">
 <meta property="og:description" content="pdftk 是一款 Linux 下的命令行 pdf 工具，可以对pdf合并、拆分、旋转、加密、解密、添加水印等。它还可以对pdf表格进行操作，不过在这里就不讨论了（不会 hh） 说不定大学就要用到呢 :p">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-08-16T06:31:10.506Z">
+<meta property="og:image" content="https://thebesttv.github.io/2019/08/16/pdftk_notes/XD.jpg">
+<meta property="og:updated_time" content="2019-08-16T06:36:18.002Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="pdftk 教程">
 <meta name="twitter:description" content="pdftk 是一款 Linux 下的命令行 pdf 工具，可以对pdf合并、拆分、旋转、加密、解密、添加水印等。它还可以对pdf表格进行操作，不过在这里就不讨论了（不会 hh） 说不定大学就要用到呢 :p">
+<meta name="twitter:image" content="https://thebesttv.github.io/2019/08/16/pdftk_notes/XD.jpg">
   <link rel="alternate" href="/atom.xml" title="thebesttv's blog" type="application/atom+xml">
   <link rel="canonical" href="https://thebesttv.github.io/2019/08/16/pdftk_notes/">
 
@@ -417,10 +419,10 @@
 <li><code>qualifier</code>: <code>even</code>或<code>odd</code>，用于奇数页文档和偶数页文档的合并。</li>
 <li>旋转有相对方向 <code>left</code>, <code>right</code>, <code>down</code> ，分别表示向左转，向右转，和旋转半周；有绝对方向 <code>north</code>, <code>south</code>, <code>west</code>, <code>east</code> ，按照上北下南左西右东的方向控制角度。pdf 文档每页都有一个角度变量标志该页的方向，相对方向的旋转相当于对角度进行加减运算，绝对方向的旋转则为赋值运算。</li>
 </ul>
-<h2 id="其他的page-range"><a href="#其他的page-range" class="headerlink" title="其他的page range"></a>其他的page range</h2><p>cat 的 page range 可以说是最全的了，其他选项下的 page range 完全可以根据对应选项的作用适当省去一些。</p>
+<h2 id="其他的-page-range"><a href="#其他的-page-range" class="headerlink" title="其他的 page range"></a>其他的 page range</h2><p>cat 的 page range 可以说是最全的了，其他选项下的 page range 完全可以根据对应选项的作用适当省去一些。</p>
 <ul>
 <li><code>rotate</code> 下但没有 handle ，因为只有一个文件</li>
-<li><code>shuffle</code> 只需页码范围（如果只指定一页，那么它只会在第一次被添加到输出，之后就没有了，向封面一样）</li>
+<li><code>shuffle</code> 只需页码范围（如果只指定一页，那么它只会在第一次被添加到输出，之后就没有了，像封面一样）</li>
 </ul>
 <p>就偷个懒，贴一下 man page 上的例子吧 XD</p>
 <ul>
@@ -450,6 +452,7 @@
 <p>还有官网的<a href="https://www.pdflabs.com/docs/pdftk-cli-examples/" target="_blank" rel="noopener">栗子</a> :)</p>
 <h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>诶呀，总算差不多写完了！之后可能还有一些小工具的教程，算是为了未来的复习吧 hh</p>
 <p>再过 11 天就要去南理工报道了，这段时间被某人坑了一下，还要看Python的二级教材……简直无奈。就当作复习吧。</p>
+<img src="/2019/08/16/pdftk_notes/XD.jpg">
 
     </div>
 
@@ -714,7 +717,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#主要语法"><span class="nav-number">1.</span> <span class="nav-text">主要语法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#page-ranges-专场"><span class="nav-number">2.</span> <span class="nav-text">page ranges 专场</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#cat下的page-range"><span class="nav-number">2.1.</span> <span class="nav-text">cat下的page range</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他的page-range"><span class="nav-number">2.2.</span> <span class="nav-text">其他的page range</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#举个栗子"><span class="nav-number">3.</span> <span class="nav-text">举个栗子</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结语"><span class="nav-number">4.</span> <span class="nav-text">结语</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#主要语法"><span class="nav-number">1.</span> <span class="nav-text">主要语法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#page-ranges-专场"><span class="nav-number">2.</span> <span class="nav-text">page ranges 专场</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#cat下的page-range"><span class="nav-number">2.1.</span> <span class="nav-text">cat下的page range</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他的-page-range"><span class="nav-number">2.2.</span> <span class="nav-text">其他的 page range</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#举个栗子"><span class="nav-number">3.</span> <span class="nav-text">举个栗子</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结语"><span class="nav-number">4.</span> <span class="nav-text">结语</span></a></li></ol></div>
             
 
           </div>
