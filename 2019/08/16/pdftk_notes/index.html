@@ -55,20 +55,20 @@
   };
 </script>
 
-  <meta name="description" content="pdftk 是一款 Linux 下的命令行 pdf 工具，可以对pdf合并、拆分、旋转、加密、解密、添加水印等。它还可以对pdf表格进行操作，不过在这里就不讨论了（不会 hh） 说不定大学就要用到呢 :p">
+  <meta name="description" content="pdftk 是一款以页为单位的 pdf 编辑工具，可以对 pdf 进行合并、拆分、旋转、加密、解密、添加水印等。它还可以对 pdf 表格进行操作，不过在这里就不讨论了（不会 hh） 说不定大学就要用到呢 :p">
 <meta name="keywords" content="notes">
 <meta property="og:type" content="article">
 <meta property="og:title" content="pdftk 教程">
 <meta property="og:url" content="https://thebesttv.github.io/2019/08/16/pdftk_notes/index.html">
 <meta property="og:site_name" content="thebesttv&#39;s blog">
-<meta property="og:description" content="pdftk 是一款 Linux 下的命令行 pdf 工具，可以对pdf合并、拆分、旋转、加密、解密、添加水印等。它还可以对pdf表格进行操作，不过在这里就不讨论了（不会 hh） 说不定大学就要用到呢 :p">
+<meta property="og:description" content="pdftk 是一款以页为单位的 pdf 编辑工具，可以对 pdf 进行合并、拆分、旋转、加密、解密、添加水印等。它还可以对 pdf 表格进行操作，不过在这里就不讨论了（不会 hh） 说不定大学就要用到呢 :p">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://thebesttv.github.io/2019/08/16/pdftk_notes/pdftk_logo.png">
 <meta property="og:image" content="https://thebesttv.github.io/2019/08/16/pdftk_notes/XD.jpg">
-<meta property="og:updated_time" content="2019-08-16T06:40:14.736Z">
+<meta property="og:updated_time" content="2019-08-16T06:42:43.623Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="pdftk 教程">
-<meta name="twitter:description" content="pdftk 是一款 Linux 下的命令行 pdf 工具，可以对pdf合并、拆分、旋转、加密、解密、添加水印等。它还可以对pdf表格进行操作，不过在这里就不讨论了（不会 hh） 说不定大学就要用到呢 :p">
+<meta name="twitter:description" content="pdftk 是一款以页为单位的 pdf 编辑工具，可以对 pdf 进行合并、拆分、旋转、加密、解密、添加水印等。它还可以对 pdf 表格进行操作，不过在这里就不讨论了（不会 hh） 说不定大学就要用到呢 :p">
 <meta name="twitter:image" content="https://thebesttv.github.io/2019/08/16/pdftk_notes/pdftk_logo.png">
   <link rel="alternate" href="/atom.xml" title="thebesttv's blog" type="application/atom+xml">
   <link rel="canonical" href="https://thebesttv.github.io/2019/08/16/pdftk_notes/">
@@ -336,11 +336,11 @@
 
       
         <img src="/2019/08/16/pdftk_notes/pdftk_logo.png">
-<p>pdftk 是一款 Linux 下的命令行 pdf 工具，可以对pdf合并、拆分、旋转、加密、解密、添加水印等。它还可以对pdf表格进行操作，不过在这里就不讨论了（不会 hh）</p>
+<p>pdftk 是一款以页为单位的 pdf 编辑工具，可以对 pdf 进行合并、拆分、旋转、加密、解密、添加水印等。它还可以对 pdf 表格进行操作，不过在这里就不讨论了（不会 hh）</p>
 <p>说不定大学就要用到呢 :p</p>
 <a id="more"></a>
 
-<h1 id="主要语法"><a href="#主要语法" class="headerlink" title="主要语法"></a>主要语法</h1><p>因为我目前对 pdf 的加密原理不清楚，也不清楚两个pwd的区别，这里暂时不会详细讨论 pdftk 的加密、解密功能，只会点到为止。</p>
+<h1 id="主要语法"><a href="#主要语法" class="headerlink" title="主要语法"></a>主要语法</h1><p>因为我目前对 pdf 的加密原理不清楚，也不清楚 user 和 owner 两个pwd的区别，这里暂时不会详细讨论 pdftk 的加密、解密功能，只会点到为止。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">pdftk &lt;input PDF files | - | PROMPT&gt;</span><br><span class="line">     [ input_pw &lt;input PDF owner passwords | PROMPT&gt; ]</span><br><span class="line">     [ &lt;operation&gt; &lt;operation arguments&gt; ]</span><br><span class="line">     [ output &lt;output filename | - | PROMPT&gt; ]</span><br><span class="line">     [ owner_pw &lt;owner password | PROMPT&gt; ]</span><br><span class="line">     [ user_pw &lt;user password | PROMPT&gt; ]</span><br><span class="line">     [ compress | uncompress ]</span><br><span class="line">     [ verbose ] [ dont_ask | do_ask ]</span><br></pre></td></tr></table></figure>
 
 <p>看起来有点吓人，其实是很好理解的：</p>
