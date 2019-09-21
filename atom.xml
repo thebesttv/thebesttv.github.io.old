@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://thebesttv.github.io/"/>
-  <updated>2019-09-16T06:52:37.971Z</updated>
+  <updated>2019-09-21T05:47:53.933Z</updated>
   <id>https://thebesttv.github.io/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>[Vijos 1488] 路灯的改建计划</title>
+    <link href="https://thebesttv.github.io/2019/09/21/Vijos_1488_%E8%B7%AF%E7%81%AF%E7%9A%84%E6%94%B9%E5%BB%BA%E8%AE%A1%E5%88%92/"/>
+    <id>https://thebesttv.github.io/2019/09/21/Vijos_1488_路灯的改建计划/</id>
+    <published>2019-09-20T16:00:00.000Z</published>
+    <updated>2019-09-21T05:47:53.933Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>给定一排 n 个路灯，将其分成 m 组，使得总亮度最大。每个路灯有功率 a 和照度 z 两个属性；每组打开的灯功率之和不大于 <code>t * 该组路灯数量(包括灭的)</code> 。</p><a id="more"></a><h1 id="解题报告"><a href="#解题报告" class="headerlink" title="解题报告"></a>解题报告</h1><p>使用两次DP。令 。令 f[i][j] 表示 1:i 的路灯分成 j 组，最大的照度，则 f[i][j] = max{ f[k][j-1] + g[k+1][i] | j-1&lt;=k&lt;i }，其中 g[i][j] (i&lt;=j) 表示将 i:j 的路灯分为一组时最大的照度。求解 g 时，令 h[i][j] 表示前 i 个路灯，功率不大于 j 时的最大照度，则 h[i][j] = max{ h[i-1][j], h[i-1][j-a[i]]+z[i] }。然后就可以<del>欢乐地</del>DP啦！</p><p>但要注意求解 g 时，只能进行 n 次DP，即对每个 i ，计算出 h[i:n][0:max] 的值，否则会T。</p><h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">const int MAXN=180,MAXM=60;</span><br><span class="line">int n,m,t,a[MAXN],z[MAXN];</span><br><span class="line">int f[MAXN][MAXM];  // f[i][j]: 1:i，组成 j ，最大的照度</span><br><span class="line">int g[MAXN][MAXN];  // g[i][j]: i:j 为一组，最大照度</span><br><span class="line">int h[50*MAXN];</span><br><span class="line"></span><br><span class="line">int main(void)&#123;</span><br><span class="line">  scanf(&quot;%d%d%d&quot;,&amp;n,&amp;m,&amp;t);</span><br><span class="line">  FORR(i,1,n) scanf(&quot;%d%d&quot;,&amp;a[i],&amp;z[i]);</span><br><span class="line"></span><br><span class="line">  FORR(i,1,n)&#123;  // n次DP</span><br><span class="line">    MST(h,0); int lim=(n-i+1)*t;  // 最大的功率限制</span><br><span class="line">    FORR(j,i,n)&#123;</span><br><span class="line">      if(a[j]&lt;=lim) ROR(k,lim,a[j])</span><br><span class="line">        h[k] = max(h[k], h[k-a[j]]+z[j]);</span><br><span class="line">      g[i][j] = h[(j-i+1)*t];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  FORR(i,1,n) FORR(j,1,min(i,m)) FOR(k,j-1,i)&#123;</span><br><span class="line">    f[i][j] = max(f[i][j], f[k][j-1] + g[k+1][i]);</span><br><span class="line">  &#125;</span><br><span class="line">  printf(&quot;%d\n&quot;,f[n][m]);</span><br><span class="line"></span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;题目大意&quot;&gt;&lt;a href=&quot;#题目大意&quot; class=&quot;headerlink&quot; title=&quot;题目大意&quot;&gt;&lt;/a&gt;题目大意&lt;/h1&gt;&lt;p&gt;给定一排 n 个路灯，将其分成 m 组，使得总亮度最大。每个路灯有功率 a 和照度 z 两个属性；每组打开的灯功率之和不大于 &lt;code&gt;t * 该组路灯数量(包括灭的)&lt;/code&gt; 。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="DP" scheme="https://thebesttv.github.io/tags/DP/"/>
+    
+  </entry>
   
   <entry>
     <title>[UVA 1025] A Spy in the Metro</title>
@@ -424,29 +444,6 @@
     
     
       <category term="随笔" scheme="https://thebesttv.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>[CF 934A] A Compatible Pair</title>
-    <link href="https://thebesttv.github.io/2018/02/18/CF_934A/"/>
-    <id>https://thebesttv.github.io/2018/02/18/CF_934A/</id>
-    <published>2018-02-17T16:00:00.000Z</published>
-    <updated>2019-08-04T14:35:48.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>甲（小Tommy）乙（大Banban）两人分别有 $n,m$ 个灯笼，甲每个灯笼的分值为 $a_i$ ，乙的为 $b_i$ 。</p><p>甲先进行选择，他会隐藏一个灯笼 $a_i$ ；<br>然后乙进行选择，他在剩下的灯笼中选择 $a_i$ 和 $b_j$ ，得到 $a_i b_j$ 分。<br>甲想要让乙得分最小，而乙想要自己得分最大。<br>现假设两人的决策都为最优，求出乙的得分。</p><a id="more"></a><h1 id="原题"><a href="#原题" class="headerlink" title="原题"></a>原题</h1><p>（恐怕自己题目大意是说不清了…… hh）</p><p>Little Tommy has $n$ lanterns and Big Banban has $m$ lanterns. Tommy’s lanterns have brightness a1, a2, …, an, and Banban’s have brightness b1, b2, …, bm respectively.</p><p>Tommy intends to hide one of his lanterns, then Banban picks one of Tommy’s non-hidden lanterns and one of his own lanterns to form a pair. The pair’s brightness will be the product of the brightness of two lanterns.</p><p>Tommy wants to make the product as small as possible, while Banban tries to make it as large as possible.</p><p>You are asked to find the brightness of the chosen pair if both of them choose optimally.</p><h1 id="解题报告"><a href="#解题报告" class="headerlink" title="解题报告"></a>解题报告</h1><p>So，直接枚举 Tommy 选哪个灯笼然后看 Banban 的最优决策是否最小即可。</p><p>然而比赛的时候第一次被 Hack 掉，第二次错了……</p><p>代码</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">100</span>;</span><br><span class="line"><span class="keyword">int</span> n,m; LL a[MAX],b[MAX];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m);</span><br><span class="line">  FORR(i,<span class="number">1</span>,n) <span class="built_in">cin</span> &gt;&gt; a[i];</span><br><span class="line">  FORR(i,<span class="number">1</span>,m) <span class="built_in">cin</span> &gt;&gt; b[i];</span><br><span class="line"></span><br><span class="line">  LL ansMin=<span class="number">1L</span>L&lt;&lt;<span class="number">62</span>;</span><br><span class="line">  FORR(k,<span class="number">1</span>,n)&#123;  <span class="comment">//选a[k]</span></span><br><span class="line">    LL tMax=-(<span class="number">1L</span>L&lt;&lt;<span class="number">62</span>);</span><br><span class="line">    FORR(i,<span class="number">1</span>,n) <span class="keyword">if</span>(i!=k) FORR(j,<span class="number">1</span>,m)  <span class="comment">//在剩下的中选出最大的</span></span><br><span class="line">      tMax=max(tMax,a[i]*b[j]);</span><br><span class="line">    ansMin=min(ansMin,tMax);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; ansMin &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;题目大意&quot;&gt;&lt;a href=&quot;#题目大意&quot; class=&quot;headerlink&quot; title=&quot;题目大意&quot;&gt;&lt;/a&gt;题目大意&lt;/h1&gt;&lt;p&gt;甲（小Tommy）乙（大Banban）两人分别有 $n,m$ 个灯笼，甲每个灯笼的分值为 $a_i$ ，乙的为 $b_i$ 。&lt;/p&gt;
-&lt;p&gt;甲先进行选择，他会隐藏一个灯笼 $a_i$ ；&lt;br&gt;然后乙进行选择，他在剩下的灯笼中选择 $a_i$ 和 $b_j$ ，得到 $a_i b_j$ 分。&lt;br&gt;甲想要让乙得分最小，而乙想要自己得分最大。&lt;br&gt;现假设两人的决策都为最优，求出乙的得分。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="CodeForces" scheme="https://thebesttv.github.io/tags/CodeForces/"/>
-    
-      <category term="模拟" scheme="https://thebesttv.github.io/tags/%E6%A8%A1%E6%8B%9F/"/>
     
   </entry>
   
