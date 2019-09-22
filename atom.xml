@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://thebesttv.github.io/"/>
-  <updated>2019-09-21T05:47:53.933Z</updated>
+  <updated>2019-09-22T06:18:11.664Z</updated>
   <id>https://thebesttv.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>数据结构笔记</title>
+    <link href="https://thebesttv.github.io/2019/09/22/data_structure_notes/"/>
+    <id>https://thebesttv.github.io/2019/09/22/data_structure_notes/</id>
+    <published>2019-09-21T16:00:00.000Z</published>
+    <updated>2019-09-22T06:18:11.664Z</updated>
+    
+    <content type="html"><![CDATA[<p>Emm, 就是记录一下一些小技巧之类的。</p><a id="more"></a><h1 id="多项式计算-秦九韶算法"><a href="#多项式计算-秦九韶算法" class="headerlink" title="多项式计算 秦九韶算法"></a>多项式计算 秦九韶算法</h1><p>将多项式的计算<br>$$ f(x) = a_0 + a_1 x + a_2 x^2 + \cdots + a_n x^n$$<br>转化为<br>$$ f(x) = a_0 + x (a_1 + x( a_2 + x ( \cdots + x(a_n))))$$</p><p>可将乘法次数从 $O(n^2)$ 降低到 $O(n)$ 。</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">f</span><span class="params">(<span class="keyword">double</span> x)</span></span>&#123;</span><br><span class="line">  <span class="keyword">double</span> ans = a[n];</span><br><span class="line">  ROR(i,n<span class="number">-1</span>,<span class="number">0</span>) ans = a[i] + ans*x;</span><br><span class="line">  <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Emm, 就是记录一下一些小技巧之类的。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="数据结构" scheme="https://thebesttv.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+      <category term="notes" scheme="https://thebesttv.github.io/tags/notes/"/>
+    
+  </entry>
   
   <entry>
     <title>[Vijos 1488] 路灯的改建计划</title>
@@ -155,9 +177,9 @@
       <category term="Bash" scheme="https://thebesttv.github.io/categories/Linux/Bash/"/>
     
     
-      <category term="bash" scheme="https://thebesttv.github.io/tags/bash/"/>
-    
       <category term="notes" scheme="https://thebesttv.github.io/tags/notes/"/>
+    
+      <category term="bash" scheme="https://thebesttv.github.io/tags/bash/"/>
     
   </entry>
   
@@ -424,26 +446,6 @@
     
     
       <category term="文言文" scheme="https://thebesttv.github.io/tags/%E6%96%87%E8%A8%80%E6%96%87/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>小高考，再是OI</title>
-    <link href="https://thebesttv.github.io/2018/02/23/after_winter_holiday/"/>
-    <id>https://thebesttv.github.io/2018/02/23/after_winter_holiday/</id>
-    <published>2018-02-22T16:00:00.000Z</published>
-    <updated>2019-08-05T03:46:46.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>寒假算是结束了，写一写从去年联赛到现在的感慨。</p><a id="more"></a><p>本来21号就已经开始写了，不过又重新想了一想。</p><p>明天就要回学校了，也算是正式开始冲刺小高考了吧。至于OI，得暂时放一下了。<br>等到小高考结束，马上是省选。省选结束，可能就要AFO了吧。<br>今年的NOIP应该是不会去了。毕竟，也要高考了，到高三可能真的不会有时间、有机会了吧。</p><p>也有点不知道该说什么好。<br>从去年的联赛到现在，心态起起浮浮崩了好多次，也算终于快调回来了吧。</p><p>不过，我也开始学会妥协了。<br>真的还是要高考，还是要小高考的啊。<br>再怎么都不能逃避了。</p><p>贴一贴前几天的日记吧。</p><blockquote><p>So, maybe that’s what I want to say: be grateful for what you have, and work hard for everything you’ll have to do. (yes, EVERYTHING you’ll have to do.)</p><p>没有妥协，怎么是成长呢？<br>没有奋斗，怎么是人生呢？</p><p>对，奋斗，为了每一件你该做好的事，无论是小高考，还是语文、物化，还是将来任何一件事。</p><p>可能之后还会有片刻的颓，但我相信，我会一直奋斗。</p><p>再贴一贴原来的日记吧：</p><blockquote><p>Hope for the best, and prepare for the worst</p><p>的确，结果好不好、能不能拿奖不是最重要的，重要的是过程，是将来想到曾经的自己能这样每天为了自己的爱好而拼搏</p><p>最后讲讲心路历程吧。一开始我是很有热情的，不过好像就是初赛前一段时间，不清楚为什么，我没那么大热情了。到了前一个月，心情基本上都是不好的，可能就是缺爱了吧XD，也没什么朋友，随意吧。记得之前哪篇日记上我说过不关心是不是alone，不过现在发现孤独还是没那么好玩的。也是很无奈。<br>基本上就是那么多了吧，也写了有半个多小时了，车上一堆都是无锡的大佬。</p><p>可能总是要试试吧，拼一拼，结果再怎么样也不会后悔了。</p></blockquote></blockquote><p>最后，希望这都不会是空话吧。</p><p>暂别。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;寒假算是结束了，写一写从去年联赛到现在的感慨。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="随笔" scheme="https://thebesttv.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
