@@ -45,17 +45,13 @@
     <link href="https://thebesttv.github.io/2019/10/05/tmp/"/>
     <id>https://thebesttv.github.io/2019/10/05/tmp/</id>
     <published>2019-10-05T04:19:28.000Z</published>
-    <updated>2019-10-05T04:20:31.652Z</updated>
+    <updated>2019-10-05T04:21:36.073Z</updated>
     
-    <content type="html"><![CDATA[<p><img src="1.html" alt><br><img src="2.css" alt></p>]]></content>
+    <content type="html"><![CDATA[<p>测试一下，等会删除</p><a id="more"></a><p><img src="1.html" alt><br><img src="2.css" alt></p>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;p&gt;&lt;img src=&quot;1.html&quot; alt&gt;&lt;br&gt;&lt;img src=&quot;2.css&quot; alt&gt;&lt;/p&gt;
-
-      
+      &lt;p&gt;测试一下，等会删除&lt;/p&gt;
     
     </summary>
     
