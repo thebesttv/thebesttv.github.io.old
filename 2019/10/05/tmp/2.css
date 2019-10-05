@@ -1,0 +1,113 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: white;
+  background: #333333;
+}
+
+#allContent {
+  width: 80%;
+  max-width: 800px;
+  margin: 0px auto;
+}
+
+header h1 {
+  color:       lightgrey;
+  font-family: Arial;
+  font-style:  bold;
+  font-size:   6vh;
+  line-height: 1;
+  margin:      0px;
+}
+
+@media only screen and (max-width: 499px) {
+  article {
+    display: block;
+    padding: 10px;
+    margin: 10px 0px;
+    background: #444444;
+  }
+
+  aside {
+    margin-top: 10px;
+    padding: 5px 10px 10px 10px;
+    background: #444444;
+  }
+}
+@media only screen and (min-width: 500px) and (max-width: 999px){
+  article {
+    display: inline-block;
+    padding: 10px;
+    background: #444444;
+  }
+
+  article#a1 {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  article#a2, article#a3 {
+    width: calc(50% - 5px);
+  }
+
+  article#a2 {
+    margin-right: 6px;
+  }
+  aside {
+    margin-top: 10px;
+    padding: 5px 10px 10px 10px;
+    background: #444444;
+  }
+}
+@media only screen and (min-width:1000px) {
+  main {
+    display: inline-block;
+    width: 70%;
+    height: 100%;
+    margin-right: 6px;
+    height: calc(70vh + 10px);
+  }
+
+  article {
+    display: inline-block;
+    vertical-align: top;
+    padding: 10px;
+    background: #444444;
+  }
+
+  article#a1 {
+    width: 100%;
+    height: calc(70vh/2);
+    margin-bottom: 10px;
+  }
+
+  article#a2, article#a3 {
+    width: calc(50% - 5px);
+    height: calc(70vh/2);
+  }
+
+  article#a2 {
+    margin-right: 6px;
+  }
+
+  article#a3 {
+  }
+  aside {
+    float: right;
+    height: calc(70vh + 10px);
+    width: 230px;
+    margin: 0px;
+    padding: 0px 10px 10px 10px;
+    background: #444444;
+    vertical-align: top;
+  }
+}
+
+footer {
+  color: grey;
+  font-family: Arial;
+  font-style:  bold;
+  line-height: 0;
+}
