@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://thebesttv.github.io/"/>
-  <updated>2019-10-01T06:11:07.983Z</updated>
+  <updated>2019-10-05T04:18:01.638Z</updated>
   <id>https://thebesttv.github.io/</id>
   
   <author>
@@ -15,6 +15,83 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="https://thebesttv.github.io/2019/10/05/99.settings/styles/"/>
+    <id>https://thebesttv.github.io/2019/10/05/99.settings/styles/</id>
+    <published>2019-10-05T04:18:01.638Z</published>
+    <updated>2019-10-05T04:18:01.638Z</updated>
+    
+    <content type="html"><![CDATA[* {  box-sizing: border-box;}body {  color: white;  background: #333333;}#allContent {  width: 80%;  max-width: 800px;  margin: 0px auto;}header h1 {  color:       lightgrey;  font-family: Arial;  font-style:  bold;  font-size:   6vh;  line-height: 1;  margin:      0px;}@media only screen and (max-width: 499px) {  article {    display: block;    padding: 10px;    margin: 10px 0px;    background: #444444;  }  aside {    margin-top: 10px;    padding: 5px 10px 10px 10px;    background: #444444;  }}@media only screen and (min-width: 500px) and (max-width: 999px){  article {    display: inline-block;    padding: 10px;    background: #444444;  }  article#a1 {    width: 100%;    margin-bottom: 10px;  }  article#a2, article#a3 {    width: calc(50% - 5px);  }  article#a2 {    margin-right: 6px;  }  aside {    margin-top: 10px;    padding: 5px 10px 10px 10px;    background: #444444;  }}@media only screen and (min-width:1000px) {  main {    display: inline-block;    width: 70%;    height: 100%;    margin-right: 6px;    height: calc(70vh + 10px);  }  article {    display: inline-block;    vertical-align: top;    padding: 10px;    background: #444444;  }  article#a1 {    width: 100%;    height: calc(70vh/2);    margin-bottom: 10px;  }  article#a2, article#a3 {    width: calc(50% - 5px);    height: calc(70vh/2);  }  article#a2 {    margin-right: 6px;  }  article#a3 {  }  aside {    float: right;    height: calc(70vh + 10px);    width: 230px;    margin: 0px;    padding: 0px 10px 10px 10px;    background: #444444;    vertical-align: top;  }}footer {  color: grey;  font-family: Arial;  font-style:  bold;  line-height: 0;}]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        * {
+  box-sizing: border-box;
+}
+
+body {
+  color: white;
+  background: #333333;
+}
+
+#allContent {
+  width: 80%;
+  max-width: 800px;
+  margin: 
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="https://thebesttv.github.io/2019/10/05/99.settings/index/"/>
+    <id>https://thebesttv.github.io/2019/10/05/99.settings/index/</id>
+    <published>2019-10-05T04:18:01.638Z</published>
+    <updated>2019-10-05T04:18:01.638Z</updated>
+    
+    <content type="html"><![CDATA[<!DOCTYPE html><html>  <head><meta name="generator" content="Hexo 3.9.0">    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">    <title>China 70</title>    <link rel="stylesheet" type="text/css" href="styles.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->  </head>   <body>  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="allContent">    <header>      <h1>This is a<br>Headline.</h1>    </header>    <main>      <article id="a1">      <h2>Article 1</h2>      <p>This is my article.</p>      <p>This is my article.</p>      <p>This is my article.</p>      </article>      <article id="a2">      <h2>Article 2</h2>      <p>This is my article.</p>      <p>This is my article.</p>      <p>This is my article.</p>      </article>      <article id="a3">      <h2>Article 3</h2>      <p>This is my article.</p>      <p>This is my article.</p>      <p>This is my article.</p>      </article>    </main>    <aside>      <h2>Aside Now</h2>      <p>This is aside.</p>      <p>This is aside.</p>      <p>This is aside.</p>    </aside>    <footer>    <p>line 1</p>    <p>and this is line2</p>    </footer>  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->  </body></html>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;&lt;meta name=&quot;generator&quot; content=&quot;Hexo 3.9.0&quot;&gt;
+    &lt;!-- hexo-inject:begin --&gt;&lt;!-- hexo-inject:end --&gt;&lt;meta char
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>[CF 1234] 解题报告</title>
+    <link href="https://thebesttv.github.io/2019/10/02/CF_1234/"/>
+    <id>https://thebesttv.github.io/2019/10/02/CF_1234/</id>
+    <published>2019-10-01T16:00:00.000Z</published>
+    <updated>2019-10-02T03:34:42.573Z</updated>
+    
+    <content type="html"><![CDATA[<p>第一次打 Div. 3 ，的确比 2 简单了不少 XD</p><a id="more"></a><h1 id="A-Equalize-Prices-Again"><a href="#A-Equalize-Prices-Again" class="headerlink" title="A: Equalize Prices Again"></a>A: Equalize Prices Again</h1><p>直接输出 $ \lceil sum / n \rceil $ 即可。</p><h1 id="B-Social-Network"><a href="#B-Social-Network" class="headerlink" title="B: Social Network"></a>B: Social Network</h1><p>模拟，用队列+map即可。</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">200020</span>;</span><br><span class="line"><span class="keyword">int</span> n,k,q[MAX],head,tail;</span><br><span class="line"><span class="built_in">map</span>&lt;<span class="keyword">int</span>,<span class="keyword">bool</span>&gt; mp;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;k);</span><br><span class="line">  <span class="keyword">int</span> id;</span><br><span class="line">  FOR(i,<span class="number">0</span>,n)&#123; </span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;id);</span><br><span class="line">    <span class="keyword">if</span>(mp.count(id) &amp;&amp; mp[id]) <span class="keyword">continue</span>;  <span class="comment">// already have id</span></span><br><span class="line">    <span class="keyword">if</span>(tail - head &lt; k)&#123;  <span class="comment">// not full</span></span><br><span class="line">      q[tail++] = id; mp[id]=<span class="number">1</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      mp[q[head++]]=<span class="number">0</span>; q[tail++]=id; mp[id]=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,tail-head);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"%d"</span>,q[tail<span class="number">-1</span>]);</span><br><span class="line">  <span class="keyword">if</span>(tail-head&gt;=<span class="number">2</span>) ROR(k,tail<span class="number">-2</span>,head)</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">" %d"</span>,q[k]);</span><br><span class="line">  <span class="built_in">putchar</span>(<span class="string">'\n'</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="C-Pipes"><a href="#C-Pipes" class="headerlink" title="C: Pipes"></a>C: Pipes</h1><p>一开始把它想复杂了，看了别人的代码才发现好简单……<br>从(0,0)开始，尝试走到(1,n)。如果当前为1,2，则只能向右。如果当前为3-6，则走到另一行(x^1)，且那个的种类也为3-6。</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">200020</span>;</span><br><span class="line"><span class="keyword">int</span> n; <span class="keyword">char</span> s[<span class="number">2</span>][MAX];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> T; <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;T);</span><br><span class="line">  <span class="keyword">while</span>(T--)&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%s%s"</span>,s[<span class="number">0</span>],s[<span class="number">1</span>]);</span><br><span class="line">    <span class="keyword">int</span> x=<span class="number">0</span>, y=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(y&lt;n)&#123;</span><br><span class="line">      <span class="keyword">if</span>(s[x][y]&gt;=<span class="string">'3'</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(s[x^<span class="number">1</span>][y]&lt;=<span class="string">'2'</span>) <span class="keyword">break</span>;</span><br><span class="line">        x^=<span class="number">1</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      y++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, x==<span class="number">1</span> &amp;&amp; y==n ? <span class="string">"YES"</span> : <span class="string">"NO"</span> );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="D-Distinct-Characters-Queries"><a href="#D-Distinct-Characters-Queries" class="headerlink" title="D: Distinct Characters Queries"></a>D: Distinct Characters Queries</h1><p>没想到只要用set就行了……亏我还上了线段树……<br>过段时间得好好学学STL了 XD</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">100020</span>;</span><br><span class="line"><span class="keyword">int</span> n,q; <span class="keyword">char</span> s[MAX];</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SetTree</span>&#123;</span></span><br><span class="line">  <span class="keyword">int</span> node[MAX&lt;&lt;<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">pushUp</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;</span><br><span class="line">    node[u] = node[u&lt;&lt;<span class="number">1</span>] | node[u&lt;&lt;<span class="number">1</span>|<span class="number">1</span>];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> cl, <span class="keyword">int</span> cr)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(cl==cr)&#123;</span><br><span class="line">      node[u]=<span class="number">1</span>&lt;&lt;(s[cl]-<span class="string">'a'</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      <span class="keyword">int</span> m=(cl+cr)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">      build(u&lt;&lt;<span class="number">1</span>,cl,m);</span><br><span class="line">      build(u&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,m+<span class="number">1</span>,cr);</span><br><span class="line">      pushUp(u);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">set</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> cl, <span class="keyword">int</span> cr, <span class="keyword">int</span> ql, <span class="keyword">int</span> qr, <span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(ql&lt;=cl &amp;&amp; cr&lt;=qr)&#123;</span><br><span class="line">      node[u] = v;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      <span class="keyword">int</span> m=(cl+cr)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">      <span class="keyword">if</span>(ql&lt;=m) <span class="built_in">set</span>(u&lt;&lt;<span class="number">1</span>,cl,m,ql,qr,v);</span><br><span class="line">      <span class="keyword">if</span>(m&lt;qr) <span class="built_in">set</span>(u&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,m+<span class="number">1</span>,cr,ql,qr,v);</span><br><span class="line">      pushUp(u);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> cl, <span class="keyword">int</span> cr, <span class="keyword">int</span> ql, <span class="keyword">int</span> qr)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(ql&lt;=cl &amp;&amp; cr&lt;=qr)&#123;</span><br><span class="line">      <span class="keyword">return</span> node[u];</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      <span class="keyword">int</span> m=(cl+cr)&gt;&gt;<span class="number">1</span>; <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">      <span class="keyword">if</span>(ql&lt;=m) ans=sum(u&lt;&lt;<span class="number">1</span>,cl,m,ql,qr);</span><br><span class="line">      <span class="keyword">if</span>(m&lt;qr) ans|=sum(u&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,m+<span class="number">1</span>,cr,ql,qr);</span><br><span class="line">      <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;sg;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">"%s%d"</span>,s+<span class="number">1</span>,&amp;q);</span><br><span class="line">  n = <span class="built_in">strlen</span>(s+<span class="number">1</span>);</span><br><span class="line">  sg.build(<span class="number">1</span>,<span class="number">1</span>,n);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> op,pos,l,r,ch;</span><br><span class="line">  <span class="keyword">while</span>(q--)&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;op);</span><br><span class="line">    <span class="keyword">if</span>(op==<span class="number">1</span>)&#123;</span><br><span class="line">      <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;pos);</span><br><span class="line">      <span class="keyword">do</span> ch=getchar(); <span class="keyword">while</span>(!<span class="built_in">isalpha</span>(ch));</span><br><span class="line">      sg.<span class="built_in">set</span>(<span class="number">1</span>,<span class="number">1</span>,n,pos,pos, <span class="number">1</span>&lt;&lt;(ch-<span class="string">'a'</span>));</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;l,&amp;r);</span><br><span class="line">      <span class="keyword">int</span> sum = sg.sum(<span class="number">1</span>,<span class="number">1</span>,n,l,r);</span><br><span class="line">      <span class="keyword">int</span> cnt=<span class="number">0</span>;</span><br><span class="line">      <span class="keyword">while</span>(sum)&#123;</span><br><span class="line">        <span class="keyword">if</span>(sum&amp;<span class="number">1</span>) cnt++;</span><br><span class="line">        sum&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,cnt);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="E"><a href="#E" class="headerlink" title="E:"></a>E:</h1>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;第一次打 Div. 3 ，的确比 2 简单了不少 XD&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="CF" scheme="https://thebesttv.github.io/tags/CF/"/>
+    
+  </entry>
   
   <entry>
     <title>[CF 1228] 解题报告</title>
@@ -388,64 +465,6 @@
     
     
       <category term="随笔" scheme="https://thebesttv.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>初赛一周年</title>
-    <link href="https://thebesttv.github.io/2018/10/13/%E5%88%9D%E8%B5%9B%E4%B8%80%E5%91%A8%E5%B9%B4/"/>
-    <id>https://thebesttv.github.io/2018/10/13/初赛一周年/</id>
-    <published>2018-10-12T16:00:00.000Z</published>
-    <updated>2019-08-05T03:49:06.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>没有想到距离 NOIP2017 的初赛已经一年了，time does fly, right？</p><a id="more"></a><p>在这一年里当然发生了各种奇怪的事，不过也没什么，下个月还有复赛一周年呢 XD</p><p>去年立的 flag 总算是倒了，NOIP2018 我是不会去了。看来未来总是那么扑朔迷离啊，nothing’s ever for sure。不知道我们学校今年有谁会接着我的梦想呢，也不知道今年的初赛会不会闹出什么锅呢？</p><p>他们化竞的结果这周终于揭晓了，yyc 没有省队，myw、gr 没有省一，但至少还有几个可爱的人圆梦了吧。<br>故天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为，所以动心忍性，曾益其所不能。<br>我相信努力总是有成效的，就如同雨后定能有彩虹；我也相信好人终究有好报，a nice person will always go along。</p><p>ps. 运动会的还没写呢，恐怕要到很久之后才可能写了。<br>pps. 今天好像是路大佬的生日啊，happy coincidence，huh？</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;没有想到距离 NOIP2017 的初赛已经一年了，time does fly, right？&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="随笔" scheme="https://thebesttv.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>斑斑鸠鸠</title>
-    <link href="https://thebesttv.github.io/2018/10/13/%E6%96%91%E6%96%91%E9%B8%A0%E9%B8%A0/"/>
-    <id>https://thebesttv.github.io/2018/10/13/斑斑鸠鸠/</id>
-    <published>2018-10-12T16:00:00.000Z</published>
-    <updated>2019-08-05T03:49:22.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>2018-08-26 10:25<br>于是两只斑鸠找到了新主人，有爱心的 CR ，哦耶~</p><a id="more"></a><p>2018-10-13 21:03<br>国庆的时候两只已经都放飞了，我就当一个 well-wisher 吧。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;2018-08-26 10:25&lt;br&gt;于是两只斑鸠找到了新主人，有爱心的 CR ，哦耶~&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="随笔" scheme="https://thebesttv.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>相思树</title>
-    <link href="https://thebesttv.github.io/2018/09/01/%E7%9B%B8%E6%80%9D%E6%A0%91/"/>
-    <id>https://thebesttv.github.io/2018/09/01/相思树/</id>
-    <published>2018-08-31T16:00:00.000Z</published>
-    <updated>2019-08-04T13:36:20.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>看了南方周末的一篇文章：<a href="http://www.infzm.com/content/137992" target="_blank" rel="noopener">守卫西南边境线：感受变与不变</a>，挺有感触的，于是就写了，照着暑假里那篇作文的结构。</p><a id="more"></a><p>感觉题目没起好，字数也多了点，不过暂时就这样吧，等会给 fd 看一下。<br>之后说不定会写一篇关于边境农民排雷的（吧……）。</p><p>#正文<br>相思花开，落黄遍地。金鸡山顶，看着伫立你，看着前方的山川天际，还有山下繁荣的土地。<br>太阳还在云层里，山间水汽氤氲，萦绕着山顶。你松树般笔直地挺立，不放过远方的任何动静，身旁的相思树与你一同站立。<br>望着你的身影，想起曾经的点点滴滴。<br>七年前，刚进入大学一个月，还没来得及谈场恋爱，你就来了——来当兵。面对他人的不解，你说你向往，那铮铮铁骨的荣誉精神。<br>当他们还沉浸在初入大学的新鲜感时，你已背上行囊，来到几千公里外的广西。当他们学有所成毕业时，你依然站在这里。他们的青春是奔放而热烈的牡丹花，你的青春却在这里被消磨殆尽，一如山顶不被知晓的相思树。<br>没有手机信号的边境，对刚来哨所的你，简直是一种煎熬。像是回到了前文明时代，曾经的朋友逐渐远离。你抱怨吃饭的时间太短，身边总有不知名的毒虫。你不喜欢三四月份的湿气，让好不容易晒得半干的被子，一个晚上又能挤出水来。你说你看到那棵树就想家，想念母亲的锅巴。<br>七年间，训练、巡逻、站岗，单调又固定，像太阳总在东方升起。<br>每月至少八次的巡逻，一次就是一整天。早晨八点，背上枪，带上锄头、砍刀，还有一支小心揣着的朱笔。二十多公里的路途，穿过茂密的原始森林，趟过奔腾的河流，还要循着前人的足迹跨过危险的雷区。战友和军犬是最忠实的伴侣，毒蛇和蚂蝗是最常见的东西。<br>终于来到界碑，你说那是最庄严的地方，你说无论多累，到那时总会挺直腰杆。走近，擦拭，描红，宣誓，最后拍下带着当天日期的相片。你说那就是你曾经向往的，那就是荣誉。<br>今天是你站岗的日子，无需跋涉几十公里，但也没有丝毫的轻松。太阳早已升离云层，悬在半高的天。山雾消去，一切变得清晰又锐利。机警的山雀不时飞来，忙了一阵又离开。<br>家寄江东远，身对江西春。空见相思树，不见相思人。戍边守关总带着单调与思念。七年，见到的永远是那几个人，手中那杆枪，袋中那支朱笔，还有那被走过一遍又一遍的老路。你不记得多少次，于站岗之时，想起母亲，想起家乡。<br>你不是那些兵中最神气的，不能在阅兵大典上面对镜头，深情地望着你守护的那方百姓。你忍受着几十公里跋涉的煎熬，还有三四月早晨湿漉漉的被子。你担心脚下那些被遗弃的地雷哪天会伤到你的战友。<br>可你仍然坚持着。你说你喜欢那某条路旁那株风铃草，你说你看过日出东方，数过流星飞向远方。你说你知道献身于一项事业的骄傲，用朱笔在界碑上描下“中国”二字的自豪，还有菜园里故乡泥土的芬芳。<br>空气渐渐炎热起来，刺眼的太阳烘烤着金鸡山的大地。七年，曾经青涩的少年，变为面前汗流浃背却纹丝不动的战士，在寂寞中守望繁荣。<br>相思树下，一代又一代的哨兵曾在此站岗，不变的是他们的守望。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;看了南方周末的一篇文章：&lt;a href=&quot;http://www.infzm.com/content/137992&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;守卫西南边境线：感受变与不变&lt;/a&gt;，挺有感触的，于是就写了，照着暑假里那篇作文的结构。&lt;/p&gt;
-    
-    </summary>
-    
     
   </entry>
   
