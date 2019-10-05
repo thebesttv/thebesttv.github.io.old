@@ -22,7 +22,7 @@ header h1 {
   margin:      0px;
 }
 
-@media only screen and (max-width: 499px) {
+@media only screen and (max-device-width: 499px) {
   article {
     display: block;
     padding: 10px;
@@ -36,7 +36,7 @@ header h1 {
     background: #444444;
   }
 }
-@media only screen and (min-width: 500px) and (max-width: 999px){
+@media only screen and (min-device-width: 500px) and (max-device-width: 999px){
   article {
     display: inline-block;
     padding: 10px;
@@ -61,7 +61,7 @@ header h1 {
     background: #444444;
   }
 }
-@media only screen and (min-width:1000px) {
+@media only screen and (min-device-width:1000px) {
   main {
     display: inline-block;
     width: 70%;
