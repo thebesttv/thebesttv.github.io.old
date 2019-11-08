@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://thebesttv.github.io/"/>
-  <updated>2019-10-24T09:01:32.412Z</updated>
+  <updated>2019-11-08T08:20:23.725Z</updated>
   <id>https://thebesttv.github.io/</id>
   
   <author>
@@ -15,6 +15,47 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>[Vijos 1404]  遭遇战</title>
+    <link href="https://thebesttv.github.io/2019/11/08/Vijos_1404_%E9%81%AD%E9%81%87%E6%88%98/"/>
+    <id>https://thebesttv.github.io/2019/11/08/Vijos_1404_遭遇战/</id>
+    <published>2019-11-08T08:13:00.000Z</published>
+    <updated>2019-11-08T08:20:23.725Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>给定区间 [s,t] ，n条线段，每条覆盖 [li,ri] 的区间，价格为 wi。求覆盖整个[s,t]的最少代价。</p><a id="more"></a><h1 id="解题报告"><a href="#解题报告" class="headerlink" title="解题报告"></a>解题报告</h1><p>挺不错的题，没仔细想，给Wa了两发……</p><p>可以将每个座标作为节点，如果覆盖了 [l,r] ，则建立一条 l -&gt; r+1 的边，长度为w。转化为求 s 到 t+1 的最短路。</p><p>但这样如果出现 [1,3], [2,4], [5,5] 将无法覆盖 [1,5]，因此要建立所有 i -&gt; i-1 长为0的边。</p><p>但这样，[1,6] 又无法覆盖 [1,5] ，因此能只检查 d[t+1] ，要检查所有 i&gt;t 的最短路。</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN=<span class="number">90020</span>, MAXM = <span class="number">10020</span> + MAXN;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="keyword">int</span> n,s,t,d[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span>&#123;</span></span><br><span class="line">  <span class="keyword">int</span> v,w; Edge *next;</span><br><span class="line">&#125;edge[MAXM], *head[MAXN];</span><br><span class="line"><span class="keyword">int</span> tail=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addEdge</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v, <span class="keyword">int</span> w)</span></span>&#123;</span><br><span class="line">  edge[tail]=Edge&#123;v,w,head[u]&#125;;</span><br><span class="line">  head[u]=edge + (tail++);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">  <span class="keyword">int</span> d,u;</span><br><span class="line">  Node(<span class="keyword">int</span> d, <span class="keyword">int</span> u): d(d), u(u) &#123; &#125;</span><br><span class="line">  <span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> Node &amp;b) <span class="keyword">const</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> d &gt; b.d;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">PQ&lt;Node&gt; q;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Dij</span><span class="params">(<span class="keyword">int</span> s)</span></span>&#123;</span><br><span class="line">  MST(d,<span class="number">0x3f</span>); d[s]=<span class="number">0</span>;</span><br><span class="line">  q.push(Node(<span class="number">0</span>,s));</span><br><span class="line">  <span class="keyword">while</span>(!q.empty())&#123;</span><br><span class="line">    Node t=q.top(); q.pop();</span><br><span class="line">    <span class="keyword">if</span>(t.d!=d[t.u]) <span class="keyword">continue</span>;</span><br><span class="line">    <span class="keyword">int</span> u=t.u;</span><br><span class="line">    <span class="keyword">for</span>(Edge *e=head[u];e;e=e-&gt;next)&#123;</span><br><span class="line">      <span class="keyword">if</span>(d[e-&gt;v] &gt; d[u] + e-&gt;w)&#123;</span><br><span class="line">        d[e-&gt;v] = d[u] + e-&gt;w;</span><br><span class="line">        q.push(Node(d[e-&gt;v], e-&gt;v));</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;n,&amp;s,&amp;t);</span><br><span class="line">  FOR(i,s+<span class="number">1</span>,t) addEdge(i,i<span class="number">-1</span>,<span class="number">0</span>);</span><br><span class="line">  <span class="keyword">int</span> timeMax=t;</span><br><span class="line">  <span class="keyword">int</span> l,r,w;</span><br><span class="line">  <span class="keyword">while</span>(n--)&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;l,&amp;r,&amp;w);</span><br><span class="line">    addEdge(l,r+<span class="number">1</span>,w);</span><br><span class="line">    timeMax=max(timeMax,r);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Dij(s);</span><br><span class="line">  <span class="keyword">int</span> ansMin=INF;</span><br><span class="line">  FORR(i,t+<span class="number">1</span>,timeMax+<span class="number">1</span>)</span><br><span class="line">    ansMin=min(ansMin,d[i]);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ansMin&lt;INF ? ansMin : <span class="number">-1</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;题目大意&quot;&gt;&lt;a href=&quot;#题目大意&quot; class=&quot;headerlink&quot; title=&quot;题目大意&quot;&gt;&lt;/a&gt;题目大意&lt;/h1&gt;&lt;p&gt;给定区间 [s,t] ，n条线段，每条覆盖 [li,ri] 的区间，价格为 wi。求覆盖整个[s,t]的最少代价。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="最短路" scheme="https://thebesttv.github.io/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SSDUT 尺取、二分、三分</title>
+    <link href="https://thebesttv.github.io/2019/10/28/SSDUT_%E4%BA%8C%E5%88%86%E3%80%81%E4%B8%89%E5%88%86%E3%80%81%E5%B0%BA%E5%8F%96/"/>
+    <id>https://thebesttv.github.io/2019/10/28/SSDUT_二分、三分、尺取/</id>
+    <published>2019-10-27T16:00:00.000Z</published>
+    <updated>2019-10-28T03:52:59.653Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="I-CF1156C-Match-Points"><a href="#I-CF1156C-Match-Points" class="headerlink" title="I [CF1156C] Match Points"></a>I [CF1156C] Match Points</h1><p>给定一串序列 ${x_n}$, 选出最多的有序对 $(x_i, x_j)$ 使得 $|x_j - x_i| \le z$</p><p>贪心 + 尺取 / 贪心 + 二分</p><p>令有序对中较小的为 L，较大的为 R，可以发现，若存在 Rj &lt; Li，则交换他们不会使答案更劣。若存在 R 小于某个未配对的数，则交换他们亦不会更劣；存在 L 大于某个未配对的数，也可交换。</p><p>因此，R不小于所有的L，L不大于任意R，即将数列排序后，取前 k 小和后 k 大的一一配对即可。</p><p>可以尺取，直接将数列分成两份，从中间开始取；也可二分答案，对每个 k 判断是否合法。</p><p>尺取</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">2e5</span> + <span class="number">20</span>;</span><br><span class="line"><span class="keyword">int</span> n,z,a[MAX];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;z);</span><br><span class="line">  FOR(i,<span class="number">0</span>,n) <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a[i]);</span><br><span class="line">  sort(a,a+n);</span><br><span class="line">  <span class="keyword">int</span> i=<span class="number">0</span>,ans=<span class="number">0</span>;</span><br><span class="line">  FOR(j,(n+<span class="number">1</span>)/<span class="number">2</span>,n)&#123;</span><br><span class="line">    <span class="keyword">if</span>(a[j]-a[i]&gt;=z)&#123;</span><br><span class="line">      ++ans, ++i;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>二分</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">2e5</span> + <span class="number">20</span>;</span><br><span class="line"><span class="keyword">int</span> n,z,a[MAX];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">ok</span><span class="params">(<span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> s = n-k;</span><br><span class="line">  FOR(i,<span class="number">0</span>,k) <span class="keyword">if</span>(a[i+s] - a[i] &lt; z)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;z);</span><br><span class="line">  FOR(i,<span class="number">0</span>,n) <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a[i]);</span><br><span class="line">  sort(a,a+n);</span><br><span class="line">  <span class="keyword">int</span> l = <span class="number">0</span>, r = n/<span class="number">2</span>;</span><br><span class="line">  <span class="keyword">while</span>(l&lt;r)&#123;</span><br><span class="line">    <span class="keyword">int</span> m = (l+r+<span class="number">1</span>)/<span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span>(ok(m))&#123;</span><br><span class="line">      l = m;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      r = m<span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,l);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;I-CF1156C-Match-Points&quot;&gt;&lt;a href=&quot;#I-CF1156C-Match-Points&quot; class=&quot;headerlink&quot; title=&quot;I [CF1156C] Match Points&quot;&gt;&lt;/a&gt;I [CF1156C] Match 
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Day 3 Hints</title>
@@ -415,46 +456,6 @@
     
       <category term="Words &amp; Expressions" scheme="https://thebesttv.github.io/categories/%E8%8B%B1%E8%AF%AD/Words-Expressions/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>2019/02/01 英语卡片</title>
-    <link href="https://thebesttv.github.io/2019/02/01/English_card/"/>
-    <id>https://thebesttv.github.io/2019/02/01/English_card/</id>
-    <published>2019-01-31T16:00:00.000Z</published>
-    <updated>2019-08-05T03:47:08.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>好久没有把一张英语卡片标注成这样了……</p><a id="more"></a><img src="/2019/02/01/English_card/card.jpg" title="the card">]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;好久没有把一张英语卡片标注成这样了……&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="随笔" scheme="https://thebesttv.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Vasily Tsibliyev</title>
-    <link href="https://thebesttv.github.io/2019/01/29/Vasily_Tsibliyev/"/>
-    <id>https://thebesttv.github.io/2019/01/29/Vasily_Tsibliyev/</id>
-    <published>2019-01-28T16:00:00.000Z</published>
-    <updated>2019-08-05T03:48:58.000Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Tsibliyev.jpg/220px-Tsibliyev.jpg" alt="Vasily Tsibliyev"></p><a id="more"></a><p>今天看了《读写快易通（一）》的第四章，里面是一篇 Times 的关于俄罗斯宇航员 Vasily Tsibliyev 的报道。一开始看文章没太大感觉，不过里面有几道题不太会，然后就查了一下他的报道，然后就看到了另一篇 <a href="http://content.time.com/time/magazine/article/0,9171,138231,00.html" target="_blank" rel="noopener">Life After Mir</a> ，01年的，可能是他回到地球后的生活吧。感觉这篇文章全文都比较 gloomy。<br>一个宇航员，本应该被尊重，但因为几个过失（可能都不是他的错），就变得这样……<br>可能我没看懂文章，不过感觉还是挺悲伤的。</p><p>之后如果能多了解一下他，可能会来更新吧。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Tsibliyev.jpg/220px-Tsibliyev.jpg&quot; alt=&quot;Vasily Tsibliyev&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="随笔" scheme="https://thebesttv.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
